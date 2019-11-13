@@ -11,5 +11,12 @@ public class DAOFactory {
 		return new cartDAOImpl();		 
 	}
 	
+	public productDAO getProdutDAO() {
+		return new productDAOImpl();
+	}
+
+	public order_pDAO getOrder_pDAO() {
+		return new order_pDAOImpl();
+	}
 
 }
