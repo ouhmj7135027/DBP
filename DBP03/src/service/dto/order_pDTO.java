@@ -3,7 +3,7 @@ package service.dto;
 import java.sql.Date;
 
 public class order_pDTO {
-	private int order_id = 0;
+	private static int order_id = 0;
 	private String order_state = null;
 	private Date order_date = null;
 	private String address = null;
@@ -17,7 +17,7 @@ public class order_pDTO {
 	public void setM_email(String m_email) {
 		this.m_email = m_email;
 	}
-	public int getOrder_id() {
+	public static int getOrder_id() {
 		return order_id;
 	}
 	public void setOrder_id(int order_id) {
