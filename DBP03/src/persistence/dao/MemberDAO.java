@@ -4,7 +4,7 @@ import java.util.List;
 
 import service.dto.MemberDTO;
 
-public interface memberDAO {
+public interface MemberDAO {
 	public List<MemberDTO> getMemberList();
 	public MemberDTO getMemberByEmail(String email);
 	public int insertMember(MemberDTO mem);

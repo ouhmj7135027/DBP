@@ -18,5 +18,13 @@ public class DAOFactory {
 	public order_pDAO getOrder_pDAO() {
 		return new order_pDAOImpl();
 	}
+	
+	public MemberDAO getMemberDAO() {
+		return new MemberDAOImpl();
+	}
+	
+	public ExchangeDAO getExchangeDAO() {
+		return new ExchangeDAOImpl();
+	}
 
 }
