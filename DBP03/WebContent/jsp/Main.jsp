@@ -60,7 +60,7 @@ table {
 </nav>
 <div class = "container">
   <img src="pills.png" style = "width:140%;height:250px;" alt="Responsive image">
-   <button class="btn">내 건강상태 알기</button>
+   <a href="surveyMain.jsp"><button class="btn" >내 건강상태 알기</button></a>
    </div>
    <br><br><br><br><br><br><br><br><br><br><br>
    <div>
