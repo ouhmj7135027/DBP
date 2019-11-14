@@ -1,4 +1,4 @@
-package serviceImpl.dao;
+package persistence.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import persistence.DAOFactory;
-import service.dao.categoryDAO;
+import persistence.dao.categoryDAO;
 
 
 public class categoryDAOImpl implements categoryDAO{

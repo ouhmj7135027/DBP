@@ -1,9 +1,9 @@
-package serviceImpl.dao;
+package persistence.dao.impl;
 
 import java.sql.SQLException;
 
 import persistence.DAOFactory;
-import service.dao.order_pDAO;
+import persistence.dao.order_pDAO;
 import service.dto.order_pDTO;
 
 public class order_pDAOImpl implements order_pDAO{

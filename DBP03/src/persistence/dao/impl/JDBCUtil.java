@@ -5,7 +5,7 @@
 // commons-dbcp-1.2.2.jar
 // commons-pool-1.3.jar
 
-package serviceImpl.dao;
+package persistence.dao.impl;
 
 import java.sql.*;
 import javax.sql.DataSource;

@@ -1,10 +1,10 @@
-package serviceImpl.dao;
+package persistence.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import persistence.DAOFactory;
-import service.dao.productDAO;
+import persistence.dao.productDAO;
 import service.dto.productDTO;
 
 public class productDAOImpl implements productDAO {

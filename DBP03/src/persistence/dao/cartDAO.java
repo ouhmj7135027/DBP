@@ -1,4 +1,4 @@
-package service.dao;
+package persistence.dao;
 
 import java.util.List;
 

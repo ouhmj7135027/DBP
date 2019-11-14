@@ -1,4 +1,4 @@
-package serviceImpl.dao;
+package persistence.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,12 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import persistence.DAOFactory;
-import service.dao.cartDAO;
-//import persistence.dao.ProfDAO;
-//import service.dto.DeptDTO;
-//import service.dto.ProfDTO;
-//import service.dto.StudentDTO;
-//import service.dto.cartDTO;
+import persistence.dao.cartDAO;
 
 public class cartDAOImpl implements cartDAO {
 	// StudentDTO 에 담긴 학생정보를 Data Source 에 추가하는 메소드
