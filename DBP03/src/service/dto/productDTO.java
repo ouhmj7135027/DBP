@@ -6,7 +6,21 @@ public class productDTO {
 	private String p_name = null;
 	private int p_price = 0;
 	private int sales = 0;
+	private int category_id = 0;
+	private int category_age_id = 0;
 	
+	public int getCategory_id() {
+		return category_id;
+	}
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+	public int getCategory_age_id() {
+		return category_age_id;
+	}
+	public void setCategory_age_id(int category_age_id) {
+		this.category_age_id = category_age_id;
+	}
 	public int getProduct_id() {
 		return product_id;
 	}

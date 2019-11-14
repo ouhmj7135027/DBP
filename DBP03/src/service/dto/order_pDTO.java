@@ -8,6 +8,15 @@ public class order_pDTO {
 	private Date order_date = null;
 	private String address = null;
 	private int total_price = 0;
+	private String m_email = null;
+	
+	
+	public String getM_email() {
+		return m_email;
+	}
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
+	}
 	public int getOrder_id() {
 		return order_id;
 	}

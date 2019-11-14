@@ -19,6 +19,10 @@ public class DAOFactory {
 		return new order_pDAOImpl();
 	}
 	
+	public order_detailDAO getOrder_detailDAO() {
+		return new order_detailDAOImpl();
+	}
+	
 	public MemberDAO getMemberDAO() {
 		return new MemberDAOImpl();
 	}

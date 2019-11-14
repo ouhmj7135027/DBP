@@ -61,9 +61,16 @@ private JDBCUtil jdbcUtil = null;
 		
 		//categoryDAO 객체 생성해서 id 알아와야함
 		//category_ageDAO 객체 생성해서 id 알아와야함
+		//categoryDAO categoryDAO = factory.getCategoryDAO(); //factory를 통해 카테고리에 대한 DAO 획득
+		//categoryDTO categoryDTO = categoryDAO.getCategoryById(pro.getCategory_id());
+		//int cateId = categoryDTO.getCategory_id();
+				
+		//category_ageDAO category_ageDAO = factory.getCategory_ageDAO();
+		//category_ageDAO categoryDTO = category_ageDAO.getCategory_ageById(pro.getCategory_age_id());
+		//int cate_ageId = category_ageDTO.getCategory_id();
 		
 		Object[] param = new Object[] {pro.getProduct_id(), pro.getEffect(), pro.getP_name(), 
-				pro.getP_price(), pro.getSales()}; //category, categpry_age 삽입 해야함
+				pro.getP_price(), pro.getSales(), pro.getCategory_id(), pro.getCategory_age_id()};
 	
 		jdbcUtil.setSql(insertQuery);
 		jdbcUtil.setParameters(param);
@@ -98,17 +105,25 @@ private JDBCUtil jdbcUtil = null;
 			updateQuery += "p_name = ?, ";
 			tempParam[index++] = pro.getP_name();
 		}
-		if (pro.getP_price() != 0) {
+		if (pro.getP_price() != -1) {
 			updateQuery += "p_price = ?, ";
 			tempParam[index++] = pro.getP_price();
 		}
-		if (pro.getSales() != 0) {
+		if (pro.getSales() != -1) {
 			updateQuery += "p_sales = ?, ";
 			tempParam[index++] = pro.getSales();
 		}
+		if (pro.getCategory_id() != -1) {
+			updateQuery += "category_id = ?, ";
+			tempParam[index++] = pro.getCategory_id();
+		}
+		if (pro.getCategory_age_id() != -1) {
+			updateQuery += "category_age_id = ?, ";
+			tempParam[index++] = pro.getCategory_age_id();
+		}
 		
 		updateQuery += "where product_id = ? ";
-		updateQuery = updateQuery.replace(", where", " where");
+		updateQuery = updateQuery.replace(", where", " where"); // update 문의 where 절 앞에 있을 수 있는 , 제거
 		
 		tempParam[index++] = pro.getProduct_id();
 		
@@ -131,7 +146,7 @@ private JDBCUtil jdbcUtil = null;
 			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
 		}		
 		return 0;
-		//sold out...?
+
 	}
 		
 	public int deleteProduct (String product_id) {
@@ -153,6 +168,7 @@ private JDBCUtil jdbcUtil = null;
 		}
 		return 0;
 	}
+
 
 	
 

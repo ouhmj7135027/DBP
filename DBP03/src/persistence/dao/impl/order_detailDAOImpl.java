@@ -3,37 +3,42 @@ package persistence.dao.impl;
 import java.sql.SQLException;
 
 import persistence.DAOFactory;
+import persistence.dao.order_detailDAO;
 import persistence.dao.order_pDAO;
-import service.dto.MemberDTO;
+import service.dto.order_detailDTO;
 import service.dto.order_pDTO;
+import service.dto.productDTO;
 
-public class order_pDAOImpl implements order_pDAO{
-private JDBCUtil jdbcUtil = null;
+public class order_detailDAOImpl implements order_detailDAO{
+	private JDBCUtil jdbcUtil = null;
 	
-	public order_pDAOImpl() {
+	public order_detailDAOImpl() {
 		jdbcUtil = new JDBCUtil();
 	}
 	
-	public int insertOrder_p(order_pDTO ord) {
+	public int insertOrder_detail(order_detailDTO ord_d) {
 		int result = 0;
-		String insertQuery = "insert into order_p (order_id, m_id, order_state, order_Date,"
-				+ "address, total_price) " + "values(?, ?, ?, ?, ?, ?) ";
+		String insertQuery = "insert into order_detail (product_id, order_detail_id, order_id,"
+				+ "total_price, o_amount) " + "values(?, ?, ?, ?, ?) ";
 		
 		DAOFactory factory = new DAOFactory();
-		persistence.dao.MemberDAO memberDAO = factory.getMemberDAO();
-		MemberDTO memberDTO = memberDAO.getMemberByEmail(ord.getM_email());
-		int mId = memberDTO.getM_id();
-				
 		
-		Object[] param = new Object[] {ord.getOrder_id(), ord.getOrder_state(), ord.getOrder_date(),
-				ord.getAddress(), ord.getTotal_price()};
+		persistence.dao.productDAO productDAO = factory.getProdutDAO();
+		productDTO productDTO = productDAO.getProductByName(ord_d.getProduct_name());
+		int pId = productDTO.getProduct_id();
 		
+		order_pDAO order_pDAO = factory.getOrder_pDAO();
+		//order_pDTO order_pDTO = order_pDAO.getOrder_pById(ord_d.getOrder_id());
+		int oId = order_pDTO.getOrder_id();
+		
+		Object[] param = new Object[] {ord_d.getProduct_id(), ord_d.getOrder_detail_id(), ord_d.getOrder_id(),
+				ord_d.getTotal_price(), ord_d.getO_amount()};
 		jdbcUtil.setSql(insertQuery);
 		jdbcUtil.setParameters(param);
 		
 		try {				
 			result = jdbcUtil.executeUpdate();		// insert 문 실행
-			System.out.println(ord.getOrder_id() + " 주문의 주문정보가 삽입되었습니다.");
+			System.out.println(ord_d.getOrder_id() + " 주문의 주문정보가 삽입되었습니다.");
 		} catch (SQLException ex) {
 			System.out.println("입력오류 발생!!!");
 			if (ex.getErrorCode() == 1)
@@ -46,38 +51,30 @@ private JDBCUtil jdbcUtil = null;
 			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
 		}		
 		return result;		// insert 에 의해 반영된 레코드 수 반환	
+		
 	}
 	
-	public int updateOrder_p(order_pDTO ord) {
-		String updateQuery = "update order_p set ";
+	public int updateOrder_detail(order_detailDTO ord_d) {
+		String updateQuery = "update order_detail set ";
 		int index = 0;
 		Object[] tempParam = new Object[10];
 		
-		if (ord.getOrder_state() != null) {
-			updateQuery += "order_state = ?, ";
-			tempParam[index++] = ord.getOrder_state();
-		}
-		
-		if (ord.getOrder_date() != null) {
-			updateQuery += "order_Date = ?, ";
-			tempParam[index++] = ord.getOrder_date();
-		}
-		if (ord.getAddress() != null) {
-			updateQuery += "address = ?, ";
-			tempParam[index++] = ord.getAddress();
-		}
-		if (ord.getTotal_price() != -1) {
+		if (ord_d.getTotal_price() != -1) {
 			updateQuery += "total_price = ?, ";
-			tempParam[index++] = ord.getTotal_price();
+			tempParam[index++] = ord_d.getTotal_price();
+		}
+		if (ord_d.getO_amount() != -1) {
+			updateQuery += "o_amount = ?, ";
+			tempParam[index++] = ord_d.getO_amount();
 		}
 		
-		updateQuery += "where order_id = ? ";
-		updateQuery += updateQuery.replace(", where", " where");
+		updateQuery += "where order_detail = ? ";
+		updateQuery += updateQuery.replace(", where",  " where");
 		
-		tempParam[index++] = ord.getOrder_id();
+		tempParam[index++] = ord_d.getOrder_detail_id();
 		
 		Object[] newParam = new Object[index];
-		for (int i = 0; i < newParam.length; i++)
+		for (int i = 0; i < newParam.length; i++) 
 			newParam[i] = tempParam[i];
 		
 		jdbcUtil.setSql(updateQuery);
@@ -97,11 +94,11 @@ private JDBCUtil jdbcUtil = null;
 		return 0;
 	}
 	
-	public int deleteOrder_p (String order_id) {
-		String deleteQuery = "delete from order_p where order_id = ? ";
+	public int deleteOrder_detail (String order_detail_id) {
+		String deleteQuery = "delete from order_detail where order_detail_id = ? ";
 		
 		jdbcUtil.setSql(deleteQuery);
-		Object[] param = new Object[] {order_id};
+		Object[] param = new Object[] {order_detail_id};
 		jdbcUtil.setParameters(param);
 		
 		try {

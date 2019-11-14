@@ -1,12 +1,25 @@
 package service.dto;
 
-public class order_datailDTO {
+public class order_detailDTO {
 	private int product_id = 0;
 	private int order_detail_id = 0;
 	private int order_id = 0;
 	private int total_price = 0;
 	private int o_amount = 0;
+	private String product_name = null;
 	
+	public int getProduct_id() {
+		return product_id;
+	}
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
 	public int getOrder_detail_id() {
 		return order_detail_id;
 	}
