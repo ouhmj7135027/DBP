@@ -42,5 +42,26 @@ public class ProductManager {
 	public productDTO getProduct(String name) {
 		return proDAO.getProductByName(name);
 	}
-
+	
+	
+	public productDTO getProductByNames(String name) {
+		
+		return proDAO.getProductByName(name);
+	} 
+	//name에 해당하는 상품정보를 반환하는 메소드
+	public int insert(productDTO pro) {
+	
+		return proDAO.insertProduct(pro);
+	}
+	public int update(productDTO pro) {
+		return proDAO.updateProduct(pro);
+		
+		
+	}
+	public int delete(String product_id) {
+		return proDAO.deleteProduct(product_id);
+	}
+	public int getProductBySurvey() {}
+	
+	
 }
