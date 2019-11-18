@@ -2,6 +2,9 @@ package persistence.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Member;
+
 import java.sql.*;
 
 import service.dto.*;
@@ -11,7 +14,7 @@ import persistence.dao.*;
 public class MemberDAOImpl implements MemberDAO {
 	
 	private JDBCUtil jdbcUtil = null;
-	
+	   
 	private static String query = 	"SELECT Member.m_id AS MEM_ID, " +
 				"Member.m_name AS MEM_NAME, " +
 				"Member.m_password AS MEM_PWD, " +
@@ -24,6 +27,7 @@ public class MemberDAOImpl implements MemberDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 
+	
 	@Override
 	public List<MemberDTO> getMemberList() {
 		// TODO Auto-generated method stub
@@ -52,7 +56,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberDTO getMemberByEmail(String email) {
+	public Member getMemberByEmail(String email) {
 		// TODO Auto-generated method stub
 		String searchQuery = query + "WHERE MEMBER.email_id = ? ";
 		jdbcUtil.setSql(searchQuery);				
@@ -61,17 +65,19 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		
-			MemberDTO dto = null;
+			 // dto대신에 model을 사용하는 것으로 수정함  지원
 			if (rs.next()) {						
-				dto = new MemberDTO();		
-				dto.setM_id(rs.getInt("MEM_ID"));
-				dto.setM_name(rs.getString("MEM_NAME"));
-				dto.setM_password(rs.getString("MEM_PWD"));
-				dto.setEmail_id(rs.getString("MEM_EMAIL"));
-				dto.setAddress(rs.getString("MEM_ADDRESS"));
-				dto.setPhone(rs.getString("MEM_PHONE"));
+				Member m = new Member(	
+				rs.getInt("MEM_ID"),
+				rs.getString("MEM_NAME"),
+				rs.getString("MEM_PWD"),
+				rs.getString("MEM_EMAIL"),
+				rs.getString("MEM_ADDRESS"),
+				rs.getString("MEM_PHONE"));
+				return m;
+				
 			}
-			return dto;				
+							
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

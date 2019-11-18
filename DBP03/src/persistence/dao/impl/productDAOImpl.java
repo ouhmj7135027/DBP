@@ -2,6 +2,8 @@ package persistence.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import persistence.DAOFactory;
 import persistence.dao.productDAO;
@@ -20,7 +22,55 @@ private JDBCUtil jdbcUtil = null;
 		jdbcUtil = new JDBCUtil();
 	}
 	
+	//전체 상품정보를 List로 반환하는 메소드
+	public List<productDTO> getProductList() {
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<productDTO> list = new ArrayList<productDTO>();
+			while(rs.next()) {
+				productDTO dto = new productDTO();
+				dto.setProduct_id(rs.getInt("product_id"));
+				dto.setEffect(rs.getString("product_effect"));
+				dto.setP_name(rs.getString("product_name"));
+				dto.setP_price(rs.getInt("product_price"));
+				dto.setSales(rs.getInt("product_sales"));
+				list.add(dto);
+			}
+			return  list;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+		}		
+		return null;
+	}
+	
+	//상품목록만을 List로 반환하는 메소드
+	public List<productDTO> getOnlyProductList() {
+		String listQuery = "select product.p_name AS product_name from product ";
+		jdbcUtil.setSql(listQuery);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<productDTO> list = new ArrayList<productDTO>();
+			while (rs.next()) {
+				productDTO dto = new productDTO();
+				dto.setP_name(rs.getString("product_name"));
+				list.add(dto);
+			}
+			return list;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+	}
+	
+	//상품의 이름으로 상품정보를 검색하여 해당상품의 정보를 갖고 있는 ProductDTO 객체를 반환하는 메소드
 	public productDTO getProductByName(String name) {
+		//category를 굳이 가져와야 하는지 모르겠어,,
 		String searchQuery = query + ", " + "category.category_id AS category_id, " +
 											"category_age.category_age_id AS category_age_id " +
 										"from product, category, category_age " +
