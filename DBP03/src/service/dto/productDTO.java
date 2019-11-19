@@ -9,6 +9,10 @@ public class productDTO {
 	private int category_id = 0;
 	private int category_age_id = 0;
 	
+	public productDTO(int i, String string, String string2, String string3, int j, String string4, String string5) {
+		
+	}
+	
 	public int getCategory_id() {
 		return category_id;
 	}
