@@ -3,6 +3,7 @@ package persistence.dao.impl;
 import java.sql.SQLException;
 
 import persistence.DAOFactory;
+import persistence.dao.MemberDAO;
 import persistence.dao.order_pDAO;
 import service.dto.MemberDTO;
 import service.dto.order_pDTO;
@@ -21,7 +22,7 @@ private JDBCUtil jdbcUtil = null;
 		
 		DAOFactory factory = new DAOFactory();
 		persistence.dao.MemberDAO memberDAO = factory.getMemberDAO();
-		MemberDTO memberDTO = memberDAO.getMemberByEmail(ord.getM_email());
+		MemberDTO memberDTO = MemberDAO.getMemberByEmail(ord.getM_email());
 		int mId = memberDTO.getM_id();
 				
 		
