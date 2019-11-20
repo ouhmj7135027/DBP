@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Member;
+import model.service.PasswordMismatchException;
+import model.service.UserNotFoundException;
 import persistence.DAOFactory;
 import persistence.dao.MemberDAO;
 import service.dto.MemberDTO;
