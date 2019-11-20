@@ -20,7 +20,7 @@ public class UpdateUserController implements Controller {
     		request.getParameter("name"),
     		request.getParameter("email"),
     		request.getParameter("phone"));    
-    	
+    	// 수정해야함
     	log.debug("Update User : {}", updateMember);
 
     	MemberManager manager = MemberManager.getInstance();

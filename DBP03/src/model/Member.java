@@ -18,14 +18,19 @@ public class Member {
 		this.phone = phone;
 		this.address = address;
 	}
-	
+	public Member() {}
 	public void update(Member updateMember) {
         this.m_password = updateMember.m_password;
         this.phone = updateMember.phone;
         this.address = updateMember.address;
     }
 	
-
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		return this.m_password.equals(password);
+	}
 	public int getM_id() {
 		return m_id;
 	}

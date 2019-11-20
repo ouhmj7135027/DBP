@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@page import="persistence.dao.impl.MemberDAOImpl"%>
-<%@page import="persistence.dao.MemberDAO"%>
+<%@page import="model.Member"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,7 @@ body {
 <body>
    <%
    String id = session.getAttribute("user").toString();
-   
+   Member member = new Member();
   
    %>
 <div align="center">
@@ -53,30 +53,25 @@ body {
          style="border-collapse: collapse;">
       <tr>
          <td>ID</td>
-         <td><%=member.getId() %></td>
+         <td><%=member.getEmail_id()%></td>
       </tr>
       <tr>
          <td>비밀번호</td>
-         <td><input type="text" name="password" value="<%=user.getPassword() %>" /></td>
+         <td><input type="text" name="password" value="<%=member.getM_password() %>" /></td>
       </tr>
       <tr>
          <td>이름</td>
-         <td><input type="text" name="name" value="<%= user.getName() %>" /></td>
+         <td><input type="text" name="name" value="<%= member.getM_name() %>" /></td>
       </tr>
       <tr>
          <td>주소</td>
-         <td><input type="text" name="address" value="<%= user.getAddress() %>" /></td>
+         <td><input type="text" name="address" value="<%= member.getAddress() %>" /></td>
       </tr>
       <tr>
          <td>전화번호</td>
-         <td><input type="text" name="phone" value="<%= user.getPhone() %>" /></td>
+         <td><input type="text" name="phone" value="<%=member.getPhone() %>" /></td>
       </tr>
-      <tr>
-         <td>이메일</td>
-         <td><input type="text" name="email" value="<%= user.getEmail() %>" /></td>
-      </tr>
-      
-
+     
    </table></form>
    <br>
 

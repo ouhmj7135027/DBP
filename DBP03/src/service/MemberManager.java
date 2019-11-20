@@ -1,5 +1,6 @@
 package service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.Member;
@@ -24,10 +25,10 @@ public class MemberManager implements MemberService {
 	}
 
 	@Override
-	public MemberDTO getMember(String email) {
+	public Member getMember(String email) {
 		// TODO Auto-generated method stub
 		return dao.getMemberByEmail(email);
-	}
+	} //변경 지원
 
 	@Override
 	public int insertMember(MemberDTO mem) {
@@ -50,5 +51,14 @@ public class MemberManager implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.getMemberByEmail(m_email);
 	}
+	
+	public boolean login(String userId, String password)
+			throws SQLException, UserNotFoundException, PasswordMismatchException {
+			Member mem = getMemberByEmail(userId);
 
+			if (!mem.matchPassword(password)) {
+				throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
+			}
+			return true;
+		}
 }

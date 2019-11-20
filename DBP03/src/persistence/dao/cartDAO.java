@@ -16,5 +16,5 @@ public interface cartDAO {
 		public int deleteInCart(int c_id);
 		
 		// id에 해당하는 카트정보를 반환하는 메소드
-		public List<cartDTO> getCartById(int m_id);
+	//	public List<cartDTO> getCartById(int m_id);
 }

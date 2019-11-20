@@ -1,5 +1,5 @@
 package persistence.dao.impl;
-
+import service.dto.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 
 import persistence.DAOFactory;
 import persistence.dao.cartDAO;
-import service.dto.cartDTO;
+
 
 public class cartDAOImpl implements cartDAO {
 	// StudentDTO 에 담긴 학생정보를 Data Source 에 추가하는 메소드
@@ -18,20 +18,24 @@ public class cartDAOImpl implements cartDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 
-	public int insertInCart(cartDTO cart) {
+	public int insertInCart(cartDTO cart) { //create와 동일
 		int result = 0;
 		String insertQuery = "INSERT INTO CART (m_id, cart_p_num, c_price, product_id) " +
-							 "VALUES (?, ?, ?, ?) ";
+							 "VALUES (myseq.nextval,?, ?, ?, ?) ";
 		
-		DAOFactory factory = new DAOFactory();		// 교수정보와 학과정보를 알아오기 위해 DAO 객체를 생성하는 factory 객체 생성
+		DAOFactory factory = new DAOFactory();		
 		
 		// 도대체 외부엣 ㅓ어캐 받아오죠?
 		
 		// query 문에 사용할 매개변수 값을 갖는 매개변수 배열 생성
-		Object[] param = new Object[] {};		
+		
+		Object[] param = new Object[] {MemberDTO.getM_id(), cartDTO.getCart_p_num(), 
+				cartDTO.getC_price(), cartDTO.getProduct_id()};		
+		
 		jdbcUtil.setSql(insertQuery);			// JDBCUtil 에 insert 문 설정
 		jdbcUtil.setParameters(param);			// JDBCUtil 에 매개변수 설정
 				
+		
 		try {				
 			result = jdbcUtil.executeUpdate();		// insert 문 실행
 			System.out.println();
@@ -52,7 +56,7 @@ public class cartDAOImpl implements cartDAO {
 	public int updateInCart(cartDTO stu) {
 		// TODO Auto-generated method stub
 		int result = 0;
-		String insertQuery = "INSERT INTO CART (c_id,m_id, cart_p_num, c_price, product_id) " +
+		String insertQuery = "INSERT INTO CART (m_id, cart_p_num, c_price, product_id) " +
 							 "VALUES (?,?, ?, ?, ?) ";
 		
 		DAOFactory factory = new DAOFactory();		// 교수정보와 학과정보를 알아오기 위해 DAO 객체를 생성하는 factory 객체 생성
@@ -60,7 +64,9 @@ public class cartDAOImpl implements cartDAO {
 		// 외부에서 어떻게 받아오는지 모르겠어......
 		
 		// query 문에 사용할 매개변수 값을 갖는 매개변수 배열 생성
-		Object[] param = new Object[] {};		
+		Object[] param = new Object[] {MemberDTO.getM_id(), cartDTO.getCart_p_num(), 
+				cartDTO.getC_price(), cartDTO.getProduct_id()};		
+			
 		jdbcUtil.setSql(insertQuery);			// JDBCUtil 에 insert 문 설정
 		jdbcUtil.setParameters(param);			// JDBCUtil 에 매개변수 설정
 				
@@ -84,10 +90,10 @@ public class cartDAOImpl implements cartDAO {
 	@Override
 	public int deleteInCart(int c_id) {
 		// TODO Auto-generated method stub
-		String deleteQuery = "DELETE FROM CART WHERE C_ID = ?";
+		String deleteQuery = "DELETE FROM CART WHERE M_ID = ?";
 		
 		jdbcUtil.setSql(deleteQuery);			// JDBCUtil 에 query 문 설정
-		Object[] param = new Object[] {c_id};
+		Object[] param = new Object[] {cartDTO.getM_id()};
 		jdbcUtil.setParameters(param);			// JDBCUtil 에 매개변수 설정
 		
 		try {
@@ -103,7 +109,7 @@ public class cartDAOImpl implements cartDAO {
 		return 0;
 	}
 
-	@Override
+	/*@Override
 	public List<cartDTO> getCartById(int m_id) {
 		// TODO Auto-generated method stub
 		String searchQuery = query + "Select c_id where m_id = ? from cart";
@@ -130,7 +136,7 @@ public class cartDAOImpl implements cartDAO {
 			jdbcUtil.close();
 		}
 		return null;
-	}
+	}*/
 
 
 	}
