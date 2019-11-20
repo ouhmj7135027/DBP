@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +18,7 @@
 	div#root { width:900px; margin:0 auto; }  
 	header#header { }  nav#nav { }  section#container { }   
 	section#content { float:right; width:700px; }   
-	aside#aside { float:left; width:180px; }   
+	ul { float:left; width:180px; }   
 	section#container::after { content:""; display:block; clear:both; }  
 	footer#footer { background:#eee; padding:20px; }   
 	/* ---------- */   
@@ -45,28 +48,54 @@
 </style>
 </head>
 <body>
-<h3>카테고리</h3>
-<ul>
-	<li><a href="">성분별</a>
-		<ul class="low">
-			<li><a href="">프로바이오틱스</a></li>
-			<li><a href="">칼슘/마그네슘/비타민D</a></li>
-			<li><a href="">비타민B</a></li>
-			<li><a href="">비타민C</a></li>
-			<li><a href="">루테인</a></li>
-			<li><a href="">밀크씨슬</a></li>
-			<li><a href="">오메가3</a></li>
-		</ul>
-	</li>
-	<li><a href="">연령대별</a>
-		<ul class="low">
-			<li><a href="">성인남녀</a></li>
-			<li><a href="">어린이</a></li>
-			<li><a href="">청소년</a></li>
-			<li><a href="">임산부</a></li>
-			<li><a href="">시니어</a></li>
-		</ul>
-	</li>
-</ul>
+<div id="root">
+	
+	<section id="container">
+		<div id="container_box">
+		
+			<section id="content">
+				<ul>
+				 <c:forEach items="${list}" var="list">
+				 <li>
+				  <div class="goodsThumb">
+				   <img src="${list.gdsThumbImg}">
+				  </div> 
+				  <div class="goodsName">
+				   <a href="/shop/view?n=${list.gdsNum}">${list.gdsName}</a>
+				  </div>
+				 </li>
+				 </c:forEach>
+				</ul>
+			</section>
+			
+			<h3>카테고리</h3>
+			<ul>
+				<li><a href="">성분별</a>
+					<ul class="low">
+						<li><a href="productlist?c=1&i=1">프로바이오틱스</a></li>
+						<li><a href="productlist?c=1&i=2">칼슘/마그네슘/비타민D</a></li>
+						<li><a href="productlist?c=1&i=3">비타민B</a></li>
+						<li><a href="productlist?c=1&i=4">비타민C</a></li>
+						<li><a href="productlist?c=1&i=5">루테인</a></li>
+						<li><a href="productlist?c=1&i=6">밀크씨슬</a></li>
+						<li><a href="productlist?c=1&i=7">오메가3</a></li>
+					</ul>
+				</li>
+				<li><a href="">연령대별</a>
+					<ul class="low">
+						<li><a href="productlist?c=2&i=1">성인남녀</a></li>
+						<li><a href="productlist?c=2&i=2">어린이</a></li>
+						<li><a href="productlist?c=2&i=3">청소년</a></li>
+						<li><a href="productlist?c=2&i=4">임산부</a></li>
+						<li><a href="productlist?c=2&i=5">시니어</a></li>
+					</ul>
+				</li>
+			</ul>
+			
+		</div>
+	</section>
+
+</div>
+
 </body>
 </html>
