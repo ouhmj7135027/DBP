@@ -1,4 +1,4 @@
-package controller;
+package controller.product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

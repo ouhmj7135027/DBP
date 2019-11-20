@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import controller.UpdateUserController;
+import controller.member.UpdateUserController;
 import model.Product;
 import service.ProductManager;
 import service.dto.productDTO;
@@ -22,11 +22,11 @@ public class updateProductController implements Controller {
     		// GET request: 회원정보 수정 form 요청	
     		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
     		productDTO updateProduct = new productDTO(
-    	    		0, request.getParameter("effect"),
+    				request.getParameter("effect"),
     				request.getParameter("p_name"),
-    				request.getParameter("p_price"), 0, 
-    				request.getParameter("category_id"),
-    				request.getParameter("category_age_id"));	
+    				Integer.parseInt(request.getParameter("p_price")),
+    				Integer.parseInt(request.getParameter("category_id")),
+    				Integer.parseInt(request.getParameter("category_age_id")));
 
     		log.debug("UpdateForm Request : {}", updateProduct);
     		

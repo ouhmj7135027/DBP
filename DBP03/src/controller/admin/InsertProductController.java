@@ -15,11 +15,11 @@ public class InsertProductController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	productDTO product = new productDTO(
-    		0, request.getParameter("effect"),
+    		request.getParameter("effect"),
 			request.getParameter("p_name"),
-			request.getParameter("p_price"), 0, 
-			request.getParameter("category_id"),
-			request.getParameter("category_age_id"));		
+			Integer.parseInt(request.getParameter("p_price")),
+			Integer.parseInt(request.getParameter("category_id")),
+			Integer.parseInt(request.getParameter("category_age_id")));		
         
 		try {
 			ProductManager manager = ProductManager.getInstance();

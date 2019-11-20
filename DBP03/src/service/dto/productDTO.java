@@ -9,10 +9,18 @@ public class productDTO {
 	private int category_id = 0;
 	private int category_age_id = 0;
 	
-	public productDTO(int i, String string, String string2, String string3, int j, String string4, String string5) {
-		
+	public productDTO(String effect, String p_name, int p_price, int category_id, int category_age_id) {
+		this.effect = effect;
+		this.p_name = p_name;
+		this.p_price = p_price;
+		this.category_id = category_id;
+		this.category_age_id = category_age_id;
 	}
 	
+	public productDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCategory_id() {
 		return category_id;
 	}
