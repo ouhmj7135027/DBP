@@ -1,4 +1,7 @@
 package controller.user;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 // userman2참조 아직 안고침 지원
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,4 +41,10 @@ public class UpdateUserFormController implements Controller {
 			new IllegalStateException("타인의 정보는 수정할 수 없습니다."));            
 		return "/user/view.jsp";	// 사용자 보기 화면으로 이동 (forwarding)
     }
+
+	@Override
+	public void onlyGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+	}
 }

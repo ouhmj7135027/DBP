@@ -19,5 +19,11 @@ public class LogoutController implements Controller {
 	        return "redirect:/user/list";
 	    }
 
+	@Override
+	public void onlyGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

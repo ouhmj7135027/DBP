@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -27,4 +30,10 @@ public class UpdateUserController implements Controller {
 		manager.getMemberByEmail(request.getParameter("email"));			
         return "redirect:/user/list";			
     }
+
+	@Override
+	public void onlyGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+	}
 }

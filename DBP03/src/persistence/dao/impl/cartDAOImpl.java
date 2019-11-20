@@ -88,7 +88,7 @@ public class cartDAOImpl implements cartDAO {
 	}
 
 	@Override
-	public int deleteInCart(int c_id) {
+	public int deleteInCart(int m_id) {
 		// TODO Auto-generated method stub
 		String deleteQuery = "DELETE FROM CART WHERE M_ID = ?";
 		
@@ -109,7 +109,9 @@ public class cartDAOImpl implements cartDAO {
 		return 0;
 	}
 
-	/*@Override
+	
+
+	
 	public List<cartDTO> getCartById(int m_id) {
 		// TODO Auto-generated method stub
 		String searchQuery = query + "Select c_id where m_id = ? from cart";
@@ -136,7 +138,7 @@ public class cartDAOImpl implements cartDAO {
 			jdbcUtil.close();
 		}
 		return null;
-	}*/
+	}
 
 
 	}

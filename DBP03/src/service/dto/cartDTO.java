@@ -1,11 +1,40 @@
 package service.dto;
 
+import java.util.LinkedList;
+
 public class cartDTO {
 
 	static int m_id;			
 	static int cart_p_num;			
 	static int c_price;			
 	static int product_id;
+	
+	//product_id
+		private LinkedList<String> codeList = new LinkedList<String>();
+		//수량 (db에 추가해야함)
+		private LinkedList<Integer> numberList = new LinkedList<Integer>();
+		//장바구니에 product 정보 추가하는 메소드
+		public void addItem(String code, int num) {
+			for (int cnt = 0; cnt < codeList.size(); cnt++) {
+				if (codeList.get(cnt).equals(code)) {
+					numberList.set(cnt,  numberList.get(cnt) + num);
+					return;
+				}
+			}
+			codeList.add(code);
+			numberList.add(num);
+		}
+		
+		public String getCode(int index ) {
+			return codeList.get(index);
+		}
+		public int getNumber(int index) {
+			return numberList.get(index);
+		}
+		//장바구니에 있는 항목 수 리턴 메소드
+		public int getSize() {
+			return codeList.size();
+		}
 	public cartDTO() {
 	}
 	public cartDTO(int m_id, int cart_p_num, int c_price, int product_id) {
