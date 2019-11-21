@@ -240,7 +240,7 @@ private JDBCUtil jdbcUtil = null;
 	}
 		
 	public int deleteProduct (String product_id) {
-		String deleteQuery = "delete from student where product_id = ?";
+		String deleteQuery= "delete from student where product_id = ?";
 		
 		jdbcUtil.setSql(deleteQuery);
 		Object[] param = new Object[] {product_id};
@@ -259,7 +259,25 @@ private JDBCUtil jdbcUtil = null;
 		return 0;
 	}
 
-
+	public int survey (int survey, int category) {
+		String query = "select  product_id from product where category_id = ? and survey = ";
+		
+		jdbcUtil.setSql(query);
+		Object[] param = new Object[] {survey, category};
+		jdbcUtil.setParameters(param);
+		
+		try {
+			int result = jdbcUtil.executeUpdate();		// delete 문 실행
+			return result;						// delete 에 의해 반영된 레코드 수 반환
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();		
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+		}
+		return 0;
+	}
 	
 
 }

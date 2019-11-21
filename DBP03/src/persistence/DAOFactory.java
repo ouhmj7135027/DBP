@@ -7,7 +7,7 @@ import persistence.dao.impl.*;
 public class DAOFactory {
 	
 	// cartDAO 를 위한 RDB 용 DAO Implementation 객체를 반환
-	public cartDAO getCartDAO() {
+	public cartDAOImpl getCartDAO() {
 		return new cartDAOImpl();		 
 	}
 	
