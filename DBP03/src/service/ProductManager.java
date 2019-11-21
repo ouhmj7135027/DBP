@@ -15,7 +15,7 @@ public class ProductManager {
 	private static ProductManager productMan = new ProductManager();
 	private productDAO proDAO;
 	
-	private ProductManager() {
+	public ProductManager() {
 		try {
 			DAOFactory factory = new DAOFactory();
 			proDAO = factory.getProdutDAO();
@@ -61,7 +61,9 @@ public class ProductManager {
 	public int delete(String product_id) {
 		return proDAO.deleteProduct(product_id);
 	}
-	public int getProductBySurvey() {}
-	
+	public int getProductBySurvey(int survey, int category) {
+		return proDAO.
+		return 0;}
+		
 	
 }

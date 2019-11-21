@@ -12,7 +12,7 @@ import service.dto.cartDTO;
 
 public class CartManager {
 	private static CartManager cartMan = new CartManager();
-	private cartDAO cartDAO = null;
+	private cartDAOImpl cartDAO = null;
 
 	private CartManager() {
 		try {
