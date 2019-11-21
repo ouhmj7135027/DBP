@@ -4,22 +4,25 @@ import model.Member;
 
 public class MemberDTO {
 
-	private static int m_id;
+	private int m_id;
 	private String m_name;
 	private String m_password;
 	private String email_id;
 	private String address;
 	private String phone;
+
 	
-	public MemberDTO(int m_id, String m_password, String m_name, String email_id, String phone,String address) {
-		this.m_id = m_id;
+	public MemberDTO(int userId, String m_password, String m_name, String email_id, String phone,String address) {
+		this.m_id = userId;
 		this.m_password = m_password;
 		this.m_name = m_name;
 		this.email_id = email_id;
 		this.phone = phone;
 		this.address = address;
 	}
-	public MemberDTO() {}
+	public MemberDTO() {
+		
+	}
 	public void update(Member updateMember) {
         this.m_password = updateMember.getM_password();
         this.phone = updateMember.getPhone();
@@ -28,7 +31,7 @@ public class MemberDTO {
 	
 
 
-	public static int getM_id() {
+	public int getM_id() {
 		return m_id;
 	}
 	public void setM_id(int m_id) {
@@ -64,6 +67,16 @@ public class MemberDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public boolean matchPassword(String password) {
+		if (password == null) {
+			return false;
+		}
+		return this.m_password.equals(password);
+	}
+	
+	public boolean isSameUser(int userid) {
+        return this.m_id == userid;
+    }
 	
 	
 }

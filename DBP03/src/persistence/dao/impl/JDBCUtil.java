@@ -206,4 +206,3 @@ public class JDBCUtil {
 		connMan.printDataSourceStats();
 	}
 }
-}
