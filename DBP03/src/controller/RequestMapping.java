@@ -38,12 +38,10 @@ public class RequestMapping {
         mappings.put("/product/category", new ForwardController("/product/Category.jsp"));
         mappings.put("/product/list", new ProductListController());
         //mappings.put("/review", new ForwardController("¸®ºä.jsp"));
-<<<<<<< HEAD
+
         //mappings.put("/survey/result", new surveyController());
-=======
         //mappings.put("/product", new productListController());
         //mappings.put("/survey/result", new surveyController("/survey/surveyResult.jsp"));
->>>>>>> branch 'master' of https://github.com/ouhmj7135027/DBP
         //mappings.put("/user/delete", new DeleteUserController());  ¸¸µé±â!!!
         logger.info("Initialized Request Mapping!");
     }

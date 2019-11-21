@@ -11,9 +11,14 @@ import service.dto.*;
 import persistence.DAOFactory;
 import persistence.dao.*;
 
-public class MemberDAOImpl implements MemberDAO {
+public class MemberDAOImpl {
 	
 	private JDBCUtil jdbcUtil = null;
+	
+	public MemberDAOImpl() {			
+		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
+	}
+	
 	   
 	private static String query = 	"SELECT Member.m_id AS MEM_ID, " +
 				"Member.m_name AS MEM_NAME, " +
@@ -23,12 +28,8 @@ public class MemberDAOImpl implements MemberDAO {
 				"Member.phone AS MEM_PHONE " +
 				"FROM Member ";
 	
-	public MemberDAOImpl() {			
-		jdbcUtil = new JDBCUtil();
-	}
-
 	
-	@Override
+	
 	public List<MemberDTO> getMemberList() {
 		// TODO Auto-generated method stub
 		jdbcUtil.setSql(query);		// JDBCUtil 에 query 설정
@@ -55,7 +56,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return null;	
 	}
 
-	@Override
+
 	public Member getMemberByEmail(String email) {
 		// TODO Auto-generated method stub
 		String searchQuery = query + "WHERE MEMBER.email_id = ? ";
@@ -86,7 +87,6 @@ public class MemberDAOImpl implements MemberDAO {
 		return null;
 	}
 
-	@Override
 	public int insertMember(MemberDTO mem) {
 		// TODO Auto-generated method stub
 		int result = 0;
@@ -116,7 +116,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;		
 	}
 
-	@Override
+
 	public int updateMember(MemberDTO mem) {
 		// TODO Auto-generated method stub
 		String updateQuery = "UPDATE MEMBER SET ";
@@ -173,7 +173,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return 0;
 	}
 
-	@Override
+	
 	public int deleteMember(int m_id) {
 		// TODO Auto-generated method stub
 		String deleteQuery = "DELETE FROM MEMBER WHERE m_id = ?";

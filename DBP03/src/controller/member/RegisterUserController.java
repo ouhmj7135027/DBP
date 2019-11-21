@@ -12,13 +12,14 @@ import controller.Controller;
 import model.Member;
 import model.service.ExistingUserException;
 import service.MemberManager;
+import service.dto.MemberDTO;
 
 public class RegisterUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	Member member = new Member(
+    	MemberDTO member = new MemberDTO(
     		Integer.parseInt(request.getParameter("m_id")),
 			request.getParameter("m_name"),
 			request.getParameter("m_password"),
@@ -30,7 +31,7 @@ public class RegisterUserController implements Controller {
 
 		try {
 			MemberManager manager = MemberManager.getInstance();
-			manager.insertMember(mem);
+			manager.insertMember(member);
 	        return "redirect:/Main.jsp";		// 성공 시 main화면으로 redirect
 	        
 		} catch (model.service.ExistingUserException e) {		// 예외 발생 시 회원가입 form으로 forwarding
