@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form name = "frm1" action="mainprocess.jsp" method = "post">
+	<form name = "frm1" action="<c:url value='/survey/main' />" method = "post">
 <table>
 
 		<tr><th>불편하시거나 걱정되는 3가지를 선택하세요.(우선적으로 관리가 필요한 것을 선택하세요.)</th></tr>

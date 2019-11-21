@@ -43,16 +43,19 @@ table {
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item">
-        <a class="nav-link" href="#">추천성분</a>
+        <a class="nav-link" href="<c:url value='/user/myPage' />">마이페이지</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">제품보기</a>
+        <a class="nav-link" href="<c:url value='/product/category' />">제품보기</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<c:url value='/cart/cart' />">장바구니</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<c:url value='/user/login/form' />">로그인</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<c:url value='/user/login/form' />">고객후기</a>
       </li>
     </ul>
     
@@ -61,7 +64,7 @@ table {
 </nav>
 <div class = "container">
   <img src="<c:url value='/image/pills.png' />" style = "width:140%;height:250px;" alt="Responsive image">
-   <a href="surveyMain.jsp"><button class="btn" >내 건강상태 알기</button></a>
+   <a href="<c:url value='/survey' />"><button class="btn" >내 건강상태 알기</button></a>
    </div>
    <br><br><br><br><br><br><br><br><br><br><br>
    <div>

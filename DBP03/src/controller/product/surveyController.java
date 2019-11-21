@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Member;
 import service.MemberManager;
 
-public class NextSurveyController {
+public class surveyController {
 	 public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		 String[] list =request.getParameterValues("main");
 		 

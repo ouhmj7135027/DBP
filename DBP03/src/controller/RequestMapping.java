@@ -11,6 +11,7 @@ import controller.member.LogoutController;
 import controller.member.RegisterUserController;
 import controller.member.UpdateUserController;
 import controller.member.UpdateUserFormController;
+import controller.product.surveyController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -30,6 +31,13 @@ public class RequestMapping {
         mappings.put("/user/register", new RegisterUserController());
         mappings.put("/user/update/form", new UpdateUserFormController());
         mappings.put("/user/update", new UpdateUserController());
+        mappings.put("/user/myPage", new ForwardController("/user/myPageForm.jsp"));
+        mappings.put("/survey", new ForwardController("/survey/surveyMain.jsp"));
+        mappings.put("/survey/main", new ForwardController("/survey/mainprocess.jsp"));
+        mappings.put("/product/category", new ForwardController("/product/Category.jsp"));
+        //mappings.put("/review", new ForwardController("¸®ºä.jsp"));
+        //mappings.put("/product", new productListController());
+        //mappings.put("/survey/result", new surveyController());
         //mappings.put("/user/delete", new DeleteUserController());  ¸¸µé±â!!!
         logger.info("Initialized Request Mapping!");
     }
