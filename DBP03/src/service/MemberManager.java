@@ -8,15 +8,13 @@ import model.service.PasswordMismatchException;
 import model.service.UserNotFoundException;
 import persistence.DAOFactory;
 import persistence.dao.MemberDAO;
+import persistence.dao.impl.MemberDAOImpl;
 import service.dto.MemberDTO;
 
 public class MemberManager implements MemberService {
 	private static MemberManager mem = new MemberManager();
-	private MemberDAO dao = null;
-	public MemberManager() {								// DAOFactory 클래스의 객체 생성
-		DAOFactory factory = new DAOFactory();
-		dao = factory.getMemberDAO();
-	}
+	private MemberDAOImpl dao = null;
+	
 	public static MemberManager getInstance() {
 		return mem;
 	}

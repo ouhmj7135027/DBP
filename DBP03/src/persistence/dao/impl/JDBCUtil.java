@@ -6,61 +6,38 @@
 // commons-pool-1.3.jar
 
 package persistence.dao.impl;
+//Java Project 용 JDBCUtil
+//DBCP2 관련 jar 파일을 프로젝트에 포함해야 동작함
+//commons-dbcp2-X.X.X.jar, commons-pool2-X.X.X.jar, commons-logging-X.X.jar
 
 import java.sql.*;
-import javax.sql.DataSource;
-import org.apache.commons.dbcp2.BasicDataSource;
 
 public class JDBCUtil {
-	private String sql = null; // 실행할 query
-	private Object[] parameters = null;; // PreparedStatement 의 매개변수 값을 저장하는 배열
-	private static DataSource ds = null; // DBCP DataSource
+	private static ConnectionManager connMan = new ConnectionManager();  
+	private String sql = null; 				// 실행할 query
+	private Object[] parameters = null;; 	// PreparedStatement 의 매개변수 값을 저장하는 배열
 	private static Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private CallableStatement cstmt = null;
 	private ResultSet rs = null;
+	private int resultSetType = ResultSet.TYPE_FORWARD_ONLY,
+				resultSetConcurrency = ResultSet.CONCUR_READ_ONLY;
 
 	// 기본 생성자
-	public JDBCUtil() {
-		initJDBCUtil();
-	}
+	public JDBCUtil() {	}
 
+	
 	// 매개변수 없는 query를 전달받아 query를 설정하는 생성자
 	public JDBCUtil(String sql) {
-		this.setSql(sql);
-		initJDBCUtil();
+		this.setSql(sql);		
 	}
 
 	// 매개변수의 배열과 함께 query를 전달받아 각각을 설정하는 생성자
 	public JDBCUtil(String sql, Object[] parameters) {
 		this.setSql(sql);
 		this.setParameters(parameters);
-		initJDBCUtil();
 	}
-
-	// DBCP 연결 초기화 메소드
-	private static void initJDBCUtil() {
-		try {
-			if (ds == null) { // DBCP 설정
-				BasicDataSource bds = new BasicDataSource();
-				bds.setDriverClassName("oracle.jdbc.driver.OracleDriver"); // Oracle 용 JDBC Driver 클래스
-				bds.setUsername("dbp0103"); // DB 접속용 ID
-				bds.setPassword("20160149"); // DB 접속용 패스워드
-				bds.setUrl("jdbc:oracle:thin:@202.20.119.117:1521:orcl"); // DBMS 서버 주소
-				ds = bds;
-				// Context init = new InitialContext();
-				// ds = (DataSource)init.lookup("java:comp/env/jdbc/OracleDS");
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	// sql 변수 getter
-	public String getSql() {
-		return this.sql;
-	}
-
+	
 	// sql 변수 setter
 	public void setSql(String sql) {
 		this.sql = sql;
@@ -69,6 +46,12 @@ public class JDBCUtil {
 	// Object[] 변수 setter
 	public void setParameters(Object[] parameters) {
 		this.parameters = parameters;
+	}
+	
+	
+	// sql 변수 getter
+	public String getSql() {
+		return this.sql;
 	}
 
 	// 매개변수 배열에서 특정위치의 매개변수를 반환하는 메소드
@@ -83,19 +66,35 @@ public class JDBCUtil {
 		return parameters == null ? 0 : parameters.length;
 	}
 
-	// 현재의 PreparedStatement 를 반환
+	// sql 및 Object[] 변수 setter
+	public void setSqlAndParameters(String sql, Object[] parameters) {
+		this.sql = sql;
+		this.parameters = parameters;
+		this.resultSetType = ResultSet.TYPE_FORWARD_ONLY;
+		this.resultSetConcurrency = ResultSet.CONCUR_READ_ONLY;
+	}
+	
+	// sql 및 Object[], resultSetType, resultSetConcurrency 변수 setter
+	public void setSqlAndParameters(String sql, Object[] parameters, int resultSetType, int resultSetConcurrency) {
+		this.sql = sql;
+		this.parameters = parameters;
+		this.resultSetType = resultSetType;
+		this.resultSetConcurrency = resultSetConcurrency;
+	}
+
+	// 현재의  PreparedStatement를 반환
 	private PreparedStatement getPreparedStatement() throws SQLException {
 		if (conn == null) {
-			conn = ds.getConnection();
+			conn = connMan.getConnection();
 			conn.setAutoCommit(false);
 		}
 		if (pstmt != null) pstmt.close();
-		pstmt = conn.prepareStatement(sql);
+		pstmt = conn.prepareStatement(sql, resultSetType, resultSetConcurrency);
 		// JDBCUtil.printDataSourceStats(ds);
 		return pstmt;
 	}
 
-	// JDBCUtil 의 쿼리와 매개변수를 이용해 executeQuery 를 수행하는 메소드
+	// JDBCUtil의 쿼리와 매개변수를 이용해  executeQuery를 수행하는 메소드
 	public ResultSet executeQuery() {
 		try {
 			pstmt = getPreparedStatement();
@@ -110,7 +109,7 @@ public class JDBCUtil {
 		return null;
 	}
 
-	// JDBCUtil 의 쿼리와 매개변수를 이용해 executeUpdate 를 수행하는 메소드
+	// JDBCUtil의 쿼리와 매개변수를 이용해 executeUpdate를 수행하는 메소드
 	public int executeUpdate() throws SQLException, Exception {
 		pstmt = getPreparedStatement();
 		int parameterSize = getParameterSize();
@@ -124,10 +123,10 @@ public class JDBCUtil {
 		return pstmt.executeUpdate();
 	}
 
-	// 현재의 CallableStatement 를 반환
+	// 현재의  CallableStatement를 반환
 	private CallableStatement getCallableStatement() throws SQLException {
 		if (conn == null) {
-			conn = ds.getConnection();
+			conn = connMan.getConnection();
 			conn.setAutoCommit(false);
 		}
 		if (cstmt != null) cstmt.close();
@@ -135,7 +134,7 @@ public class JDBCUtil {
 		return cstmt;
 	}
 
-	// JDBCUtil 의 쿼리와 매개변수를 이용해 CallableStatement 의 execute 를 수행하는 메소드
+	// JDBCUtil의 쿼리와 매개변수를 이용해  CallableStatement의  execute를 수행하는 메소드
 	public boolean execute(JDBCUtil source) throws SQLException, Exception {
 		cstmt = getCallableStatement();
 		for (int i = 0; i < source.getParameterSize(); i++) {
@@ -196,21 +195,15 @@ public class JDBCUtil {
 		}
 	}
 
-	// DBCP Pool 을 종료
+	// DataSource 를 종료
 	public void shutdownPool() {
 		this.close();
-		BasicDataSource bds = (BasicDataSource) ds;
-		try {
-			bds.close();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
+		connMan.close();
 	}
 
 	// 현재 활성화 상태인 Connection 의 개수와 비활성화 상태인 Connection 개수 출력
-	public void printDataSourceStats(DataSource ds) throws SQLException {
-		BasicDataSource bds = (BasicDataSource) ds;
-		System.out.println("NumActive: " + bds.getNumActive());
-		System.out.println("NumIdle: " + bds.getNumIdle());
+	public void printDataSourceStats() {
+		connMan.printDataSourceStats();
 	}
+}
 }

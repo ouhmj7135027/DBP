@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name = "frm1" action="" method = "post">
+
 <table>
 
 		<tr><th>혈관/ 혈액순환(해당 하는 증상에 체크하세요)</th></tr>
@@ -18,8 +18,6 @@
 		<tr><td> <input type=checkbox name=blood value=4>위와 같은 증상이 없지만 혈관/혈액순환이 걱정돼요.</td></tr>
 	
 </table>
-<input type = "submit" value = "선택"/>
-</form>
 
 </body>
 </html>
