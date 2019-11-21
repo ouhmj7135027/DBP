@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-<form name = "frm1" action="" method = "post">
+
 <table>
 
 		<tr><th>눈(해당 하는 증상에 체크하세요)</th></tr>
@@ -19,8 +19,7 @@
 		<tr><td> <input type=checkbox name=skin value=4>위와 같은 증상이 없지만 눈 건강이 걱정돼요.</td></tr>
 	
 </table>
-<input type = "submit" value = "선택"/>
-</form>
+
 	
 </body>
 </html>

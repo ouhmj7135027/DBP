@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name = "frm1" action="" method = "post">
+
 <table>
 
 		<tr><th>면역(해당 하는 증상에 체크하세요)</th></tr>
@@ -17,8 +17,7 @@
 		<tr><td> <input type=checkbox name=skin value=3>위와 같은 증상은 없지만 면역이 걱정돼요.</td></tr>
 		
 </table>
-<input type = "submit" value = "선택"/>
-</form>
+
 
 </body>
 </html>
