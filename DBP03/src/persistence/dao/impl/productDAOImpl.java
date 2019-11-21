@@ -24,7 +24,7 @@ private JDBCUtil jdbcUtil = null;
 	
 	//전체 상품정보를 List로 반환하는 메소드
 	public List<productDTO> getProductList() {
-		
+		jdbcUtil.setSql(query+"from product");
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<productDTO> list = new ArrayList<productDTO>();
@@ -46,6 +46,46 @@ private JDBCUtil jdbcUtil = null;
 		return null;
 	}
 	
+	@Override
+	public List<productDTO> getProductByCategory(int cnum1, int cnum2) {
+		String listQuery;
+		if(cnum1 == 1) {
+			listQuery = "select product.effect AS product_effect, " + 
+									"product.p_name AS product_name, " +
+									"product.p_price AS product_price " +
+									"from product " +
+									"where category_id = ?";}
+		else if(cnum1 == 2) {
+			listQuery = "select product.effect AS product_effect, " + 
+					"product.p_name AS product_name, " +
+					"product.p_price AS product_price " +
+					"from product " +
+					"where category_age_id = ?";
+		}
+		jdbcUtil.setSql(listQuery);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<productDTO> list = new ArrayList<productDTO>();
+			while(rs.next()) {
+				productDTO dto = new productDTO();
+				dto.setProduct_id(rs.getInt("product_id"));
+				dto.setEffect(rs.getString("product_effect"));
+				dto.setP_name(rs.getString("product_name"));
+				dto.setP_price(rs.getInt("product_price"));
+				dto.setSales(rs.getInt("product_sales"));
+				list.add(dto);
+			}
+			return  list;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+		}		
+		return null;
+	}
+}
+
 	//상품목록만을 List로 반환하는 메소드
 	public List<productDTO> getOnlyProductList() {
 		String listQuery = "select product.p_name AS product_name from product ";

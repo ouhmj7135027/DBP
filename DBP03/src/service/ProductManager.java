@@ -39,8 +39,8 @@ public class ProductManager {
 	}
 	
 	//상품 이름 검색해서 불러오기
-	public productDTO getProduct(String name) {
-		return proDAO.getProductByName(name);
+	public List<productDTO> getProductByCategory(int cnum1, int cnum2) {
+		return proDAO.getProductByCategory(cnum1, cnum2);
 	}
 	
 	

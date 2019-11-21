@@ -14,6 +14,8 @@ public interface productDAO {
 	//name에 해당하는 상품정보를 반환하는 메소드
 	public productDTO getProductByName(String name);
 	
+	public List<productDTO> getProductByCategory(int cnum1, int cnum2);
+	
 	public int insertProduct(productDTO pro);
 	public int updateProduct(productDTO pro);
 	public int deleteProduct(String product_id);

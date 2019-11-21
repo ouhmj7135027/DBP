@@ -11,6 +11,7 @@ import controller.member.LogoutController;
 import controller.member.RegisterUserController;
 import controller.member.UpdateUserController;
 import controller.member.UpdateUserFormController;
+import controller.product.ProductListController;
 import controller.product.surveyController;
 
 public class RequestMapping {
@@ -35,8 +36,8 @@ public class RequestMapping {
         mappings.put("/survey", new ForwardController("/survey/surveyMain.jsp"));
         mappings.put("/survey/main", new ForwardController("/survey/mainprocess.jsp"));
         mappings.put("/product/category", new ForwardController("/product/Category.jsp"));
+        mappings.put("/product/list", new ProductListController());
         //mappings.put("/review", new ForwardController("¸®ºä.jsp"));
-        //mappings.put("/product", new productListController());
         //mappings.put("/survey/result", new surveyController());
         //mappings.put("/user/delete", new DeleteUserController());  ¸¸µé±â!!!
         logger.info("Initialized Request Mapping!");
