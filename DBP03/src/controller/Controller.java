@@ -11,6 +11,7 @@ public interface Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response) 
     		throws Exception;
 
-	void onlyGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+	void onlyGet(HttpServletRequest request, HttpServletResponse response) 
+			throws IOException, ServletException;
     
 }

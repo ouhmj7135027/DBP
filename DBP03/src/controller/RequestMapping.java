@@ -8,6 +8,9 @@ import controller.*;
 import controller.member.CartListController;
 import controller.member.LoginController;
 import controller.member.LogoutController;
+import controller.member.RegisterUserController;
+import controller.member.UpdateUserController;
+import controller.member.UpdateUserFormController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -17,12 +20,17 @@ public class RequestMapping {
 
     public void initMapping() {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
-        //mappings.put("/", new ForwardController("index.jsp"));
-    	 mappings.put("/main", new ForwardController("/Main.jsp"));
+    	mappings.put("/main", new ForwardController("/Main.jsp"));
     	mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
         mappings.put("/user/logout", new LogoutController());
-        mappings.put("/cart/cart", new CartListController());
+        mappings.put("/cart/cartList", new CartListController());
+        mappings.put("/cart/cart", new ForwardController("/cart/Cart.jsp"));
+        mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
+        mappings.put("/user/register", new RegisterUserController());
+        mappings.put("/user/update/form", new UpdateUserFormController());
+        mappings.put("/user/update", new UpdateUserController());
+        //mappings.put("/user/delete", new DeleteUserController());  만들기!!!
         logger.info("Initialized Request Mapping!");
     }
 

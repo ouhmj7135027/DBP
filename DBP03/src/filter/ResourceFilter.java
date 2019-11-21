@@ -24,12 +24,12 @@ public class ResourceFilter implements Filter {
         resourcePrefixs.add("/fonts");
         resourcePrefixs.add("/images");
         */
-    	resourcePrefixs.add("/admin");
-    	resourcePrefixs.add("/cart");
+    	//resourcePrefixs.add("/admin");
+    	//resourcePrefixs.add("/cart");
     	resourcePrefixs.add("/image");
-    	resourcePrefixs.add("/product");
-    	resourcePrefixs.add("/survey");
-    	resourcePrefixs.add("/user");
+    	//resourcePrefixs.add("/product");
+    	//resourcePrefixs.add("/survey");
+    	//resourcePrefixs.add("/user");
     }
 
     private RequestDispatcher defaultRequestDispatcher;
