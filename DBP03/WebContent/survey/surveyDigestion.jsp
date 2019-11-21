@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form name = "frm1" action="" method = "post">
+
 <table>
 
 		<tr><th>소화/장(해당 하는 증상에 체크하세요)</th></tr>
@@ -18,7 +18,7 @@
 		<tr><td> <input type=checkbox name=digestion value=4>위와 같은 증상은 없지만 소화력 개선이 필요해요.</td></tr>
 	
 </table>
-<input type = "submit" value = "선택"/>
-</form>
+
+
 </body>
 </html>

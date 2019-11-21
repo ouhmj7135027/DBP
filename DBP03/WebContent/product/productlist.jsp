@@ -55,13 +55,14 @@
 		
 			<section id="content">
 				<ul>
-				 <c:forEach items="${list}" var="list">
+				 <c:forEach items="${productlist}" var="product">
 				 <li>
 				  <div class="goodsThumb">
 				   <img src="${list.gdsThumbImg}">
 				  </div> 
 				  <div class="goodsName">
-				   <a href="/shop/view?n=${list.gdsNum}">${list.gdsName}</a>
+				   <p>${productlist.p_name}</p>
+				   <p>${productlist.p_price}</p>
 				  </div>
 				 </li>
 				 </c:forEach>
@@ -72,22 +73,22 @@
 			<ul>
 				<li><a href="">성분별</a>
 					<ul class="low">
-						<li><a href="productlist?c=1&i=1">프로바이오틱스</a></li>
-						<li><a href="productlist?c=1&i=2">칼슘/마그네슘/비타민D</a></li>
-						<li><a href="productlist?c=1&i=3">비타민B</a></li>
-						<li><a href="productlist?c=1&i=4">비타민C</a></li>
-						<li><a href="productlist?c=1&i=5">루테인</a></li>
-						<li><a href="productlist?c=1&i=6">밀크씨슬</a></li>
-						<li><a href="productlist?c=1&i=7">오메가3</a></li>
+						<li><a href="<c:url value='/product.list?c=1&i=1' />">프로바이오틱스</a></li>
+						<li><a href="<c:url value='/product.list?c=1&i=2' />">칼슘/마그네슘/비타민D</a></li>
+						<li><a href="<c:url value='/product.list?c=1&i=3' />">비타민B</a></li>
+						<li><a href="<c:url value='/product.list?c=1&i=4' />">비타민C</a></li>
+						<li><a href="<c:url value='/product.list?c=1&i=5' />">루테인</a></li>
+						<li><a href="<c:url value='/product.list?c=1&i=6' />">밀크씨슬</a></li>
+						<li><a href="<c:url value='/product.list?c=1&i=7' />">오메가3</a></li>
 					</ul>
 				</li>
 				<li><a href="">연령대별</a>
 					<ul class="low">
-						<li><a href="productlist?c=2&i=1">성인남녀</a></li>
-						<li><a href="productlist?c=2&i=2">어린이</a></li>
-						<li><a href="productlist?c=2&i=3">청소년</a></li>
-						<li><a href="productlist?c=2&i=4">임산부</a></li>
-						<li><a href="productlist?c=2&i=5">시니어</a></li>
+						<li><a href="<c:url value='/product.list?c=2&i=1' />">성인남녀</a></li>
+						<li><a href="<c:url value='/product.list?c=2&i=2' />">어린이</a></li>
+						<li><a href="<c:url value='/product.list?c=2&i=3' />">청소년</a></li>
+						<li><a href="<c:url value='/product.list?c=2&i=4' />">임산부</a></li>
+						<li><a href="<c:url value='/product.list?c=2&i=5' />">시니어</a></li>
 					</ul>
 				</li>
 			</ul>

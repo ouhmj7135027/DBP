@@ -93,7 +93,6 @@ public class MemberDAOImpl {
 		String insertQuery = "INSERT INTO MEMBER (m_id, m_name, m_password, email_id, address, phone) " +
 							 "VALUES (?, ?, ?, ?, ?, ?) ";
 		
-		
 		Object[] param = new Object[] {mem.getM_id(), mem.getM_name(), mem.getM_password(), 
 				mem.getEmail_id(), mem.getAddress(), mem.getPhone()};		
 		jdbcUtil.setSql(insertQuery);			

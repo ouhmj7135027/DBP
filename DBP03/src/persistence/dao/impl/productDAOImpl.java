@@ -55,14 +55,16 @@ private JDBCUtil jdbcUtil = null;
 									"product.p_price AS product_price " +
 									"from product " +
 									"where category_id = ?";}
-		else if(cnum1 == 2) {
+		else {
 			listQuery = "select product.effect AS product_effect, " + 
 					"product.p_name AS product_name, " +
 					"product.p_price AS product_price " +
 					"from product " +
 					"where category_age_id = ?";
 		}
+		Object[] param = new Object[] {cnum2};	
 		jdbcUtil.setSql(listQuery);
+		jdbcUtil.setParameters(param);
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -84,7 +86,7 @@ private JDBCUtil jdbcUtil = null;
 		}		
 		return null;
 	}
-}
+
 
 	//상품목록만을 List로 반환하는 메소드
 	public List<productDTO> getOnlyProductList() {
