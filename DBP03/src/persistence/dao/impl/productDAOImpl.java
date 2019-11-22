@@ -71,11 +71,9 @@ private JDBCUtil jdbcUtil = null;
 			List<productDTO> list = new ArrayList<productDTO>();
 			while(rs.next()) {
 				productDTO dto = new productDTO();
-				dto.setProduct_id(rs.getInt("product_id"));
 				dto.setEffect(rs.getString("product_effect"));
 				dto.setP_name(rs.getString("product_name"));
 				dto.setP_price(rs.getInt("product_price"));
-				dto.setSales(rs.getInt("product_sales"));
 				list.add(dto);
 			}
 			return  list;
