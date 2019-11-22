@@ -53,7 +53,7 @@ private JDBCUtil jdbcUtil = null;
 			listQuery = "select product.product_id AS product_id, " +
 					"product.effect AS product_effect, " +
 									"product.p_name AS product_name, " +
-									"product.p_price AS product_price " +
+									"product.p_price AS product_price, " +
 									"product.imgsrc AS product_image " +
 									"from product " +
 									"where category_id = ?";}
@@ -61,7 +61,7 @@ private JDBCUtil jdbcUtil = null;
 			listQuery = "select product.product_id AS product_id, " +
 					"product.effect AS product_effect, " +
 					"product.p_name AS product_name, " +
-					"product.p_price AS product_price " +
+					"product.p_price AS product_price, " +
 					"product.imgsrc AS product_image " +
 					"from product " +
 					"where category_age_id = ?";
