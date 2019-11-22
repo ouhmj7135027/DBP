@@ -37,11 +37,8 @@ public class RequestMapping {
         mappings.put("/survey/main", new ForwardController("/survey/mainprocess.jsp"));
         mappings.put("/product/category", new ForwardController("/product/Category.jsp"));
         mappings.put("/product/list", new ProductListController());
+       // mappings.put("/product/list/view", new ForwardController("/product/productlist.jsp"));
         //mappings.put("/review", new ForwardController("¸®ºä.jsp"));
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/ouhmj7135027/DBP
         //mappings.put("/survey/result", new surveyController());
         //mappings.put("/product", new productListController());
         //mappings.put("/survey/result", new surveyController("/survey/surveyResult.jsp"));
