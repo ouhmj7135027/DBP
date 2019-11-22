@@ -54,6 +54,7 @@ private JDBCUtil jdbcUtil = null;
 					"product.effect AS product_effect, " +
 									"product.p_name AS product_name, " +
 									"product.p_price AS product_price " +
+									"product.imgsrc AS product_image " +
 									"from product " +
 									"where category_id = ?";}
 		else {
@@ -61,6 +62,7 @@ private JDBCUtil jdbcUtil = null;
 					"product.effect AS product_effect, " +
 					"product.p_name AS product_name, " +
 					"product.p_price AS product_price " +
+					"product.imgsrc AS product_image " +
 					"from product " +
 					"where category_age_id = ?";
 		}
@@ -77,6 +79,7 @@ private JDBCUtil jdbcUtil = null;
 				dto.setEffect(rs.getString("product_effect"));
 				dto.setP_name(rs.getString("product_name"));
 				dto.setP_price(rs.getInt("product_price"));
+				dto.setImgsrc(rs.getString("product_image"));
 				list.add(dto);
 			}
 			return  list;

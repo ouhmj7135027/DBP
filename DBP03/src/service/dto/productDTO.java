@@ -8,6 +8,7 @@ public class productDTO {
 	private int sales = 0;
 	private int category_id = 0;
 	private int category_age_id = 0;
+	private String imgsrc = null;
 	
 	public productDTO(String effect, String p_name, int p_price, int category_id, int category_age_id) {
 		this.effect = effect;
@@ -62,6 +63,14 @@ public class productDTO {
 	}
 	public void setSales(int sales) {
 		this.sales = sales;
+	}
+
+	public String getImgsrc() {
+		return imgsrc;
+	}
+
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
 	}
 	
 
