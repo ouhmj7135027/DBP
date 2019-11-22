@@ -65,6 +65,8 @@
 				  <div class="goodsName">
 				    <p>${product.p_name}</p>
 				    <p>${product.p_price}</p> 
+				    <a href="<c:url value='/cart/input?p_id="+${product.p_id}+"' />">
+				    	<img src="<c:url value='/image/cart.png' />"></a>
 				  </div>
 				 </li>
 				 </c:forEach>

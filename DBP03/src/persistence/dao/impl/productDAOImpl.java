@@ -50,13 +50,15 @@ private JDBCUtil jdbcUtil = null;
 	public List<productDTO> getProductByCategory(int cnum1, int cnum2) {
 		String listQuery;
 		if(cnum1 == 1) {
-			listQuery = "select product.effect AS product_effect, " + 
+			listQuery = "select product.product_id AS product_id, " +
+					"product.effect AS product_effect, " +
 									"product.p_name AS product_name, " +
 									"product.p_price AS product_price " +
 									"from product " +
 									"where category_id = ?";}
 		else {
-			listQuery = "select product.effect AS product_effect, " + 
+			listQuery = "select product.product_id AS product_id, " +
+					"product.effect AS product_effect, " +
 					"product.p_name AS product_name, " +
 					"product.p_price AS product_price " +
 					"from product " +
@@ -71,6 +73,7 @@ private JDBCUtil jdbcUtil = null;
 			List<productDTO> list = new ArrayList<productDTO>();
 			while(rs.next()) {
 				productDTO dto = new productDTO();
+				dto.setProduct_id(rs.getInt("product_id"));
 				dto.setEffect(rs.getString("product_effect"));
 				dto.setP_name(rs.getString("product_name"));
 				dto.setP_price(rs.getInt("product_price"));
