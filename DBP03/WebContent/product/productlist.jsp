@@ -46,6 +46,12 @@
 	footer#footer { margin-top:100px; border-radius:50px 50px 0 0; }  
 	footer#footer div#footer_box { padding:0 20px; }  
 </style>
+<style>
+ section#content ul li { display:inline-block; margin:10px; }
+ section#content div.goodsThumb img { width:200px; height:200px; }
+ section#content div.goodsName { padding:10px 0; text-align:center; }
+ section#content div.goodsName a { color:#000; }
+</style>
 </head>
 <body>
 <div id="root">
