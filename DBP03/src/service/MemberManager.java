@@ -81,10 +81,9 @@ public class MemberManager {
 		return userMan;
 	}
 	
-	//안되면 MemberDTO.getM_id()로..?
 	public int create(MemberDTO user) throws SQLException, ExistingUserException {
-		if (userDAO.existingUser(user.getM_id()) == true) {
-			throw new ExistingUserException(user.getM_id() + "는 존재하는 아이디입니다.");
+		if (userDAO.existingUser(user.getEmail_id()) == true) {
+			throw new ExistingUserException(user.getEmail_id() + "는 존재하는 아이디입니다.");
 		}
 		return userDAO.create(user);
 	}

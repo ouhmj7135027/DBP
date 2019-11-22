@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<title>회원가입title>
+<title>사용자 관리</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <script>
@@ -58,7 +58,7 @@ function userList(targetUri) {
 	  <td>
 	    <table>
 		  <tr>
-		    <td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>회원가입</b>&nbsp;&nbsp;</td>
+		    <td bgcolor="f4f4f4" height="22">&nbsp;&nbsp;<b>사용자 관리 - 회원 가입</b>&nbsp;&nbsp;</td>
 		  </tr>
 	    </table>  
 	    <br>	 

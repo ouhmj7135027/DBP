@@ -360,9 +360,9 @@ public class MemberDAOImpl {
 	/**
 	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
 	 */
-	public boolean existingUser(int userId) throws SQLException {
-		String sql = "SELECT count(*) FROM MEMBER WHERE m_id=?";      
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 query문과 매개 변수 설정
+	public boolean existingUser(String email_id) throws SQLException {
+		String sql = "SELECT count(*) FROM MEMBER WHERE email_id=?";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {email_id});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행

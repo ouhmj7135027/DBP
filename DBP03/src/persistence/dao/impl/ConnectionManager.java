@@ -7,8 +7,8 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class ConnectionManager {
     private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String DB_URL = "dbp0103@//202.20.119.117:1521:orcl";
-    private static final String DB_USERNAME = "jiwon";
+    private static final String DB_URL = "jdbc:oracle:thin:@202.20.119.117:1521:orcl";
+    private static final String DB_USERNAME = "dbp0103";
     private static final String DB_PASSWORD = "20160149";
     private static DataSource ds = null;
     
@@ -22,6 +22,7 @@ public class ConnectionManager {
 	        bds.setPassword(DB_PASSWORD);     
 			ds = bds;
 			
+			
 			// 참고: WAS의 DataSource를 이용할 경우: 
 			// Context init = new InitialContext();
 			// ds = (DataSource)init.lookup("java:comp/env/jdbc/OracleDS");
@@ -34,6 +35,7 @@ public class ConnectionManager {
     	Connection conn = null;
     	try {
 			conn = ds.getConnection();
+			System.out.println("연결성공");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
