@@ -265,16 +265,22 @@ private JDBCUtil jdbcUtil = null;
 		return 0;
 	}
 
-	public int survey (int survey, int category) {
-		String query = "select  product_id from product where category_id = ? and survey = ";
+	public productDTO survey (int survey, int category) {
+		String query = "select  product_name from product where category_id = ? and survey = ?";
 		
 		jdbcUtil.setSql(query);
-		Object[] param = new Object[] {survey, category};
+		Object[] param = new Object[] {category,survey};
 		jdbcUtil.setParameters(param);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// delete 문 실행
-			return result;						// delete 에 의해 반영된 레코드 수 반환
+			ResultSet rs = jdbcUtil.executeQuery();		// delete 문 실행
+			productDTO pro = new productDTO();
+			pro.setProduct_id(rs.getInt("product_id"));
+			pro.setEffect(rs.getString("product_effect"));
+			pro.setP_name(rs.getString("product_name"));
+			pro.setP_price(rs.getInt("product_price"));
+			pro.setSales(rs.getInt("product_sales"));
+			return pro;						// delete 에 의해 반영된 레코드 수 반환
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();		
@@ -282,7 +288,7 @@ private JDBCUtil jdbcUtil = null;
 			jdbcUtil.commit();
 			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
 		}
-		return 0;
+		return null;
 	}
 	
 

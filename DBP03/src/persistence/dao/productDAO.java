@@ -1,5 +1,6 @@
 package persistence.dao;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import service.dto.productDTO;
@@ -19,6 +20,6 @@ public interface productDAO {
 	public int insertProduct(productDTO pro);
 	public int updateProduct(productDTO pro);
 	public int deleteProduct(String product_id);
-
+	public productDTO survey (int survey, int category) ;
 
 }

@@ -61,9 +61,10 @@ public class ProductManager {
 	public int delete(String product_id) {
 		return proDAO.deleteProduct(product_id);
 	}
-	public int getProductBySurvey(int survey, int category) {
-		return proDAO.
-		return 0;}
+	public productDTO getProductBySurvey(int survey, int category) {
+		
+		return proDAO.survey(survey, category);
+	}
 		
 	
 }
