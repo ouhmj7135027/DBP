@@ -23,7 +23,7 @@ public class DAOFactory {
 		return new order_detailDAOImpl();
 	}
 	
-	public MemberDAO getMemberDAO() {
+	public MemberDAOImpl getMemberDAO() {
 		return new MemberDAOImpl();
 	}
 	

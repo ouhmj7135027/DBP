@@ -16,22 +16,26 @@ import service.ProductManager;
 import service.dto.*;
 
 public class surveyController implements Controller {
-		public surveyController(String string) {
-		// TODO Auto-generated constructor stub
+	ArrayList<String> getParameterName(HttpServletRequest request){
+		ArrayList<String> list = new ArrayList<String>();
+		Enumeration<String> e = request.getParameterNames();
+		while (e.hasMoreElements()){
+			String s = e.nextElement();
+			list.add(s);
+		}
+		return list;
 	}
-
+		@SuppressWarnings({ "null11", "null" })
 		public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 			
 		ArrayList<Integer> l = new ArrayList<Integer>();
 		
 		ProductManager m = ProductManager.getInstance();
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> list = getParameterName(request);
 		ArrayList<productDTO> k = null;
-		Enumeration<String> e = request.getParameterNames();
-				while (e.hasMoreElements()){
-					String s = e.nextElement();
-					list.add(s);
-				}
+		String data = request.getParameter("Blood");
+		
+		/*		
 		for(int i=0;i<list.size();i++) {
 			if((list.get(i).equals("skin")||list.get(i).equals("blood"))&&!l.contains(4)) {
 				l.add(4);
@@ -50,11 +54,10 @@ public class surveyController implements Controller {
 				k.add(m.getProductBySurvey(1,l.get(i)));
 			}
 			
-			
-			
 			 
 		}	
-		
+			*/
+		k.add(m.getProductBySurvey(1, 4));
 		request.setAttribute("list", k);				
 		return "/survey/surveyResult.jsp";     
 	 }

@@ -120,7 +120,7 @@ private JDBCUtil jdbcUtil = null;
 		String searchQuery = query + ", " + "category.category_id AS category_id, " +
 											"category_age.category_age_id AS category_age_id " +
 										"from product, category, category_age " +
-										"where product.product_id = ? AND " +
+										"where p_name = ? AND " +
 											"product.category_id = category.category_id AND " +
 											"product.category_age_id = category_age.category_age_id ";
 		jdbcUtil.setSql(searchQuery);				// JDBCUtil 에 query 문 설정
@@ -266,7 +266,7 @@ private JDBCUtil jdbcUtil = null;
 	}
 
 	public productDTO survey (int survey, int category) {
-		String query = "select  product_name from product where category_id = ? and survey = ?";
+		String query = "select p_name from product where category_id = ? and survey = ?";
 		
 		jdbcUtil.setSql(query);
 		Object[] param = new Object[] {category,survey};
@@ -276,10 +276,8 @@ private JDBCUtil jdbcUtil = null;
 			ResultSet rs = jdbcUtil.executeQuery();		// delete 문 실행
 			productDTO pro = new productDTO();
 			pro.setProduct_id(rs.getInt("product_id"));
-			pro.setEffect(rs.getString("product_effect"));
-			pro.setP_name(rs.getString("product_name"));
-			pro.setP_price(rs.getInt("product_price"));
-			pro.setSales(rs.getInt("product_sales"));
+			pro.setEffect(rs.getString("effect"));
+			pro.setP_name(rs.getString("p_name"));
 			return pro;						// delete 에 의해 반영된 레코드 수 반환
 		} catch (Exception ex) {
 			jdbcUtil.rollback();

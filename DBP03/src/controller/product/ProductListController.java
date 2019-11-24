@@ -13,6 +13,7 @@ import service.dto.productDTO;
 
 public class ProductListController implements Controller {
 	@Override
+	
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		int cnum1 = Integer.parseInt(request.getParameter("c"));
 		int cnum2 = Integer.parseInt(request.getParameter("i"));

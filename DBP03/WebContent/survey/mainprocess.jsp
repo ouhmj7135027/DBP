@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<form name="form" method="POST" action="<c:url value='/survey/result' />">
-	
+<form name="form" method="POST" action="<c:url value='/survey/result'/>">
+
 <% 
 	String[] list =request.getParameterValues("main");
 
