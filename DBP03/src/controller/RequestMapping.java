@@ -42,6 +42,7 @@ public class RequestMapping {
         //mappings.put("/survey/result", new surveyController());
         //mappings.put("/product", new productListController());
         mappings.put("/survey/result", new surveyController());
+        //mappings.put("/survey/result", new ForwardController("/survey/surveyResult.jsp"));
         //mappings.put("/user/delete", new DeleteUserController());  ¸¸µé±â!!!
         logger.info("Initialized Request Mapping!");
     }

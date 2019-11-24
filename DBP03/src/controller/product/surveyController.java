@@ -14,7 +14,7 @@ import model.Member;
 import service.MemberManager;
 import service.ProductManager;
 import service.dto.*;
-
+import java.util.List;
 public class surveyController implements Controller {
 	ArrayList<String> getParameterName(HttpServletRequest request){
 		ArrayList<String> list = new ArrayList<String>();
@@ -32,10 +32,9 @@ public class surveyController implements Controller {
 		
 		ProductManager m = ProductManager.getInstance();
 		ArrayList<String> list = getParameterName(request);
-		ArrayList<productDTO> k = null;
+		List<productDTO> k = new ArrayList<productDTO>();
 		String data = request.getParameter("Blood");
 		
-		/*		
 		for(int i=0;i<list.size();i++) {
 			if((list.get(i).equals("skin")||list.get(i).equals("blood"))&&!l.contains(4)) {
 				l.add(4);
@@ -56,8 +55,9 @@ public class surveyController implements Controller {
 			
 			 
 		}	
-			*/
+		
 		k.add(m.getProductBySurvey(1, 4));
+		k.add(m.getProductByNames("레모나 키튼정"));
 		request.setAttribute("list", k);				
 		return "/survey/surveyResult.jsp";     
 	 }

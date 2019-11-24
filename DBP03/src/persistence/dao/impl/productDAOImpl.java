@@ -266,19 +266,22 @@ private JDBCUtil jdbcUtil = null;
 	}
 
 	public productDTO survey (int survey, int category) {
-		String query = "select p_name from product where category_id = ? and survey = ?";
+		String query = "select p_name, effect, imgsrc from product where category_id = ? and survey = ?";
 		
 		jdbcUtil.setSql(query);
 		Object[] param = new Object[] {category,survey};
 		jdbcUtil.setParameters(param);
 		
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// delete 문 실행
+			ResultSet rs = jdbcUtil.executeQuery();	
 			productDTO pro = new productDTO();
-			pro.setProduct_id(rs.getInt("product_id"));
+			if (rs.next()) {
+			
+			//pro.setProduct_id(rs.getInt("product_id"));
 			pro.setEffect(rs.getString("effect"));
 			pro.setP_name(rs.getString("p_name"));
-			return pro;						// delete 에 의해 반영된 레코드 수 반환
+			pro.setImgsrc(rs.getString("imgsrc"));
+			}return pro;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();		

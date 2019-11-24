@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%><%@ page import = "java.util.Enumeration" %>
     <%@ page import = "java.util.ArrayList" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,7 @@
 <form name="form" method="POST" action="<c:url value='/survey/result'/>">
 
 <% 
+
 	String[] list =request.getParameterValues("main");
 
 	int i =0;
@@ -37,8 +39,8 @@
 				
 			i++;
 		}
-		
-%>
+	
+%> 
 <input type = "submit" value = "¼±ÅÃ"/>
 </form>
 </body>

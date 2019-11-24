@@ -11,12 +11,12 @@
 
 <table>
 
-		<tr><th>ÇÇºÎ(ÇØ´ç ÇÏ´Â Áõ»ó¿¡ Ã¼Å©ÇÏ¼¼¿ä)</th></tr>
-		<tr><td> <input type=checkbox name="skin" value=0>ÇÇºÎ°¡ °ÇÁ¶ÇÏ¿© ¹þ°ÜÁö°Å³ª ¸Ó¸®¿¡ ºñµëÀÌ ¸¹ÀÌ »ý°Ü¿ä.</td></tr>
-		<tr><td> <input type=checkbox name="skin" value=1>¿©µå¸§ÀÌ ¸¹¾Æ¼­ °ÆÁ¤ÀÌ¿¡¿ä.</td></tr>
-		<tr><td> <input type=checkbox name="skin" value=2>ÇÇºÎ¿¡ ¿°ÁõÀÌ ÀÚÁÖ »ý°Ü¿ä.</td></tr>
-		<tr><td> <input type=checkbox name="skin" value=3>ÀÔ¾ÈÀÌ Çæ°í ÀÔ¼úÀÌ ÀÚÁÖ °¥¶óÁ®¿ä.</td></tr>
-		<tr><td> <input type=checkbox name="skin" value=4>À§¿Í °°Àº Áõ»óÀÌ ¾øÁö¸¸ ÇÇºÎ °Ç°­ÀÌ °ÆÁ¤µÅ¿ä.</td></tr>
+		<tr><th>í”¼ë¶€(í•´ë‹¹ í•˜ëŠ” ì¦ìƒì— ì²´í¬í•˜ì„¸ìš”)</th></tr>
+		<tr><td> <input type=checkbox name="skin" value=0>í”¼ë¶€ê°€ ê±´ì¡°í•˜ì—¬ ë²—ê²¨ì§€ê±°ë‚˜ ë¨¸ë¦¬ì— ë¹„ë“¬ì´ ë§Žì´ ìƒê²¨ìš”.</td></tr>
+		<tr><td> <input type=checkbox name="skin" value=1>ì—¬ë“œë¦„ì´ ë§Žì•„ì„œ ê±±ì •ì´ì—ìš”.</td></tr>
+		<tr><td> <input type=checkbox name="skin" value=2>í”¼ë¶€ì— ì—¼ì¦ì´ ìžì£¼ ìƒê²¨ìš”.</td></tr>
+		<tr><td> <input type=checkbox name="skin" value=3>ìž…ì•ˆì´ í—ê³  ìž…ìˆ ì´ ìžì£¼ ê°ˆë¼ì ¸ìš”.</td></tr>
+		<tr><td> <input type=checkbox name="skin" value=4>ìœ„ì™€ ê°™ì€ ì¦ìƒì´ ì—†ì§€ë§Œ í”¼ë¶€ ê±´ê°•ì´ ê±±ì •ë¼ìš”.</td></tr>
 	
 </table>
 
