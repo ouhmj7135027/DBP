@@ -1,9 +1,12 @@
 package service.dto;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class cartDTO {
+public class cartDTO implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	static int m_id;			
 	static int cart_p_num;			
 	static int c_price;			

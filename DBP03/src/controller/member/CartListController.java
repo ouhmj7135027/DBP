@@ -18,6 +18,9 @@ import service.dto.cartDTO;
 import service.dto.cartListDTO;
 
 public class CartListController implements Controller{
+	
+	private static final long serialVersionUID = 1L;
+	
 	public CartListController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -34,7 +37,7 @@ public class CartListController implements Controller{
 		else {
 			request.setAttribute("CART_LIST",  null);
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("장바구니 누르는 버튼이 있는 폼.jsp?BODY_PATH=cartListView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("produclist.jsp?BODY_PATH=Cart.jsp");
 		dispatcher.forward(request,  response);
 	
 	}
