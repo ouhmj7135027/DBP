@@ -10,7 +10,7 @@
 <body>
 	<form name = "frm1" action="<c:url value='/survey/main' />" method = "post">
 <table>
-"<c:url value='/product/list?c=2&i=1' />">
+
 		<tr><th>불편하시거나 걱정되는 3가지를 선택하세요.(우선적으로 관리가 필요한 것을 선택하세요.)</th></tr>
 		<tr><td> <input type=checkbox name=main value=0>혈관/혈액순환</td></tr>
 		<tr><td> <input type=checkbox name=main value=1>피부</td></tr>

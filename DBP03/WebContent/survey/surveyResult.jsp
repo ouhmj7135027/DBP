@@ -59,7 +59,9 @@
 				<ul>
 				 <c:forEach items="${list}" var="product">
 				 <li>
-							 
+				<div class="goodsThumb">
+					 <img src="<c:url value='${product.imgsrc}' />">
+					 </div> 				 
 				  <div class="goodsName">
 				    <p>${product.p_name}</p>
 				    <p>${product.effect} </p>
