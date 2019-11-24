@@ -25,29 +25,35 @@ public class RequestMapping {
     public void initMapping() {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
     	mappings.put("/main", new ForwardController("/Main.jsp"));
+    	
     	mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
         mappings.put("/user/logout", new LogoutController());
-        mappings.put("/cart/addProduct", new AddProductToCartController());
-        mappings.put("/cart/cartList", new CartListController());
-        mappings.put("/cart/cart", new ForwardController("/cart/Cart.jsp"));
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new RegisterUserController());
         mappings.put("/user/update/form", new UpdateUserFormController());
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/myPage", new ForwardController("/user/myPageForm.jsp"));
+        
+        mappings.put("/cart/addProduct", new AddProductToCartController());
+        mappings.put("/cart/cartList", new CartListController());
+        mappings.put("/cart/cart", new ForwardController("/cart/Cart.jsp"));
+        
         mappings.put("/survey", new ForwardController("/survey/surveyMain.jsp"));
         mappings.put("/survey/main", new ForwardController("/survey/mainprocess.jsp"));
+        mappings.put("/survey/result", new surveyController());
+        
         mappings.put("/product/category", new ForwardController("/product/Category.jsp"));
         mappings.put("/product/list", new ProductListController());
         
         mappings.put("/order", new ForwardController("/product/orderFrom.jsp"));
         mappings.put("/order/order", new OrderController());
+        
         //mappings.put("/review", new ForwardController("리뷰.jsp"));
 
         //mappings.put("/survey/result", new surveyController());
         //mappings.put("/product", new productListController());
-        mappings.put("/survey/result", new surveyController());
+        
         //mappings.put("/survey/result", new ForwardController("/survey/surveyResult.jsp"));
         //mappings.put("/user/delete", new DeleteUserController());  만들기!!!
         logger.info("Initialized Request Mapping!");

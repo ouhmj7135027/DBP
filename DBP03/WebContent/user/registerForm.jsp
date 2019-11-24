@@ -27,12 +27,12 @@ function userCreate() {
 		form.name.focus();
 		return false;
 	}
-	if(form.address.value==""") {
+	if(form.address.value=="") {
 		alert("주소를 입력하십시오.");
 		form.phone.focus();
 		return false;
 	}
-	if(form.phone.value==""") {
+	if(form.phone.value=="") {
 		alert("전화번호를 입력하십시오.");
 		form.phone.focus();
 		return false;
