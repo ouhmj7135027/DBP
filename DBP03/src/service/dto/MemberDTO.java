@@ -4,16 +4,23 @@ import model.Member;
 
 public class MemberDTO {
 
-	private int m_id;
-	private String m_name;
-	private String m_password;
-	private String email_id;
-	private String address;
-	private String phone;
+	private int m_id = 0;
+	private String m_name = null;
+	private String m_password = null;
+	private String email_id = null;
+	private String address = null;
+	private String phone = null;
 
 	
 	public MemberDTO(int userId, String m_password, String m_name, String email_id, String phone,String address) {
 		this.m_id = userId;
+		this.m_password = m_password;
+		this.m_name = m_name;
+		this.email_id = email_id;
+		this.phone = phone;
+		this.address = address;
+	}
+	public MemberDTO(String m_password, String m_name, String email_id, String phone,String address) {
 		this.m_password = m_password;
 		this.m_name = m_name;
 		this.email_id = email_id;

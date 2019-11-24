@@ -196,8 +196,8 @@ public class MemberDAOImpl {
 	*/
 	public int create(MemberDTO mem) throws SQLException {
 		String sql = "INSERT INTO MEMBER (m_id, m_name, m_password, email_id, address, phone) "
-					+ "VALUES (?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {mem.getM_id(), mem.getM_name(), mem.getM_password(), 
+					+ "VALUES (S_M_ID.nextval, ?, ?, ?, ?, ?)";		
+		Object[] param = new Object[] {mem.getM_name(), mem.getM_password(), 
 				mem.getEmail_id(), mem.getAddress(), mem.getPhone()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						

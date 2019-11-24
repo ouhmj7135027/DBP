@@ -20,12 +20,11 @@ public class RegisterUserController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	MemberDTO member = new MemberDTO(
-    		Integer.parseInt(request.getParameter("m_id")),
-			request.getParameter("m_name"),
-			request.getParameter("m_password"),
-			request.getParameter("email_id"),
-			request.getParameter("address"),
-    		request.getParameter("phone"));
+			request.getParameter("password"),
+			request.getParameter("name"),
+			request.getParameter("email"),
+			request.getParameter("phone"),
+			request.getParameter("address"));
 		
         log.debug("Create Member : {}", member);
 

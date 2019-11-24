@@ -7,7 +7,7 @@
 <link rel=stylesheet href="<c:url value='/css/user.css' />" type="text/css">
 <script>
 function userCreate() {
-	if (form.userId.value == "") {
+	if (form.email.value == "") {
 		alert("사용자 ID를 입력하십시오.");
 		form.userId.focus();
 		return false;
@@ -27,15 +27,13 @@ function userCreate() {
 		form.name.focus();
 		return false;
 	}
-	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-	if(emailExp.test(form.email.value)==false) {
-		alert("이메일 형식이 올바르지 않습니다.");
-		form.email.focus();
+	if(form.address.value==""") {
+		alert("주소를 입력하십시오.");
+		form.phone.focus();
 		return false;
 	}
-	var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
-	if(phoneExp.test(form.phone.value)==false) {
-		alert("전화번호 형식이 올바르지 않습니다.");
+	if(form.phone.value==""") {
+		alert("전화번호를 입력하십시오.");
 		form.phone.focus();
 		return false;
 	}
@@ -68,12 +66,14 @@ function userList(targetUri) {
 	    </c:if>
 	    <br>	  
 	    <table style="background-color: YellowGreen">
-	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">사용자 ID</td>
+	    <tr height="40">
+			<td width="150" align="center" bgcolor="E6ECDE">이메일 주소</td>
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240;" name="userId">
+				<input type="text" style="width: 240" name="email" 
+					<c:if test="${registerFailed}">value="${user.email}"</c:if>>
 			</td>
-		  </tr>
+		  </tr>	
+	  	  
 	  	  <tr height="40">
 			<td width="150" align="center" bgcolor="E6ECDE">비밀번호</td>
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
@@ -94,12 +94,11 @@ function userList(targetUri) {
 			</td>
 		  </tr>
 	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">이메일 주소</td>
+			<td width="150" align="center" bgcolor="E6ECDE">주소</td>
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
-				<input type="text" style="width: 240" name="email" 
-					<c:if test="${registerFailed}">value="${user.email}"</c:if>>
+				<input type="text" style="width: 240;" name="address">
 			</td>
-		  </tr>	
+		  </tr>
 	  	  <tr height="40">
 			<td width="150" align="center" bgcolor="E6ECDE">전화번호</td>
 			<td width="250" bgcolor="ffffff" style="padding-left: 10">
@@ -113,7 +112,6 @@ function userList(targetUri) {
 		  <tr>
 			<td align="left">
 			<input type="button" value="회원 가입" onClick="userCreate()"> &nbsp;
-			<input type="button" value="목록" onClick="userList('<c:url value='/user/list' />')">
 			</td>
 		  </tr>
 	    </table>
