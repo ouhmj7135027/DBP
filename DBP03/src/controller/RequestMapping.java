@@ -5,6 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import controller.*;
+import controller.member.AddProductToCartController;
 import controller.member.CartListController;
 import controller.member.LoginController;
 import controller.member.LogoutController;
@@ -27,6 +28,7 @@ public class RequestMapping {
     	mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
         mappings.put("/user/logout", new LogoutController());
+        mappings.put("/cart/addProduct", new AddProductToCartController());
         mappings.put("/cart/cartList", new CartListController());
         mappings.put("/cart/cart", new ForwardController("/cart/Cart.jsp"));
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
