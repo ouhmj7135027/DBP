@@ -14,7 +14,7 @@ import persistence.dao.*;
 public class MemberDAOImpl {
 	
 	private JDBCUtil jdbcUtil = null;
-	
+	private static MemberDAOImpl dao = new MemberDAOImpl();
 	public MemberDAOImpl() {			
 		jdbcUtil = new JDBCUtil();	// JDBCUtil 객체 생성
 	}
@@ -194,6 +194,9 @@ public class MemberDAOImpl {
 		return 0;
 	}
 	*/
+	 public static MemberDAOImpl getInstance() {
+	      return dao;
+	   }
 	public int create(MemberDTO mem) throws SQLException {
 		String sql = "INSERT INTO MEMBER (m_id, m_name, m_password, email_id, address, phone) "
 					+ "VALUES (S_M_ID.nextval, ?, ?, ?, ?, ?)";		
@@ -219,10 +222,10 @@ public class MemberDAOImpl {
 	 */
 	public int update(MemberDTO user) throws SQLException {
 		String sql = "UPDATE MEMBER "
-					+ "SET m_name=?, m_password=?, email_id=?, address=?, phone=? "
-					+ "WHERE m_id=?";
+					+ "SET m_name=?, m_password=?, address=?, phone=? "
+					+ "WHERE email_id=?";
 		Object[] param = new Object[] {user.getM_name(), user.getM_password(), 
-				user.getEmail_id(), user.getAddress(), user.getPhone(), user.getM_id()};				
+				 user.getAddress(), user.getPhone(),user.getEmail_id()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
 			
 		try {				

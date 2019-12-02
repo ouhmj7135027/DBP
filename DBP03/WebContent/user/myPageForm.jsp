@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@page import="persistence.dao.impl.MemberDAOImpl"%>
-<%@page import="model.Member"%>
+<%@page import="service.dto.MemberDTO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>마이페이지</title>
 <style>
-body {
-   background-color: WHITE;
-}
+
 </style>
 <script>
 /*alert("회원정보 수정"); */
@@ -41,19 +41,20 @@ body {
 </head>
 <body>
    <%
-   String id = session.getAttribute("user").toString();
-   Member member = new Member();
+   String id = session.getAttribute("userId").toString();
+   MemberDAOImpl dao = MemberDAOImpl.getInstance();
+   MemberDTO member = dao.findUser(id);
   
    %>
 <div align="center">
-   <form action="edited.jsp" method="post" name="form" onSubmit="return check()" >
+ <form name="form" method="POST" action="<c:url value='/user/update' />">
          <h1>현재 회원 정보</h1>
    <table border="1" align=center align="left" cellpadding="5" cellspacing="0"
          width="50%" height="50%" bordercolor="lightgrey"
          style="border-collapse: collapse;">
       <tr>
          <td>ID</td>
-         <td><%=member.getEmail_id()%></td>
+          <td><input type="text" disabled name="email" value="<%=id %>" /></td>
       </tr>
       <tr>
          <td>비밀번호</td>
@@ -74,14 +75,11 @@ body {
      
    </table></form>
    <br>
-
-
-   <!-- button onclick="update()">회원정보 변경</button-->
-   <form name="update" name="form" action="" //uri
-      method="GET">
+   
       <input type="button" value="회원정보 변경 확인" onClick="updateMyinfo01()">
 
-   </form>
+  
+
 </div>
 </body>
 </html>
