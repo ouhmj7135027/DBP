@@ -7,11 +7,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.Controller;
+import controller.member.CartListController;
 import service.ProductManager;
 import service.dto.productDTO;
 
 public class ProductListController implements Controller {
+	
 	@Override
 	
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {

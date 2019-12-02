@@ -13,32 +13,35 @@ public class cartDTO implements Serializable{
 	static int product_id;
 	
 	//product_id
-		private LinkedList<String> codeList = new LinkedList<String>();
-		//수량 (db에 추가해야함)
-		private LinkedList<Integer> numberList = new LinkedList<Integer>();
-		//장바구니에 product 정보 추가하는 메소드
-		public void addItem(String code, int num) {
-			for (int cnt = 0; cnt < codeList.size(); cnt++) {
-				if (codeList.get(cnt).equals(code)) {
-					numberList.set(cnt,  numberList.get(cnt) + num);
-					return;
+	private LinkedList<String> codeList = new LinkedList<String>();
+	//수량 
+	private LinkedList<Integer> numberList = new LinkedList<Integer>();
+	//장바구니에 product 정보 추가하는 메소드
+	public void addItem(String p_id, int num) {
+		for (int cnt = 0; cnt < codeList.size(); cnt++) {
+			//상품 id 가 같은 경우
+			if (codeList.get(cnt).equals(p_id)) {
+				numberList.set(cnt,  numberList.get(cnt) + num);
+				return;
 				}
 			}
-			codeList.add(code);
-			numberList.add(num);
-		}
+		//상품 id가 없을 경우
+		codeList.add(p_id);
+		numberList.add(num);
+	}
 		
-		public String getCode(int index ) {
-			return codeList.get(index);
-		}
-		public int getNumber(int index) {
-			return numberList.get(index);
-		}
+	public String getCode(int index ) {
+		return codeList.get(index);
+	}
+	public int getNumber(int index) {
+		return numberList.get(index);
+	}
 		//장바구니에 있는 항목 수 리턴 메소드
-		public int getSize() {
-			return codeList.size();
-		}
-	public cartDTO() {
+	public int getSize() {
+		return codeList.size();
+	}
+		
+	/*public cartDTO() {
 	}
 	public cartDTO(int m_id, int cart_p_num, int c_price, int product_id) {
 		this.product_id = product_id;
@@ -70,4 +73,5 @@ public class cartDTO implements Serializable{
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}	
+	*/
 }

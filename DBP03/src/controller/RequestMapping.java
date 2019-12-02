@@ -38,6 +38,7 @@ public class RequestMapping {
         mappings.put("/cart/addProduct", new AddProductToCartController());
         mappings.put("/cart/cartList", new CartListController());
         mappings.put("/cart/cart", new ForwardController("/cart/Cart.jsp"));
+        mappings.put("/cart/result", new ForwardController("/cart/AddItemToCartResult.jsp"));
         
         mappings.put("/survey", new ForwardController("/survey/surveyMain.jsp"));
         mappings.put("/survey/main", new ForwardController("/survey/mainprocess.jsp"));
