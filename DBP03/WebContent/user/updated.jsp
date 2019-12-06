@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="EUC-KR"%>
 <%@page import="java.util.*"%>
 <%@page import="persistence.dao.impl.MemberDAOImpl"%>
@@ -13,10 +13,10 @@
    
     String id = (String)session.getAttribute("userId");
     System.out.println("--update---" + dto.toString() + " iD = "+id);
-    dto.setEmail_id(id);
     
     MemberDAOImpl dao = MemberDAOImpl.getInstance();
-    //dao.update(dto);
+   
+  //  System.out.println(dto.getM_password());
   	dto = dao.findUser(id);
     %>
 <!DOCTYPE html>

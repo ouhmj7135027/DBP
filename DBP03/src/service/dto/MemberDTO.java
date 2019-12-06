@@ -20,7 +20,7 @@ public class MemberDTO {
 		this.phone = phone;
 		this.address = address;
 	}
-	public MemberDTO(String m_password, String m_name, String email_id, String phone,String address) {
+	public MemberDTO( String email_id,String m_password, String m_name, String address,String phone) {
 		this.m_password = m_password;
 		this.m_name = m_name;
 		this.email_id = email_id;
