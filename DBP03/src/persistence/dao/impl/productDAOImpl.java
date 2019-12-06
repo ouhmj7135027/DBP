@@ -7,6 +7,7 @@ import java.util.List;
 
 import persistence.DAOFactory;
 import persistence.dao.productDAO;
+import service.dto.MemberDTO;
 import service.dto.productDTO;
 
 public class productDAOImpl implements productDAO {
@@ -21,10 +22,37 @@ private JDBCUtil jdbcUtil = null;
 	public productDAOImpl() {
 		jdbcUtil = new JDBCUtil();
 	}
+	public int create(productDTO pro) throws SQLException {
+		String sql = "INSERT INTO PRODUCT (product_id, effect, p_name, p_price, category_id, category_age_id) "
+					+ "VALUES (S_PRODUCT_ID.nextval, ?, ?, ?, ?, ?)";		
+		Object[] param = new Object[] {pro.getEffect(), pro.getP_name(), 
+				pro.getP_price(), pro.getCategory_id(), pro.getCategory_age_id()};				
+		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
+						
+		try {				
+			int result = jdbcUtil.executeUpdate();	// insert 문 실행
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {		
+			jdbcUtil.commit();
+			jdbcUtil.close();	// resource 반환
+		}		
+		return 0;	
+		
+		
+	}
 	
 	//전체 상품정보를 List로 반환하는 메소드
 	public List<productDTO> getProductList() {
-		jdbcUtil.setSql(query+"from product");
+		String sql = "select product.product_id AS product_id, " +
+				"product.effect AS product_effect, " +
+								"product.p_name AS product_name, " +
+								"product.p_price AS product_price, " +
+								"product.imgsrc AS product_image " +
+								"from product";
+		jdbcUtil.setSql(sql);
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<productDTO> list = new ArrayList<productDTO>();
@@ -34,7 +62,7 @@ private JDBCUtil jdbcUtil = null;
 				dto.setEffect(rs.getString("product_effect"));
 				dto.setP_name(rs.getString("product_name"));
 				dto.setP_price(rs.getInt("product_price"));
-				dto.setSales(rs.getInt("product_sales"));
+				dto.setImgsrc(rs.getString("product_image"));
 				list.add(dto);
 			}
 			return  list;
@@ -150,22 +178,10 @@ private JDBCUtil jdbcUtil = null;
 	
 	public int insertProduct (productDTO pro) {
 		int result = 0;
-		String insertQuery = "insert int product (product_id, effect, p_name, p_price, category_id, "
-				+ "category_age, sales) " + "values(?, ?, ?, ?, ?, ?, ?) ";
+		String insertQuery = "INSERT INTO PRODUCT (product_id, effect, p_name, p_price, category_id, category_age_id) "
+			+ "VALUES(S_PRODUCT_ID.nextval, ?, ?, ?, ?, ?)";
 		
-		DAOFactory factory = new DAOFactory();
-		
-		//categoryDAO 객체 생성해서 id 알아와야함
-		//category_ageDAO 객체 생성해서 id 알아와야함
-		//categoryDAO categoryDAO = factory.getCategoryDAO(); //factory를 통해 카테고리에 대한 DAO 획득
-		//categoryDTO categoryDTO = categoryDAO.getCategoryById(pro.getCategory_id());
-		//int cateId = categoryDTO.getCategory_id();
-				
-		//category_ageDAO category_ageDAO = factory.getCategory_ageDAO();
-		//category_ageDAO categoryDTO = category_ageDAO.getCategory_ageById(pro.getCategory_age_id());
-		//int cate_ageId = category_ageDTO.getCategory_id();
-		
-		Object[] param = new Object[] {pro.getProduct_id(), pro.getEffect(), pro.getP_name(), 
+		Object[] param = new Object[] {pro.getEffect(), pro.getP_name(), 
 				pro.getP_price(), pro.getSales(), pro.getCategory_id(), pro.getCategory_age_id()};
 	
 		jdbcUtil.setSql(insertQuery);
@@ -245,8 +261,8 @@ private JDBCUtil jdbcUtil = null;
 
 	}
 		
-	public int deleteProduct (String product_id) {
-		String deleteQuery= "delete from student where product_id = ?";
+	public int deleteProduct (int product_id) {
+		String deleteQuery= "delete from product where product_id = ?";
 		
 		jdbcUtil.setSql(deleteQuery);
 		Object[] param = new Object[] {product_id};
@@ -289,6 +305,39 @@ private JDBCUtil jdbcUtil = null;
 			jdbcUtil.commit();
 			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
 		}
+		return null;
+	}
+	@Override
+	public productDTO getProductById(int id) {
+		// TODO Auto-generated method stub
+		String listQuery = "select product.product_id AS product_id, " +
+					"product.effect AS product_effect, " +
+									"product.p_name AS product_name, " +
+									"product.p_price AS product_price, " +
+									"product.imgsrc AS product_image " +
+									"from product " +
+									"where product_id = ?";
+		Object[] param = new Object[] {id};	
+		jdbcUtil.setSql(listQuery);
+		jdbcUtil.setParameters(param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			productDTO product = new productDTO();
+			if(rs.next()) {
+				productDTO dto = new productDTO();
+				dto.setProduct_id(rs.getInt("product_id"));
+				dto.setEffect(rs.getString("product_effect"));
+				dto.setP_name(rs.getString("product_name"));
+				dto.setP_price(rs.getInt("product_price"));
+				dto.setImgsrc(rs.getString("product_image"));
+				return dto;
+			}
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+		}		
 		return null;
 	}
 	

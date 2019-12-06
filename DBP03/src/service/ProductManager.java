@@ -44,10 +44,13 @@ public class ProductManager {
 	}
 	
 	
-	public productDTO getProductByNames(String name) {
+	public productDTO getProductById(int id) {
 		
-		return proDAO.getProductByName(name);
+		return proDAO.getProductById(id);
 	} 
+	public productDTO getProductByName(String name) {
+		return proDAO.getProductByName(name);
+	}
 	//name에 해당하는 상품정보를 반환하는 메소드
 	public int insert(productDTO pro) {
 	
@@ -58,8 +61,8 @@ public class ProductManager {
 		
 		
 	}
-	public int delete(String product_id) {
-		return proDAO.deleteProduct(product_id);
+	public int delete(int deleteId) {
+		return proDAO.deleteProduct(deleteId);
 	}
 	public productDTO getProductBySurvey(int survey, int category) {
 		

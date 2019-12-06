@@ -35,7 +35,7 @@ public class updateProductController implements Controller {
     		manager.update(updateProduct);			
             
     	}
-    	return "redirect:/user/list";
+    	return "redirect:/admin";
 
 
 

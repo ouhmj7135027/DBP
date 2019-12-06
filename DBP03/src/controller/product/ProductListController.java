@@ -15,13 +15,21 @@ public class ProductListController implements Controller {
 	@Override
 	
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
+		ProductManager manager = ProductManager.getInstance();
+		List<productDTO> plist;
+		
+		if(request.getParameter("page") != null) {
+			plist = manager.ListingProductsInfo();
+			request.setAttribute("productlist", plist);				
+			return "/product/Category.jsp";  
+		}
+		
 		int cnum1 = Integer.parseInt(request.getParameter("c"));
 		int cnum2 = Integer.parseInt(request.getParameter("i"));
 		
-    	ProductManager manager = ProductManager.getInstance();
-		List<productDTO> plist = manager.getProductByCategory(cnum1, cnum2);
+    	
+		plist = manager.getProductByCategory(cnum1, cnum2);
 		
-		// commList 객체를 request에 저장하여 커뮤니티 리스트 화면으로 이동(forwarding)
 		request.setAttribute("productlist", plist);				
 		return "/product/productlist.jsp";        
     }

@@ -46,7 +46,7 @@ table {
         <a class="nav-link" href="<c:url value='/user/myPage' />">마이페이지</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<c:url value='/product/category' />">제품보기</a>
+        <a class="nav-link" href="<c:url value='/product/list?page=1' />">제품보기</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<c:url value='/cart/cart' />">장바구니</a>

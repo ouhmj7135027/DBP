@@ -5,6 +5,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import controller.*;
+import controller.admin.DeleteProductController;
+import controller.admin.InsertProductController;
+import controller.admin.updateProductController;
 import controller.member.AddProductToCartController;
 import controller.member.CartListController;
 import controller.member.LoginController;
@@ -48,6 +51,16 @@ public class RequestMapping {
         
         mappings.put("/order", new ForwardController("/product/orderFrom.jsp"));
         mappings.put("/order/order", new OrderController());
+        
+        mappings.put("/admin", new ForwardController("/admin/admin_main.jsp"));
+        mappings.put("/admin/add", new ForwardController("/admin/addProduct.jsp"));
+        mappings.put("/admin/update", new ForwardController("/admin/updateProduct.jsp"));
+        mappings.put("/admin/delete", new ForwardController("/admin/deleteProduct.jsp"));
+        mappings.put("/admin/status", new ForwardController("/admin/updateStatus.jsp"));
+        mappings.put("/admin/add/cont", new InsertProductController());
+        mappings.put("/admin/update/cont", new updateProductController());
+        mappings.put("/admin/delete/cont", new DeleteProductController());
+        
         
         //mappings.put("/review", new ForwardController("¸®ºä.jsp"));
 

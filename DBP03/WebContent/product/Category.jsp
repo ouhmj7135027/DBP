@@ -51,9 +51,22 @@
 	
 	<section id="container">
 		<div id="container_box">
-		
 			<section id="content">
-				본문 영역
+				<ul>
+				 <c:forEach items="${productlist}" var="product">
+				 <li>
+					 <div class="goodsThumb">
+					 <img src="<c:url value='${product.imgsrc}' />">
+					 </div> 		 
+				  <div class="goodsName">
+				    <p>${product.p_name}</p>
+				    <p>${product.p_price}</p> 
+				    <a href="<c:url value='/cart/addProduct?CODE=${product.product_id}' />">
+				    	<img src="<c:url value='/image/cart.png' />" width=40 height=40>
+				  </div>
+				 </li>
+				 </c:forEach>
+				</ul>
 			</section>
 			
 			<h3>카테고리</h3>
