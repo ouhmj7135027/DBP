@@ -298,7 +298,8 @@ private JDBCUtil jdbcUtil = null;
 	public List<productDTO> getProductByp_id(int id) {
 		// TODO Auto-generated method stub
 		String listQuery = "select p_name AS product_name, "
-				+ "p_price AS product_price from product where product_id = ?";
+				+ "p_price AS product_price, "
+				+ "imgsrc AS product_img from product where product_id = ?";
 		
 		Object[] param = new Object[] {id};	
 		jdbcUtil.setSql(listQuery);
@@ -311,6 +312,7 @@ private JDBCUtil jdbcUtil = null;
 				productDTO dto = new productDTO();
 				dto.setP_name(rs.getString("product_name"));
 				dto.setP_price(rs.getInt("product_price"));
+				dto.setImgsrc(rs.getString("product_img"));
 				list.add(dto);
 			}
 			return list;

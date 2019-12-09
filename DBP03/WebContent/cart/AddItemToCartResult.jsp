@@ -11,7 +11,8 @@
 	<h4>장바구니 담기</h4>
 	장바구니에 1개의 상품을 담았습니다.<br/><br/>
 	
-	<a href="<c:url value='/cart/cartList' />" >닫기</a> 
+	<a href="<c:url value='/cart/cartList' />" >장바구니 가기</a> 
+	<a href="<c:url value='/product/category' />" >쇼핑 계속 하기</a>
 	
 </body>
 </html>

@@ -56,11 +56,14 @@ public class CartListController implements Controller {
 				
 				String name = plist.get(0).getP_name();
 				int price = plist.get(0).getP_price();
+				String img = plist.get(0).getImgsrc();
+				
 				
 				cartList.setCode(cnt, id);
 				cartList.setTitle(cnt, name);
 				cartList.setPrice(cnt, price);
 				cartList.setNumber(cnt, num);
+				cartList.setImg(cnt, img);
 			}
 			
 			request.setAttribute("CART_LIST",  cartList);

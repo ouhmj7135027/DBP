@@ -7,6 +7,7 @@ public class cartListDTO {
 	private ArrayList<String> titleList = new ArrayList<String>(); //상품 이름
 	private ArrayList<Integer> priceList = new ArrayList<Integer>(); //가격
 	private ArrayList<Integer> numberList = new ArrayList<Integer>(); //수량
+	private ArrayList<String> imgList = new ArrayList<String>(); //이미지
 	
 	public cartListDTO() {
 		
@@ -24,6 +25,9 @@ public class cartListDTO {
 	public void setNumber(int index, Integer number) {
 		this.numberList.add(index, number);
 	}
+	public void setImg(int index, String img) {
+		this.imgList.add(index, img);
+	}
 	
 	public Integer[] getCode() {
 		return codeList.toArray(new Integer[codeList.size()]);
@@ -36,6 +40,9 @@ public class cartListDTO {
 	}
 	public Integer[] getNumber() {
 		return numberList.toArray(new Integer[numberList.size()]);
+	}
+	public String[] getImg() {
+		return imgList.toArray(new String[imgList.size()]);
 	}
 	
 	//상품 총 합

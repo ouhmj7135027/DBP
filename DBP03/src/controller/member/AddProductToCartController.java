@@ -39,7 +39,6 @@ public class AddProductToCartController implements Controller, Serializable{
 		//세션에서 장바구니 객체 있을 경우 장바구니에 상품 추가 
 		cart.addItem(p_id,  1);
 		session.setAttribute("CART", cart);
-		//response.sendRedirect("AddItemToCartResult.jsp?");
 		
 		return "redirect:/cart/result";
 	}
