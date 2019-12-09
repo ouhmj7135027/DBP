@@ -16,6 +16,41 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil = new JDBCUtil();
 	}
 	
+	/*public List<order_detailDTO> listOrder()
+	{
+		String sql = "select order_num, g.name gname, c.name cname, c.address, order_date from orderlist "
+				+ "inner join goods g on orderlist.goods_num = g.goods_num"
+				+ "inner join customer c on orderlist.cust_id = c.id order by order_num desc";
+		
+		List<OrderDTO> ReturnList = new ArrayList<OrderDTO>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				OrderDTO T = new OrderDTO();
+				
+				T.setCustAddr(rs.getString("c.address"));
+				T.setCustName(rs.getString("cname"));
+				T.setOrder_num(rs.getInt("order_num"));
+				T.setGoodsName(rs.getString("gname"));
+				T.setOrder_date(rs.getDate("order_date"));
+				
+				ReturnList.add(T);
+			}
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.print("List order SQL ERROR");
+			}
+			
+			return ReturnList;
+	}*/
+	
 	public int insertOrder_detail(order_detailDTO ord_d) {
 		int result = 0;
 		String insertQuery = "insert into order_detail (product_id, order_detail_id, order_id,"
@@ -29,7 +64,7 @@ public class order_detailDAOImpl implements order_detailDAO{
 		
 		order_pDAO order_pDAO = factory.getOrder_pDAO();
 		//order_pDTO order_pDTO = order_pDAO.getOrder_pById(ord_d.getOrder_id());
-		int oId = order_pDTO.getOrder_id();
+		int oId = oId.getOrder_id();
 		
 		Object[] param = new Object[] {ord_d.getProduct_id(), ord_d.getOrder_detail_id(), ord_d.getOrder_id(),
 				ord_d.getTotal_price(), ord_d.getO_amount()};
@@ -37,20 +72,20 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(param);
 		
 		try {				
-			result = jdbcUtil.executeUpdate();		// insert ¹® ½ÇÇà
-			System.out.println(ord_d.getOrder_id() + " ÁÖ¹®ÀÇ ÁÖ¹®Á¤º¸°¡ »ğÀÔµÇ¾ú½À´Ï´Ù.");
+			result = jdbcUtil.executeUpdate();		// insert ë¬¸ ì‹¤í–‰
+			System.out.println(ord_d.getOrder_id() + " ì£¼ë¬¸ì˜ ì£¼ë¬¸ì •ë³´ê°€ ì‚½ì…ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		} catch (SQLException ex) {
-			System.out.println("ÀÔ·Â¿À·ù ¹ß»ı!!!");
+			System.out.println("ì…ë ¥ì˜¤ë¥˜ ë°œìƒ!!!");
 			if (ex.getErrorCode() == 1)
-				System.out.println("µ¿ÀÏÇÑ ÁÖ¹®ÀÌ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù."); 
+				System.out.println("ë™ì¼í•œ ì£¼ë¬¸ì´ ì´ë¯¸ ì¡´ì¬í•©ë‹ˆë‹¤."); 
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {		
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection ¹İÈ¯
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection ë°˜í™˜
 		}		
-		return result;		// insert ¿¡ ÀÇÇØ ¹İ¿µµÈ ·¹ÄÚµå ¼ö ¹İÈ¯	
+		return result;		// insert ì— ì˜í•´ ë°˜ì˜ëœ ë ˆì½”ë“œ ìˆ˜ ë°˜í™˜	
 		
 	}
 	
@@ -81,15 +116,15 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(newParam);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// update ¹® ½ÇÇà
-			return result;			// update ¿¡ ÀÇÇØ ¹İ¿µµÈ ·¹ÄÚµå ¼ö ¹İÈ¯
+			int result = jdbcUtil.executeUpdate();		// update ë¬¸ ì‹¤í–‰
+			return result;			// update ì— ì˜í•´ ë°˜ì˜ëœ ë ˆì½”ë“œ ìˆ˜ ë°˜í™˜
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection ¹İÈ¯
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection ë°˜í™˜
 		}		
 		return 0;
 	}
@@ -102,14 +137,14 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(param);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// delete ¹® ½ÇÇà
-			return result;						// delete ¿¡ ÀÇÇØ ¹İ¿µµÈ ·¹ÄÚµå ¼ö ¹İÈ¯
+			int result = jdbcUtil.executeUpdate();		// delete ë¬¸ ì‹¤í–‰
+			return result;						// delete ì— ì˜í•´ ë°˜ì˜ëœ ë ˆì½”ë“œ ìˆ˜ ë°˜í™˜
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();		
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection ¹İÈ¯
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection ë°˜í™˜
 		}
 		return 0;
 	}

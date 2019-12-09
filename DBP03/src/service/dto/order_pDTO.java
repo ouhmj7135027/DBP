@@ -3,25 +3,48 @@ package service.dto;
 import java.sql.Date;
 
 public class order_pDTO {
-	private static int order_id = 0;
+	private int order_id = 0;
+	private String email_id = null;
 	private String order_state = null;
 	private Date order_date = null;
 	private String address = null;
 	private int total_price = 0;
-	private String m_email = null;
+	private String order_name = null;
+	private String order_phone = null;
 	
+	public order_pDTO(int order_id, String email_id, String order_state, Date order_date, String address, int total_price, String order_name, String order_phone) {
+		this.order_id = order_id;
+		this.email_id = email_id;
+		this.order_state = order_state;
+		this.email_id = email_id;
+		this.order_date = order_date;
+		this.address = address;
+		this.total_price = total_price;
+		this.order_name = order_name;
+		this.order_phone = order_phone;
+	}
 	
-	public String getM_email() {
-		return m_email;
+	public order_pDTO(String order_name, String order_phone, String address) {
+		this.order_name = order_name;
+		this.order_phone = order_phone;
+		this.address = address;
 	}
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
+	
+	public order_pDTO() {
+		// TODO Auto-generated constructor stub
 	}
-	public static int getOrder_id() {
+
+	public int getOrder_id() {
 		return order_id;
 	}
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
+	}
+	public String getEmail_id() {
+		return email_id;
+	}
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
 	}
 	public String getOrder_state() {
 		return order_state;
@@ -47,8 +70,17 @@ public class order_pDTO {
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
 	}
-	
-	
-
+	public String getOrder_name() {
+		return order_name;
+	}
+	public void setOrder_name(String order_name) {
+		this.order_name = order_name;
+	}
+	public String getOrder_phone() {
+		return order_phone;
+	}
+	public void setOrder_phone(String order_phone) {
+		this.order_phone = order_phone;
+	}
 
 }
