@@ -9,7 +9,6 @@
 		<table border=1>
 		<tr>
 			<td width = 100></td>
-			<td width = 70>상품id</td>
 			<td width=250>상품이름</td>
 			<td width=80>가격</td>
 			<td width=50>수량</td>
@@ -18,7 +17,6 @@
 			<tr>
 				
 				<td><img src="<c:url value='${CART_LIST.img[cnt]}' />"></td>
-				<td>${CART_LIST.code[cnt]}</td>
 				<td>${CART_LIST.title[cnt]}</td>
 				<td>${CART_LIST.price[cnt]}원</td>
 				<td>${CART_LIST.number[cnt]}</td>

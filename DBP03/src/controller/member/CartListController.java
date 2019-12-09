@@ -2,6 +2,7 @@ package controller.member;
 
 import java.beans.Statement;
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ import service.dto.cartDTO;
 import service.dto.cartListDTO;
 import service.dto.productDTO;
 
-public class CartListController implements Controller {
+public class CartListController implements Controller, Serializable {
 	private static final Logger log = LoggerFactory.getLogger(CartListController.class);
+	private static final long serialVersionUID = 1L;
 	
 	public CartListController() {
 		// TODO Auto-generated constructor stub
