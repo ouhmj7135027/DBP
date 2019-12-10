@@ -24,21 +24,21 @@ public class UpdateMyInfoController implements Controller {
    public String execute(HttpServletRequest request, HttpServletResponse response)   throws Exception {
       System.out.println("\n###UpdateMyInfoController -µé¾î¿È");
       HttpSession session = request.getSession();
-      String id = (String)session.getAttribute("userId");
-      
-      MemberDAOImpl dao = MemberDAOImpl.getInstance();
-   	  MemberDTO m = dao.findUser(id);
-  
-  	 // request.setAttribute("user", m);
+     
   		
       MemberDTO updatedMember = new MemberDTO(
+    		session.getAttribute("userId").toString(),
     		request.getParameter("password"),
   			request.getParameter("name"),
-  			request.getParameter("email"),
-  			request.getParameter("phone"),
-  			request.getParameter("address"));
+  			request.getParameter("address"),
+  			request.getParameter("phone"));
+  			
       log.debug("Update User : {}", updatedMember);
       System.out.println("\n###UpdateMyInfoController - reqÈ®ÀÎ  user:: " + updatedMember.toString());
+      System.out.println("request.getParameter(\"password\") =" + request.getParameter("password"));
+      System.out.println("request.getParameter(\"email\") =" + request.getParameter("email"));
+      System.out.println("updated pw =" + updatedMember.getM_password());
+      System.out.println("updated id =" + updatedMember.getEmail_id());
       MemberManager manager = MemberManager.getInstance();
       manager.update(updatedMember);
       

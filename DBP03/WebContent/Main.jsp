@@ -49,7 +49,7 @@ table {
         <a class="nav-link" href="<c:url value='/product/list?page=1' />">제품보기</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<c:url value='/cart/cart' />">장바구니</a>
+        <a class="nav-link" href="<c:url value='/cart/cartList' />">장바구니</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<c:url value='/user/login/form' />">로그인</a>
@@ -68,7 +68,7 @@ table {
    </div>
    <br><br><br><br><br><br><br><br><br><br><br>
    <div>
-  <table  >
+  <table >
   <tr>
   	<td>
   		추천상품1 
@@ -79,8 +79,10 @@ table {
   		<td>
   		추천상품3 
   		</td>
-  		</tr>
+  	</tr>
   </table>
+  <p>
+  <a href="<c:url value='/user/logout' />">로그아웃</a>
 </div>
 </body>
 </html>

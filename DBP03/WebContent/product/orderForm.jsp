@@ -26,7 +26,7 @@
 	padding: 5px;
 }
 
-#userAddr2, #userAddr3 {
+#address {
 	width: 250px;
 }
 
@@ -44,41 +44,43 @@
 </style>
 <script>
 	function orderComplete() {
-   		alert("주문이 완료되었습니다.");
-   		form.submit();
+		if (form.order_name.value == "") {
+			alert("수령인을 입력하십시오.");
+			form.userId.focus();
+			return false;
+		} 
+		if (form.order_phone.value == "") {
+			alert("수령인 연락처를 입력하십시오.");
+			form.order_phone.focus();
+			return false;
+		}
+		if(form.address.value=="") {
+			alert("주소를 입력하십시오.");
+			form.address.focus();
+			return false;
+		}
+		alert("주문이 완료되었습니다.");
+		form.submit();
 	}
 </script>
 </head>
 <body>
 	<div class="orderInfo">
-		<form role="form" action=" uri "  method="GET">
+		<form name="form" method="POST" action="<c:url value='/order/order' />">
 			<h2>주문 정보 입력</h2>
-
-			<input type="hidden" name="amount" value="${sum}" />
-
 			<div class="inputArea">
-				<label for="">수령인</label> <input type="text" name="orderRec"
-					id="orderRec" required="required" />
+				<label for="">수령인</label> 
+				<input type="text" name="order_name" id="order_name" required="required" />
 			</div>
 
 			<div class="inputArea">
-				<label for="orderPhon">수령인 연락처</label> <input type="text"
-					name="orderPhon" id="orderPhon" required="required" />
+				<label for="orderPhon">수령인 연락처</label> 
+				<input type="text" name="order_phone" id="order_phone" required="required" />
 			</div>
 
 			<div class="inputArea">
-				<label for="userAddr1">우편번호</label> <input type="text"
-					name="userAddr1" id="userAddr1" required="required" />
-			</div>
-
-			<div class="inputArea">
-				<label for="userAddr2">도로명 주소</label> <input type="text"
-					name="userAddr2" id="userAddr2" required="required" />
-			</div>
-
-			<div class="inputArea">
-				<label for="userAddr3">상세 주소</label> <input type="text"
-					name="userAddr3" id="userAddr3" required="required" />
+				<label for="addr">주소</label> 
+				<input type="text" name="address" id="address" required="required" />
 			</div>
 			
 			<div class="sum">총 합계:</div>

@@ -116,6 +116,7 @@ public class JDBCUtil {
 		for (int i = 0; i < parameterSize; i++) {
 			if (getParameter(i) == null) { // 매개변수 값이 널이 부분이 있을 경우
 				pstmt.setString(i + 1, null);
+				System.out.println("failed");
 			} else {
 				pstmt.setObject(i + 1, getParameter(i));
 			}

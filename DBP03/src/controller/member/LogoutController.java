@@ -16,7 +16,7 @@ public class LogoutController implements Controller {
 			session.removeAttribute(UserSessionUtils.USER_SESSION_KEY);
 			session.invalidate();		
 	        
-	        return "redirect:/user/list";
+	        return "redirect:/main";
 	    }
 
 	@Override

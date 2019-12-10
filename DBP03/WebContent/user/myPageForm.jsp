@@ -44,7 +44,7 @@
    String id = session.getAttribute("userId").toString();
    MemberDAOImpl dao = MemberDAOImpl.getInstance();
    MemberDTO member = dao.findUser(id);
-  
+   member.setEmail_id(id); 
    %>
 <div align="center">
  <form name="form" method="POST" action="<c:url value='/user/update' />">
@@ -54,7 +54,7 @@
          style="border-collapse: collapse;">
       <tr>
          <td>ID</td>
-          <td><input type="text" disabled name="email" value="<%=id %>" /></td>
+          <td><input type="text" disabled name="email" value="<%=member.getEmail_id() %>" /></td>
       </tr>
       <tr>
          <td>비밀번호</td>
@@ -76,7 +76,7 @@
    </table></form>
    <br>
    
-      <input type="button" value="회원정보 변경 확인" onClick="updateMyinfo01()">
+      <input type="submit" value="회원정보 변경 확인" onClick="updateMyinfo01()">
 
   
 

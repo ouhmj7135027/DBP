@@ -222,14 +222,17 @@ public class MemberDAOImpl {
 	 */
 	public int update(MemberDTO user) throws SQLException {
 		String sql = "UPDATE MEMBER "
-					+ "SET m_name=?, m_password=?, address=?, phone=? "
+					+ "SET m_name=? , m_password=? , address=? , phone=? "
 					+ "WHERE email_id=?";
-		Object[] param = new Object[] {user.getM_name(), user.getM_password(), 
+		Object[] param1 = new Object[] {user.getM_name(), user.getM_password(), 
 				 user.getAddress(), user.getPhone(),user.getEmail_id()};				
-		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil에 update문과 매개 변수 설정
-			
+		jdbcUtil.setSqlAndParameters(sql, param1);	// JDBCUtil에 update문과 매개 변수 설정
+		 System.out.println("\n###-------UserManger :::\t  중간정검 : "); 
+		 System.out.println("바뀐 비번은: "+user.getM_password());
+		 System.out.println("아이디는: "+user.getEmail_id());
 		try {				
 			int result = jdbcUtil.executeUpdate();	// update 문 실행
+			System.out.println("result =  " +  result);
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();

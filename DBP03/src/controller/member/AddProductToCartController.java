@@ -2,6 +2,7 @@ package controller.member;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,13 +34,13 @@ public class AddProductToCartController implements Controller, Serializable{
 		cartDTO cart = (cartDTO) session.getAttribute("CART");
 		
 		//세션에서 장바구니 객체가 없을 경우 새로 만들기
-		if (cart == null)
+		if (cart == null) {
 			cart = new cartDTO();
-		
+			
+		}
 		//세션에서 장바구니 객체 있을 경우 장바구니에 상품 추가 
 		cart.addItem(p_id,  1);
 		session.setAttribute("CART", cart);
-		//response.sendRedirect("AddItemToCartResult.jsp?");
 		
 		return "redirect:/cart/result";
 	}
