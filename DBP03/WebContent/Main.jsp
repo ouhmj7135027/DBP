@@ -43,7 +43,7 @@ table {
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item">
-        <a class="nav-link" href="<c:url value='/user/myPage' />">마이페이지</a>
+        <a class="nav-link" href="<c:url value='/user/mypage/form' />">마이페이지</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<c:url value='/product/list?page=1' />">제품보기</a>

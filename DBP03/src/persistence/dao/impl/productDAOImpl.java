@@ -122,7 +122,8 @@ private JDBCUtil jdbcUtil = null;
 
 	//상품목록만을 List로 반환하는 메소드
 	public List<productDTO> getOnlyProductList() {
-		String listQuery = "select product.p_name AS product_name from product ";
+		String listQuery = "select product.p_name AS product_name, "
+				+ "product.p_price AS product_price from product where product.p_id = ?";
 		jdbcUtil.setSql(listQuery);
 		
 		try {
@@ -131,6 +132,7 @@ private JDBCUtil jdbcUtil = null;
 			while (rs.next()) {
 				productDTO dto = new productDTO();
 				dto.setP_name(rs.getString("product_name"));
+				dto.setP_price(rs.getInt("product_price"));
 				list.add(dto);
 			}
 			return list;
@@ -182,7 +184,7 @@ private JDBCUtil jdbcUtil = null;
 			+ "VALUES(S_PRODUCT_ID.nextval, ?, ?, ?, ?, ?)";
 		
 		Object[] param = new Object[] {pro.getEffect(), pro.getP_name(), 
-				pro.getP_price(), pro.getSales(), pro.getCategory_id(), pro.getCategory_age_id()};
+				pro.getP_price(), pro.getCategory_id(), pro.getCategory_age_id()};
 	
 		jdbcUtil.setSql(insertQuery);
 		jdbcUtil.setParameters(param);
@@ -307,6 +309,7 @@ private JDBCUtil jdbcUtil = null;
 		}
 		return null;
 	}
+
 	@Override
 	public productDTO getProductById(int id) {
 		// TODO Auto-generated method stub
@@ -339,6 +342,36 @@ private JDBCUtil jdbcUtil = null;
 			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
 		}		
 		return null;
+	}
+
+
+	@Override
+	public List<productDTO> getProductByp_id(int id) {
+		// TODO Auto-generated method stub
+		String listQuery = "select p_name AS product_name, "
+				+ "p_price AS product_price from product where product_id = ?";
+		
+		Object[] param = new Object[] {id};	
+		jdbcUtil.setSql(listQuery);
+		jdbcUtil.setParameters(param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<productDTO> list = new ArrayList<productDTO>();
+			while (rs.next()) {
+				productDTO dto = new productDTO();
+				dto.setP_name(rs.getString("product_name"));
+				dto.setP_price(rs.getInt("product_price"));
+				list.add(dto);
+			}
+			return list;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+		
 	}
 	
 

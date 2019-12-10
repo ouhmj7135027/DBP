@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import service.MemberManager;
-import service.UserNotFoundException;
 import model.Member;
 
 public class ViewUserController implements Controller {
@@ -19,8 +18,7 @@ public class ViewUserController implements Controller {
 		MemberManager manager = MemberManager.getInstance();
 		String userId = request.getParameter("email_id");
 		
-    	Member member = null;
-		member = manager.getMemberByEmail(userId);	// 사용자 정보 검색	
+    	Member member = manager.getMemberByEmail(userId);	// 사용자 정보 검색	
 		
 		request.setAttribute("member", member);		// 사용자 정보 저장				
 		return "/user/view.jsp";				// 사용자 보기 화면으로 이동 수정해야함!!!!!!!!!!!! 지원

@@ -13,8 +13,8 @@ import controller.member.CartListController;
 import controller.member.LoginController;
 import controller.member.LogoutController;
 import controller.member.RegisterUserController;
-import controller.member.UpdateUserController;
-import controller.member.UpdateUserFormController;
+import controller.member.UpdateMyInfoController;
+import controller.member.myPageController;
 import controller.product.OrderController;
 import controller.product.ProductListController;
 import controller.product.surveyController;
@@ -34,13 +34,12 @@ public class RequestMapping {
         mappings.put("/user/logout", new LogoutController());
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new RegisterUserController());
-        mappings.put("/user/update/form", new UpdateUserFormController());
-        mappings.put("/user/update", new UpdateUserController());
-        mappings.put("/user/myPage", new ForwardController("/user/myPageForm.jsp"));
-        
+        mappings.put("/user/mypage/form", new myPageController());
+        mappings.put("/user/update", new UpdateMyInfoController());
         mappings.put("/cart/addProduct", new AddProductToCartController());
         mappings.put("/cart/cartList", new CartListController());
         mappings.put("/cart/cart", new ForwardController("/cart/Cart.jsp"));
+        mappings.put("/cart/result", new ForwardController("/cart/AddItemToCartResult.jsp"));
         
         mappings.put("/survey", new ForwardController("/survey/surveyMain.jsp"));
         mappings.put("/survey/main", new ForwardController("/survey/mainprocess.jsp"));

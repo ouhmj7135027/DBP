@@ -1,6 +1,7 @@
 package service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import persistence.DAOFactory;
@@ -27,6 +28,8 @@ public class ProductManager {
 	public static ProductManager getInstance() {
 		return productMan;
 	}
+	
+
 	
 	//전체 상품 목록(=상품 정보) 불러오기
 	public List<productDTO> ListingProductsInfo() throws SQLException {
@@ -67,6 +70,9 @@ public class ProductManager {
 	public productDTO getProductBySurvey(int survey, int category) {
 		
 		return proDAO.survey(survey, category);
+	}
+	public List<productDTO> getProductByp_Id(int id) {
+		return proDAO.getProductByp_id(id);
 	}
 		
 	

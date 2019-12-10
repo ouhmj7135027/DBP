@@ -10,13 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import controller.member.UpdateUserController;
 import model.Product;
 import service.ProductManager;
 import service.dto.productDTO;
 
 public class updateProductController implements Controller {
-	private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
+	//private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
@@ -29,7 +28,7 @@ public class updateProductController implements Controller {
     				Integer.parseInt(request.getParameter("category_id")),
     				Integer.parseInt(request.getParameter("category_age_id")));
 
-    		log.debug("UpdateForm Request : {}", updateProduct);
+    		//log.debug("UpdateForm Request : {}", updateProduct);
     		
     		ProductManager manager = ProductManager.getInstance();
     		manager.update(updateProduct);			

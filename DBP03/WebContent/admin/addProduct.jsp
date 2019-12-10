@@ -13,15 +13,15 @@
 <table height="300" border="1">
 	<tr>
 		<th>상품명</th>
-		<td><input type="text" id="p_name"></td>
+		<td><input type="text" name="p_name"></td>
 	</tr>
 	<tr>
 		<th>효능</th>
-		<td><input type="text" id="effect"></td>
+		<td><input type="text" name="effect"></td>
 	</tr>
 	<tr>
 		<th>판매가격</th>
-		<td><input type="text" id="p_price"></td>
+		<td><input type="text" name="p_price"></td>
 	</tr>
 	<tr>
 		<th>성분 카테고리</th>

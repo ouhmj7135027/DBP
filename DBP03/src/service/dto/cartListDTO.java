@@ -3,12 +3,16 @@ package service.dto;
 import java.util.ArrayList;
 
 public class cartListDTO {
-	private ArrayList<String> codeList = new ArrayList<String>(); //상품ID
+	private ArrayList<Integer> codeList = new ArrayList<Integer>(); //상품ID
 	private ArrayList<String> titleList = new ArrayList<String>(); //상품 이름
 	private ArrayList<Integer> priceList = new ArrayList<Integer>(); //가격
 	private ArrayList<Integer> numberList = new ArrayList<Integer>(); //수량
 	
-	public void setCode(int index, String code) {
+	public cartListDTO() {
+		
+	}
+	
+	public void setCode(int index, int code) {
 		this.codeList.add(index, code);
 	}
 	public void setTitle(int index, String title) {
@@ -21,8 +25,8 @@ public class cartListDTO {
 		this.numberList.add(index, number);
 	}
 	
-	public String[] getCode() {
-		return codeList.toArray(new String[codeList.size()]);
+	public Integer[] getCode() {
+		return codeList.toArray(new Integer[codeList.size()]);
 	}
 	public String[] getTitle() {
 		return titleList.toArray(new String[titleList.size()]);
@@ -46,4 +50,5 @@ public class cartListDTO {
 	public int getSize() {
 		return codeList.size();
 	}
+	
 }

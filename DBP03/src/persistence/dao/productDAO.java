@@ -1,7 +1,11 @@
 package persistence.dao;
 
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
+
+import java.util.ArrayList;
+
 import java.util.List;
 
 import service.dto.productDTO;
@@ -17,6 +21,8 @@ public interface productDAO {
 	public productDTO getProductByName(String name);
 	
 	public List<productDTO> getProductByCategory(int cnum1, int cnum2);
+	
+	public List<productDTO> getProductByp_id(int id);
 	
 	public int insertProduct(productDTO pro);
 	public int updateProduct(productDTO pro);

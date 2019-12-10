@@ -22,6 +22,7 @@ public class productDTO {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public int getCategory_id() {
 		return category_id;
 	}

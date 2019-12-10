@@ -42,8 +42,7 @@ public class DispatcherServlet extends HttpServlet {
             	// redirection 지시
             	String targetUri = contextPath + uri.substring("redirect:".length());
             	response.sendRedirect(targetUri);	// redirect to url            
-            }
-            else {
+            } else {
             	// forwarding 수행
             	RequestDispatcher rd = request.getRequestDispatcher(uri);
                 rd.forward(request, response);		// forward to the view page

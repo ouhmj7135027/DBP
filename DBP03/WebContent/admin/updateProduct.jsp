@@ -3,6 +3,7 @@
 <%@ page import="service.dto.productDTO"%>
 <%@ page import="service.ProductManager" %>
 <%@ page import="java.util.*"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
