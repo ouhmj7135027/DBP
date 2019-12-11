@@ -96,12 +96,11 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public int insertReview(ReviewDTO rev) {
 		int result = 0;
 		String insertQuery = "INSERT INTO REVIEW (m_id, product_id, review_id, rate, review, write_date) " +
-							 "VALUES (?, ?, ?, ?, ?, ?) ";
+							 "VALUES (?, ?, S_REVIEW_ID.nextval, ?, ?, ) ";
 		
-		DAOFactory factory = new DAOFactory();		
 		
 		Object[] param = new Object[] {rev.getM_id(), rev.getProduct_id(), 
-				rev.getReview_id(), rev.getRate(), rev.getReview(), rev.getWrite_date()};		
+				rev.getRate(), rev.getReview(), rev.getWrite_date()};		
 		jdbcUtil.setSql(insertQuery);			
 		jdbcUtil.setParameters(param);			
 				
@@ -122,7 +121,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return result;		
 	}
 	
-	public int updateStudent(ReviewDTO rev) {
+	public int update(ReviewDTO rev) {
 		
 		String updateQuery = "UPDATE REVIEW SET ";
 		int index = 0;

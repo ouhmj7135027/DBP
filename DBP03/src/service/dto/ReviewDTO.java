@@ -8,7 +8,22 @@ public class ReviewDTO{
 	private int rate;
 	private String review;
 	private Date write_date;
-	
+	private String[] component; 
+	String password;
+	public ReviewDTO(String m_id, String rate, String[] component, String review,String password, Date date) {
+		// TODO Auto-generated constructor stub
+		this.m_id = Integer.parseInt(m_id);
+		this.rate = Integer.parseInt(rate);
+		this.setComponent(component);
+		this.review = review;
+		this.password = password;
+		write_date = date;
+		
+		
+	}
+	public ReviewDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getM_id() {
 		return m_id;
 	}
@@ -44,6 +59,12 @@ public class ReviewDTO{
 	}
 	public void setWrite_date(Date write_date) {
 		this.write_date = write_date;
+	}
+	public String[] getComponent() {
+		return component;
+	}
+	public void setComponent(String[] component) {
+		this.component = component;
 	}
 	
 	

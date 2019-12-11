@@ -17,6 +17,7 @@ import controller.member.UpdateMyInfoController;
 import controller.member.myPageController;
 import controller.product.OrderController;
 import controller.product.ProductListController;
+import controller.product.ReviewController;
 import controller.product.surveyController;
 
 public class RequestMapping {
@@ -33,6 +34,10 @@ public class RequestMapping {
         mappings.put("/user/login", new LoginController());
         mappings.put("/user/logout", new LogoutController());
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
+        mappings.put("/review/form", new ForwardController("/review/reviewform.jsp"));
+        mappings.put("/review/main", new ForwardController("/review/review.jsp"));
+
+        mappings.put("/review/create", new ReviewController());
         mappings.put("/user/register", new RegisterUserController());
         mappings.put("/user/mypage/form", new myPageController());
         mappings.put("/user/update", new UpdateMyInfoController());
