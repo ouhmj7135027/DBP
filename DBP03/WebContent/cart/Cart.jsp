@@ -57,6 +57,6 @@
 </c:otherwise>
 </c:choose>
 <br>
+<hr /><a href="<c:url value='/order?total_price=${cart.totalAmount}' />" >주문하기</a><hr />
 <a href="<c:url value='/main' />" >홈 화면으로</a>
 <a href="<c:url value='/product/category' />" >쇼핑 계속 하기</a>
-<a href="<c:url value='/order' />" >주문하기</a> 

@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class order_pDTO {
 	private int order_id = 0;
-	private String email_id = null;
+	private int m_id = 0;
 	private String order_state = null;
 	private Date order_date = null;
 	private String address = null;
 	private int total_price = 0;
 	private String order_name = null;
 	private String order_phone = null;
-	
+	/*
 	public order_pDTO(int order_id, String email_id, String order_state, Date order_date, String address, int total_price, String order_name, String order_phone) {
 		this.order_id = order_id;
 		this.email_id = email_id;
@@ -22,10 +22,10 @@ public class order_pDTO {
 		this.total_price = total_price;
 		this.order_name = order_name;
 		this.order_phone = order_phone;
-	}
+	}*/
 	
-	public order_pDTO(String email_id, String order_name, String order_phone, String address, int total_price) {
-		this.email_id = email_id;
+	public order_pDTO(int m_id, String order_name, String order_phone, String address, int total_price) {
+		this.m_id = m_id;
 		this.order_name = order_name;
 		this.order_phone = order_phone;
 		this.address = address;
@@ -42,12 +42,14 @@ public class order_pDTO {
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
-	public String getEmail_id() {
-		return email_id;
+	public int getM_id() {
+		return m_id;
 	}
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+
+	public void setM_id(int m_id) {
+		this.m_id = m_id;
 	}
+
 	public String getOrder_state() {
 		return order_state;
 	}

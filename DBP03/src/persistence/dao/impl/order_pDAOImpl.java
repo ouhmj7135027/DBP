@@ -10,15 +10,10 @@ import service.dto.order_pDTO;
 
 public class order_pDAOImpl implements order_pDAO{
 	private JDBCUtil jdbcUtil = null;
-	private static order_pDAOImpl dao = new order_pDAOImpl();
 	
 	public order_pDAOImpl() {
 		jdbcUtil = new JDBCUtil();
 	}
-	
-	public static order_pDAOImpl getInstance() {
-	     return dao;
-	  }
 
 	/*public List<order_pDTO> getOrder_plistById() {
 		String listQuery = "select order_p.order_id AS order_id, " +
@@ -49,26 +44,6 @@ public class order_pDAOImpl implements order_pDAO{
 		}
 		return null;
 	}*/
-
-	public int insert(order_pDTO ord) throws SQLException{
-		String sql = "INSERT INTO ORDER_P (order_id, email_id, order_state, order_date, address, total_price, order_name, order_phone) "
-					+ "VALUES (S_ORDER_ID.nextval, ?, '결제 완료', SYSDATE, ?, ?, ?, ?)";	
-		
-		Object[] param = new Object[] {ord.getEmail_id(), ord.getAddress(), ord.getTotal_price(), ord.getOrder_name(), ord.getOrder_phone()};		
-		jdbcUtil.setSqlAndParameters(sql, param);	
-						
-		try {				
-			int result = jdbcUtil.executeUpdate();
-			return result;
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();	
-		}		
-		return 0;			
-	}
 	
 	public int update(order_pDTO ord) {
 		String updateQuery = "update order_p set ";
@@ -141,8 +116,30 @@ public class order_pDAOImpl implements order_pDAO{
 
 	@Override
 	public int insertOrder_p(order_pDTO ord) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "INSERT INTO ORDER_P (order_id, m_id, order_state, order_date, address, total_price, order_name, order_phone) "
+				+ "VALUES(S_ORDER_ID.nextval, ?, '결제완료', SYSDATE, ?, ?, ?, ?)";	
+	
+	Object[] param = new Object[] {ord.getM_id(), ord.getAddress(), ord.getTotal_price(), ord.getOrder_name(), ord.getOrder_phone()};		
+	jdbcUtil.setSql(sql);
+	jdbcUtil.setParameters(param);	
+	String key[]={"order_id"};  
+					
+	try {				
+		int result = jdbcUtil.executeUpdate(key);
+		ResultSet rs = jdbcUtil.getGeneratedKeys();
+		   int generatedKey = 0;
+		   if(rs.next())
+		       generatedKey = rs.getInt(1);   
+
+		return generatedKey;
+	} catch (Exception ex) {
+		jdbcUtil.rollback();
+		ex.printStackTrace();
+	} finally {		
+		jdbcUtil.commit();
+		jdbcUtil.close();	
+	}		
+	return 0;	
 	}
 
 	@Override
