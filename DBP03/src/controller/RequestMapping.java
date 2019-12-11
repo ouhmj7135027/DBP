@@ -48,7 +48,7 @@ public class RequestMapping {
         mappings.put("/product/category", new ForwardController("/product/Category.jsp"));
         mappings.put("/product/list", new ProductListController());
         
-        mappings.put("/order", new ForwardController("/product/orderFrom.jsp"));
+        mappings.put("/order", new ForwardController("/product/orderForm.jsp"));
         mappings.put("/order/order", new OrderController());
         
         mappings.put("/admin", new ForwardController("/admin/admin_main.jsp"));

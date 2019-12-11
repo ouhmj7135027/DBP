@@ -24,7 +24,8 @@ public class order_pDTO {
 		this.order_phone = order_phone;
 	}
 	
-	public order_pDTO(String order_name, String order_phone, String address) {
+	public order_pDTO(String email_id, String order_name, String order_phone, String address) {
+		this.email_id = email_id;
 		this.order_name = order_name;
 		this.order_phone = order_phone;
 		this.address = address;

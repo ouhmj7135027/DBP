@@ -83,7 +83,7 @@
 				<input type="text" name="address" id="address" required="required" />
 			</div>
 			
-			<div class="sum">총 합계:</div>
+			<div class="sum">총 합계:${CART_LIST.totalAmount}원</div>
 
 			<div class="inputArea">
 				<button type="submit" class="order_btn" Onclick="orderComplete()">주문</button> <!--주문내역으로 이동?-->

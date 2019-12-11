@@ -25,6 +25,7 @@
 		</table>
 		총계: ${CART_LIST.totalAmount}원
 		<input type = hidden name=TOTAL_AMOUNT value=${CART_LIST.totalAmount} />
+		<hr /><a href="<c:url value='/order' />" >주문하기</a> 
 	</c:otherwise>
 </c:choose>
 <br>

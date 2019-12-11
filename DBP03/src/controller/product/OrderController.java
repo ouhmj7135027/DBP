@@ -19,7 +19,7 @@ public class OrderController implements Controller {
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		/*장바구니에서 각 리스트 값 (상품id, 가격, 수량) 가져와서  order_detail에 저장  ????*/
+		/*�옣諛붽뎄�땲�뿉�꽌 媛� 由ъ뒪�듃 媛� (�긽�뭹id, 媛�寃�, �닔�웾) 媛��졇���꽌  order_detail�뿉 ���옣  ????*/
 		
 		/*HttpSession session = request.getSession();
 		cartDTO cart = (cartDTO) session.getAttribute("CART");
@@ -37,12 +37,14 @@ public class OrderController implements Controller {
 		
 		
 		
-		/*form 입력값 
+		/*form �엯�젰媛� 
 			& 
-		order_id 시퀀스, m_id(시퀀스 말고 로그인한거로 어떻게 가져오지?), 
-		order_state(일단 결제완료), order_date      ----order_p에 저장 */
+		order_id �떆���뒪, m_id(�떆���뒪 留먭퀬 濡쒓렇�씤�븳嫄곕줈 �뼱�뼸寃� 媛��졇�삤吏�?), 
+		order_state(�씪�떒 寃곗젣�셿猷�), order_date      ----order_p�뿉 ���옣 */
+		HttpSession session = request.getSession();
 		
 		order_pDTO order = new order_pDTO(
+				(String)session.getAttribute("userId"),
 				request.getParameter("order_name"),
 				request.getParameter("order_phone"),
 				request.getParameter("address"));
@@ -51,8 +53,8 @@ public class OrderController implements Controller {
 
 	    OrderManager manager = OrderManager.getInstance();
 		manager.insertOrder_p(order);
-		//cartDAO.deleteInCart(m_id); //주문하면 장바구니 비우기
-		return "redirect:/user/myorderForm.jsp";		
+		//cartDAO.deleteInCart(m_id); //二쇰Ц�븯硫� �옣諛붽뎄�땲 鍮꾩슦湲�
+		return "/user/myorderForm.jsp";		
 		     		
 	}
 

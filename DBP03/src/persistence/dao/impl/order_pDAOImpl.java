@@ -51,10 +51,10 @@ public class order_pDAOImpl implements order_pDAO{
 	}*/
 
 	public int insert(order_pDTO ord) throws SQLException{
-		String sql = "INSERT INTO ORDER_P (order_id, m_id, order_state,order_date, address, total_price, order_name, order_phone) "
-					+ "VALUES (S_ORDER_ID.nextval, S_M_ID.nextval, 결제 완료, SYSDATE, ?, ?, ?, ?)";//로그인한 m_id로 가져와야하는데 어떻게??	
+		String sql = "INSERT INTO ORDER_P (order_id, email_id, order_state, order_date, address, total_price, order_name, order_phone) "
+					+ "VALUES (S_ORDER_ID.nextval, ?, 결제 완료, SYSDATE, ?, ?, ?, ?)";	
 		
-		Object[] param = new Object[] {ord.getAddress(), ord.getTotal_price(), ord.getOrder_name(), ord.getOrder_phone()};		
+		Object[] param = new Object[] {ord.getEmail_id(), ord.getAddress(), ord.getTotal_price(), ord.getOrder_name(), ord.getOrder_phone()};		
 		jdbcUtil.setSqlAndParameters(sql, param);	
 						
 		try {				
