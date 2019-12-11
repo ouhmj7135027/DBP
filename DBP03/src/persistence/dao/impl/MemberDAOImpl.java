@@ -384,5 +384,6 @@ public class MemberDAOImpl {
 		}
 		return false;
 	}
+	/**/
 
 }
