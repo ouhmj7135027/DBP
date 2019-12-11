@@ -43,7 +43,8 @@ public class LoginController implements Controller {
 			HttpSession session = request.getSession();
 			session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
 			session.setAttribute(UserSessionUtils.USER_M_ID, mem.getM_id());
-            
+			request.setAttribute("id", userId);
+			
             return "redirect:/main";			
 		
 		}catch (Exception e) {
