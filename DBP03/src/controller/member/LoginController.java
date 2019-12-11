@@ -37,11 +37,12 @@ public class LoginController implements Controller {
 			 
 			MemberManager manager = MemberManager.getInstance();
 			manager.login(userId, password);
+			MemberDTO mem = manager.findUser(userId);
 	
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
 			session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
-           
+			session.setAttribute(UserSessionUtils.USER_M_ID, mem.getM_id());
             
             return "redirect:/main";			
 		

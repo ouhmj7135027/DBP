@@ -271,7 +271,7 @@ public class MemberDAOImpl {
 	 * 저장하여 반환.
 	 */
 	public MemberDTO findUser(String emailId) throws SQLException {
-        String sql = "SELECT m_name, m_password, address, phone "
+        String sql = "SELECT m_id, m_name, m_password, address, phone "
         			+ "FROM MEMBER "
         			+ "WHERE email_id=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {emailId});	// JDBCUtil에 query문과 매개 변수 설정
@@ -280,6 +280,7 @@ public class MemberDAOImpl {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 학생 정보 발견
 				MemberDTO user = new MemberDTO();	// User 객체를 생성하여 학생 정보를 저장
+					user.setM_id(rs.getInt("m_id"));
 					user.setM_name(rs.getString("m_name"));
 					user.setM_password(rs.getString("m_password"));
 					user.setAddress(rs.getString("address"));

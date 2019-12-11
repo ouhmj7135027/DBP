@@ -1,4 +1,5 @@
 package persistence.dao.impl;
+import service.MemberManager;
 import service.dto.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,40 +19,46 @@ public class cartDAOImpl implements cartDAO {
 		jdbcUtil = new JDBCUtil();
 	}
 
-	public int insertInCart(cartDTO cart) { //create와 동일
-		int result = 0;
-		String insertQuery = "INSERT INTO CART (m_id, cart_p_num, c_price, product_id) " +
-							 "VALUES (myseq.nextval,?, ?, ?, ?) ";
-		
-		DAOFactory factory = new DAOFactory();		
-		
-		// 도대체 외부엣 ㅓ어캐 받아오죠?
-		
-		// query 문에 사용할 매개변수 값을 갖는 매개변수 배열 생성
-		
-		Object[] param = new Object[] {MemberDTO.getM_id(), cartDTO.getCart_p_num(), 
-				cartDTO.getC_price(), cartDTO.getProduct_id()};		
-		
-		jdbcUtil.setSql(insertQuery);			// JDBCUtil 에 insert 문 설정
-		jdbcUtil.setParameters(param);			// JDBCUtil 에 매개변수 설정
-				
-		
-		try {				
-			result = jdbcUtil.executeUpdate();		// insert 문 실행
-			System.out.println();
-		} catch (SQLException ex) {
-			System.out.println("입력오류 발생!!!");
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
-		}		
-		return result;		// insert 에 의해 반영된 레코드 수 반환	
-			
+	public int insertInCart(cartDTO cart) {
+			String sql = "INSERT INTO cart (m_id, cart_p_num, c_price, product_id) "
+						+ "VALUES (?, ?, ?, ?)";		
+
+			Object[] param = new Object[] {cart.getM_id(), cart.getCart_p_num(), cart.getC_price(), cart.getProduct_id()};				
+			jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
+							
+			try {				
+				int result = jdbcUtil.executeUpdate();	// insert 문 실행
+				return result;
+			} catch (Exception ex) {
+				jdbcUtil.rollback();
+				ex.printStackTrace();
+			} finally {		
+				jdbcUtil.commit();
+				jdbcUtil.close();	// resource 반환
+			}		
+			return 0;			
+		}
+
+	@Override
+	public int updateInCart(cartDTO cart) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
+	@Override
+	public int deleteInCart(int m_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<cartDTO> getCartById(int m_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+	
+	/*
 	@Override
 	public int updateInCart(cartDTO stu) {
 		// TODO Auto-generated method stub
@@ -145,5 +152,5 @@ public class cartDAOImpl implements cartDAO {
 			
 			// 장바구니를 수정하는 메소드
 	
-
+*/
 
