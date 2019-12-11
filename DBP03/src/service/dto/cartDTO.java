@@ -1,6 +1,7 @@
 package service.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class cartDTO implements Serializable{
@@ -12,10 +13,17 @@ public class cartDTO implements Serializable{
 	private int c_price;			
 	private int product_id;
 	
+	//product랑 조인
+	private String p_name;
+	private int p_price;
+	private String imgsrc;
+	
 	//product_id
 	private LinkedList<String> codeList = new LinkedList<String>();
 	//수량 
 	private LinkedList<Integer> numberList = new LinkedList<Integer>();
+	//가격
+	private ArrayList<Integer> priceList = new ArrayList<Integer>(); 
 	//장바구니에 product 정보 추가하는 메소드
 	public void addItem(String p_id, int num) {
 		for (int cnt = 0; cnt < codeList.size(); cnt++) {
@@ -40,9 +48,17 @@ public class cartDTO implements Serializable{
 	public int getSize() {
 		return codeList.size();
 	}
-		
+		//장바구니 총 가격
+	public int getTotalAmount() {
+		int total = 0;
+		for (int i = 0; i < codeList.size(); i++)
+			total += priceList.get(i) * numberList.get(i);
+		return total;
+	}
+	
 	public cartDTO() {
 	}
+	
 	public cartDTO(int m_id, int cart_p_num, int c_price, int product_id) {
 		this.product_id = product_id;
 		this.c_price = c_price;
@@ -73,6 +89,30 @@ public class cartDTO implements Serializable{
 	}
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
+	}
+
+	public String getP_name() {
+		return p_name;
+	}
+
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+
+	public int getP_price() {
+		return p_price;
+	}
+
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
+	}
+
+	public String getImgsrc() {
+		return imgsrc;
+	}
+
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
 	}	
 	
 }

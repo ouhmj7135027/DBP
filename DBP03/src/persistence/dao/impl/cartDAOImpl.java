@@ -56,6 +56,35 @@ public class cartDAOImpl implements cartDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//조인해서 한꺼번에 담기
+	public List<cartDTO> getCartListByMid(int mid) {
+		 
+		String sql = "select p_name, imgsrc, p_price, cart_p_num " +
+						"from cart, product " +
+						"where cart.product_id = product.product_id AND m_id = ? ";
+		Object[] param = new Object[] {mid};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<cartDTO> list = new ArrayList<cartDTO>();
+			while(rs.next()) {
+				cartDTO dto = new cartDTO();
+				dto.setP_name(rs.getString("p_name"));
+				dto.setCart_p_num(rs.getInt("cart_p_num"));
+				dto.setImgsrc(rs.getString("imgsrc"));
+				dto.setP_price(rs.getInt("p_price"));
+				list.add(dto);
+			}
+			return  list;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+		}		
+		return null;
+	}                     
 }
 	
 	/*

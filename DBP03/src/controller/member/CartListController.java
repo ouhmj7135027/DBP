@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.sun.corba.se.pept.transport.Connection;
 
 import controller.Controller;
+import service.CartManager;
 import service.ProductManager;
 import service.dto.cartDTO;
 import service.dto.cartListDTO;
@@ -41,13 +42,23 @@ public class CartListController implements Controller, Serializable {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		cartDTO cart = (cartDTO) session.getAttribute("CART");
 		
-		if (cart != null) {
-			cartListDTO cartList = new cartListDTO();
+		HttpSession session = request.getSession();
+		
+		CartManager cmanager = CartManager.getInstance();
+		List<cartDTO> clist = cmanager.getCartByMid(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
 			
-			ProductManager manager = ProductManager.getInstance();
+		if (clist.size() >= 1)
+			request.setAttribute("cartlist", clist);
+		else
+			request.setAttribute("cartlist", null);
+		
+		
+		//ProductManager pmanager = ProductManager.getInstance();
+		//List<productDTO> plist = (List<productDTO>) pmanager.getProductById(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
+			/*
+			 * cartListDTO cartList = new cartListDTO();
+			 * ProductManager manager = ProductManager.getInstance();
 					
 			int productNum = cart.getSize();
 			for (int cnt = 0; cnt < productNum; cnt++) {
@@ -68,11 +79,11 @@ public class CartListController implements Controller, Serializable {
 				cartList.setImg(cnt, img);
 			}
 			
-			request.setAttribute("CART_LIST",  cartList);
-		}
-		else {
-			request.setAttribute("CART_LIST",  null);
-		}
+			request.setAttribute("CART_LIST",  cartList);*/
+		
+		 
+			//request.setAttribute("cartlist",  null);
+		
 		
 		return "/cart/cart";
 	}
