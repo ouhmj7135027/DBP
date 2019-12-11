@@ -47,7 +47,8 @@ public class OrderController implements Controller {
 				(String)session.getAttribute("userId"),
 				request.getParameter("order_name"),
 				request.getParameter("order_phone"),
-				request.getParameter("address"));
+				request.getParameter("address"),
+				Integer.parseInt(request.getParameter("total_price")));
 			
 	    log.debug("Insert order : {}", order);
 
