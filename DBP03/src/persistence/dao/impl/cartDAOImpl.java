@@ -41,8 +41,25 @@ public class cartDAOImpl implements cartDAO {
 
 	@Override
 	public int updateInCart(cartDTO cart) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "UPDATE CART "
+				+ "SET cart_p_num = cart_p_num+1 "
+				+ "WHERE product_id = ? AND m_id = ?";
+	Object[] param1 = new Object[] {cart.getProduct_id(), cart.getM_id()};				
+	jdbcUtil.setSqlAndParameters(sql, param1);	// JDBCUtil에 update문과 매개 변수 설정
+
+	try {				
+		int result = jdbcUtil.executeUpdate();	// update 문 실행
+		System.out.println("result =  " +  result);
+		return result;
+	} catch (Exception ex) {
+		jdbcUtil.rollback();
+		ex.printStackTrace();
+	}
+	finally {
+		jdbcUtil.commit();
+		jdbcUtil.close();	// resource 반환
+	}		
+	return 0;
 	}
 
 	@Override

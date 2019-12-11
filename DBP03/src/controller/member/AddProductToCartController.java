@@ -56,7 +56,9 @@ public class AddProductToCartController implements Controller, Serializable{
 				1, 
 									product.getP_price(), product.getProduct_id());
 		try {
-			cmanager.insert(c);
+			int rslt = cmanager.insert(c);
+			if(rslt == 0)
+				cmanager.update(c);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
