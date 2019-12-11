@@ -52,40 +52,24 @@ public class order_detailDAOImpl implements order_detailDAO{
 	}*/
 	
 	public int insertOrder_detail(order_detailDTO ord_d) {
-		int result = 0;
-		String insertQuery = "insert into order_detail (product_id, order_detail_id, order_id,"
-				+ "total_price, o_amount) " + "values(?, ?, ?, ?, ?) ";
-		
-		DAOFactory factory = new DAOFactory();
-		
-		persistence.dao.productDAO productDAO = factory.getProdutDAO();
-		productDTO productDTO = productDAO.getProductByName(ord_d.getProduct_name());
-		int pId = productDTO.getProduct_id();
-		
-		order_pDAO order_pDAO = factory.getOrder_pDAO();
-		//order_pDTO order_pDTO = order_pDAO.getOrder_pById(ord_d.getOrder_id());
-		int oId = oId.getOrder_id();
-		
-		Object[] param = new Object[] {ord_d.getProduct_id(), ord_d.getOrder_detail_id(), ord_d.getOrder_id(),
-				ord_d.getTotal_price(), ord_d.getO_amount()};
-		jdbcUtil.setSql(insertQuery);
-		jdbcUtil.setParameters(param);
-		
-		try {				
-			result = jdbcUtil.executeUpdate();		// insert 문 실행
-			System.out.println(ord_d.getOrder_id() + " 주문의 주문정보가 삽입되었습니다.");
-		} catch (SQLException ex) {
-			System.out.println("입력오류 발생!!!");
-			if (ex.getErrorCode() == 1)
-				System.out.println("동일한 주문이 이미 존재합니다."); 
-		} catch (Exception ex) {
-			jdbcUtil.rollback();
-			ex.printStackTrace();
-		} finally {		
-			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
-		}		
-		return result;		// insert 에 의해 반영된 레코드 수 반환	
+		String sql = "INSERT INTO ORDER_DETAIL (order_detail_id, order_id, product_id, o_amount, total_price) "
+				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ?)";	
+	
+	Object[] param = new Object[] {ord_d.getOrder_id(), ord_d.getProduct_id(), ord_d.getO_amount(), ord_d.getTotal_price()};		
+	jdbcUtil.setSql(sql);
+	jdbcUtil.setParameters(param);	
+					
+	try {				
+		int result = jdbcUtil.executeUpdate();
+		return result;
+	} catch (Exception ex) {
+		jdbcUtil.rollback();
+		ex.printStackTrace();
+	} finally {		
+		jdbcUtil.commit();
+		jdbcUtil.close();	
+	}		
+	return 0;	
 		
 	}
 	
@@ -116,15 +100,15 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(newParam);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// update 문 실행
-			return result;			// update 에 의해 반영된 레코드 수 반환
+			int result = jdbcUtil.executeUpdate();		// update 臾� �떎�뻾
+			return result;			// update �뿉 �쓽�빐 諛섏쁺�맂 �젅肄붾뱶 �닔 諛섑솚
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 諛섑솚
 		}		
 		return 0;
 	}
@@ -137,14 +121,14 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(param);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// delete 문 실행
-			return result;						// delete 에 의해 반영된 레코드 수 반환
+			int result = jdbcUtil.executeUpdate();		// delete 臾� �떎�뻾
+			return result;						// delete �뿉 �쓽�빐 諛섏쁺�맂 �젅肄붾뱶 �닔 諛섑솚
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();		
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 諛섑솚
 		}
 		return 0;
 	}

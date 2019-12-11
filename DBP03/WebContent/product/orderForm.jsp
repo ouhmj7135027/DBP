@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,13 +61,14 @@
 			return false;
 		}
 		alert("주문이 완료되었습니다.");
+		form.action="<c:url value='/order/ordercont' />";
 		form.submit();
 	}
 </script>
 </head>
 <body>
 	<div class="orderInfo">
-		<form name="form" method="POST" action="<c:url value='/order/order' />">
+		<form name="form" method="POST">
 			<h2>주문 정보 입력</h2>
 			<div class="inputArea">
 				<label for="">수령인</label> 
@@ -84,13 +86,13 @@
 			</div>
 			
 			<div class="inputArea">
-				<label for="">총 합계</label> 
+				<label for="price">총 합계</label> 
 				<input type="text" name="total_price" id="total_price" value="${total_price}원" required="required" />
 			</div>
 
 			<div class="inputArea">
 				<button type="submit" class="order_btn" Onclick="orderComplete()">주문</button> <!--주문내역으로 이동?-->
-				<button type="button" class="cancel_btn">취소</button> <!--장바구니로 이동?-->
+				<a href="<c:url value='/cart/cart' />"><button type="button" class="cancel_btn">취소</button></a>
 			</div>
 
 		</form>

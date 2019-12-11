@@ -47,7 +47,22 @@ public class cartDAOImpl implements cartDAO {
 
 	@Override
 	public int deleteInCart(int m_id) {
-		// TODO Auto-generated method stub
+		String deleteQuery = "DELETE FROM CART WHERE M_ID = ?";
+		
+		jdbcUtil.setSql(deleteQuery);			// JDBCUtil 에 query 문 설정
+		Object[] param = new Object[] {m_id};
+		jdbcUtil.setParameters(param);			// JDBCUtil 에 매개변수 설정
+		
+		try {
+			int result = jdbcUtil.executeUpdate();		// delete 문 실행
+			return result;						// delete 에 의해 반영된 레코드 수 반환
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();		
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+		}
 		return 0;
 	}
 
