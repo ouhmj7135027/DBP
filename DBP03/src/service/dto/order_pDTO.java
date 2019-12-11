@@ -24,11 +24,12 @@ public class order_pDTO {
 		this.order_phone = order_phone;
 	}
 	
-	public order_pDTO(String email_id, String order_name, String order_phone, String address) {
+	public order_pDTO(String email_id, String order_name, String order_phone, String address, int total_price) {
 		this.email_id = email_id;
 		this.order_name = order_name;
 		this.order_phone = order_phone;
 		this.address = address;
+		this.total_price = total_price;
 	}
 	
 	public order_pDTO() {
