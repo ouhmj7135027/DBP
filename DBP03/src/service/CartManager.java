@@ -38,6 +38,10 @@ public class CartManager {
 	public int delete(int c_id) throws SQLException {
 		return cartDAO.deleteInCart(c_id);
 	}
+	
+	public List<cartDTO> getCartByMid(int mid) {
+		return cartDAO.getCartListByMid(mid);
+	}
 
 	public List<cartDTO> findCartList(MemberDTO mem) throws SQLException {
 		return cartDAO.getCartById(mem.getM_id());
