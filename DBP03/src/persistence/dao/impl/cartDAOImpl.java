@@ -20,10 +20,10 @@ public class cartDAOImpl implements cartDAO {
 	}
 
 	public int insertInCart(cartDTO cart) {
-			String sql = "INSERT INTO cart (m_id, cart_p_num, c_price, product_id) "
-						+ "VALUES (?, ?, ?, ?)";		
+			String sql = "INSERT INTO cart (m_id, cart_p_num, c_price, product_id, p_price) "
+						+ "VALUES (?, ?, ?, ?, ?)";		
 
-			Object[] param = new Object[] {cart.getM_id(), cart.getCart_p_num(), cart.getC_price(), cart.getProduct_id()};				
+			Object[] param = new Object[] {cart.getM_id(), cart.getCart_p_num(), cart.getC_price(), cart.getProduct_id(), cart.getP_price()};				
 			jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 							
 			try {				
@@ -42,7 +42,7 @@ public class cartDAOImpl implements cartDAO {
 	@Override
 	public int updateInCart(cartDTO cart) {
 		String sql = "UPDATE CART "
-				+ "SET cart_p_num = cart_p_num+1 "
+				+ "SET cart_p_num = cart_p_num+1, c_price = (cart_p_num+1)*p_price "
 				+ "WHERE product_id = ? AND m_id = ?";
 	Object[] param1 = new Object[] {cart.getProduct_id(), cart.getM_id()};				
 	jdbcUtil.setSqlAndParameters(sql, param1);	// JDBCUtil에 update문과 매개 변수 설정
@@ -92,7 +92,7 @@ public class cartDAOImpl implements cartDAO {
 	//조인해서 한꺼번에 담기
 	public List<cartDTO> getCartListByMid(int mid) {
 		 
-		String sql = "select cart.product_id AS product_id, p_name, imgsrc, p_price, cart_p_num " +
+		String sql = "select cart.product_id AS product_id, p_name, imgsrc, c_price, cart_p_num " +
 						"from cart, product " +
 						"where cart.product_id = product.product_id AND m_id = ? ";
 		Object[] param = new Object[] {mid};
@@ -107,10 +107,38 @@ public class cartDAOImpl implements cartDAO {
 				dto.setP_name(rs.getString("p_name"));
 				dto.setCart_p_num(rs.getInt("cart_p_num"));
 				dto.setImgsrc(rs.getString("imgsrc"));
-				dto.setP_price(rs.getInt("p_price"));
+				dto.setP_price(rs.getInt("c_price"));
 				list.add(dto);
 			}
 			return  list;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+		}		
+		return null;
+	}                     
+	
+	public List<cartDTO> getTotalAmount (int mid) {
+		String sql = "select m_id, SUM(c_price) AS totalAmount " +
+						"from cart " +
+						"where m_id = ? " +
+						"group by m_id ";
+						
+		Object[] param = new Object[] {mid};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<cartDTO> list = new ArrayList<cartDTO>();
+			while(rs.next()) {
+				cartDTO dto = new cartDTO();
+				dto.setM_id(rs.getInt("m_id"));
+				dto.setTotalAmount(rs.getInt("totalAmount"));
+				list.add(dto);
+			}
+			return list;
+			
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

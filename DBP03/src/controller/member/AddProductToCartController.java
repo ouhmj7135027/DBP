@@ -54,7 +54,7 @@ public class AddProductToCartController implements Controller, Serializable{
 		CartManager cmanager = CartManager.getInstance();
 		cartDTO c = new cartDTO(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))), 
 				1, 
-									product.getP_price(), product.getProduct_id());
+									product.getP_price(), product.getProduct_id(), product.getP_price());
 		try {
 			int rslt = cmanager.insert(c);
 			if(rslt == 0)

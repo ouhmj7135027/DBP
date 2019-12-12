@@ -47,11 +47,16 @@ public class CartListController implements Controller, Serializable {
 		
 		CartManager cmanager = CartManager.getInstance();
 		List<cartDTO> clist = cmanager.getCartByMid(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
+		List<cartDTO> tlist = cmanager.getTotalAmount(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
 			
-		if (clist.size() >= 1)
+		if (clist.size() >= 1) {
 			request.setAttribute("cartlist", clist);
-		else
+			request.setAttribute("totalList", tlist.get(0).getTotalAmount());
+		}
+		else {
 			request.setAttribute("cartlist", null);
+			request.setAttribute("totalList", null);
+		}
 		
 		return "/cart/cart";
 	}

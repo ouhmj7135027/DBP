@@ -42,6 +42,10 @@ public class CartManager {
 	public List<cartDTO> getCartByMid(int mid) {
 		return cartDAO.getCartListByMid(mid);
 	}
+	
+	public List<cartDTO> getTotalAmount(int mid) {
+		return cartDAO.getTotalAmount(mid);
+	}
 
 	public List<cartDTO> findCartList(MemberDTO mem) throws SQLException {
 		return cartDAO.getCartById(mem.getM_id());
