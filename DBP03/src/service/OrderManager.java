@@ -1,5 +1,6 @@
 package service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import persistence.DAOFactory;
@@ -14,14 +15,15 @@ import service.dto.productDTO;
 
 public class OrderManager {
 	private static OrderManager manager = new OrderManager();
-	private order_pDAO orderDAO = null;
 	private order_detailDAO odDAO = null;
+	private order_pDAOImpl order_pDAO;
 	
 	public OrderManager() {
 		try {
 			DAOFactory factory = new DAOFactory();
-			orderDAO = factory.getOrder_pDAO();
 			odDAO = factory.getOrder_detailDAO();
+			
+			order_pDAO = new order_pDAOImpl();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -39,8 +41,8 @@ public class OrderManager {
 		return manager;
 	}
 	
-	public int insertOrder_p(order_pDTO order) {
-		return orderDAO.insertOrder_p(order);
+	public int insertOrder_p(order_pDTO order) throws SQLException{
+		return order_pDAO.insertOrder_p(order);
 	}
 	
 	public int insertOrderDetail(order_detailDTO order_detail) {

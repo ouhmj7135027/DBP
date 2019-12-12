@@ -53,38 +53,6 @@ public class CartListController implements Controller, Serializable {
 		else
 			request.setAttribute("cartlist", null);
 		
-		
-		//ProductManager pmanager = ProductManager.getInstance();
-		//List<productDTO> plist = (List<productDTO>) pmanager.getProductById(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
-			/*
-			 * cartListDTO cartList = new cartListDTO();
-			 * ProductManager manager = ProductManager.getInstance();
-					
-			int productNum = cart.getSize();
-			for (int cnt = 0; cnt < productNum; cnt++) {
-				int id = Integer.parseInt(cart.getCode(cnt));
-				int num = cart.getNumber(cnt);
-				
-				List<productDTO> plist = manager.getProductByp_Id(id);
-				
-				String name = plist.get(0).getP_name();
-				int price = plist.get(0).getP_price();
-				String img = plist.get(0).getImgsrc();
-				
-				
-				cartList.setCode(cnt, id);
-				cartList.setTitle(cnt, name);
-				cartList.setPrice(cnt, price);
-				cartList.setNumber(cnt, num);
-				cartList.setImg(cnt, img);
-			}
-			
-			request.setAttribute("CART_LIST",  cartList);*/
-		
-		 
-			//request.setAttribute("cartlist",  null);
-		
-		
 		return "/cart/cart";
 	}
 	

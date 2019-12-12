@@ -37,7 +37,7 @@ public class OrderController implements Controller {
 	    log.debug("Insert order : {}", order);
 
 	    OrderManager manager = OrderManager.getInstance();
-		int order_id = manager.insertOrder_p(order);
+		manager.insertOrder_p(order);
 		/*
 		CartManager cmanager = CartManager.getInstance();
 		List<cartDTO> clist = cmanager.getCartByMid(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
