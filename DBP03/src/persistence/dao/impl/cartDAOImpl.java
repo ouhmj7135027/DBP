@@ -92,7 +92,7 @@ public class cartDAOImpl implements cartDAO {
 	//조인해서 한꺼번에 담기
 	public List<cartDTO> getCartListByMid(int mid) {
 		 
-		String sql = "select p_name, imgsrc, p_price, cart_p_num " +
+		String sql = "select cart.product_id AS product_id, p_name, imgsrc, p_price, cart_p_num " +
 						"from cart, product " +
 						"where cart.product_id = product.product_id AND m_id = ? ";
 		Object[] param = new Object[] {mid};
@@ -103,6 +103,7 @@ public class cartDAOImpl implements cartDAO {
 			List<cartDTO> list = new ArrayList<cartDTO>();
 			while(rs.next()) {
 				cartDTO dto = new cartDTO();
+				dto.setProduct_id(rs.getInt("product_id"));
 				dto.setP_name(rs.getString("p_name"));
 				dto.setCart_p_num(rs.getInt("cart_p_num"));
 				dto.setImgsrc(rs.getString("imgsrc"));
