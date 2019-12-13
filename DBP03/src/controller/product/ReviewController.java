@@ -17,6 +17,7 @@ import service.MemberManager;
 import service.ProductManager;
 import service.dto.MemberDTO;
 import service.dto.ReviewDTO;
+import service.dto.order_detailDTO;
 
 
 public class ReviewController implements Controller{
@@ -24,6 +25,7 @@ public class ReviewController implements Controller{
 	 public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		 HttpSession session = request.getSession();
 		 String component ="";
+		 order_detailDTO o = new order_detailDTO();
 		 System.out.println(request.getParameterValues("component"));
 		for(int i=0;i<request.getParameterValues("component").length;i++) {
 		component = request.getParameterValues("component")[i];
@@ -43,9 +45,10 @@ public class ReviewController implements Controller{
 				System.out.println(String.valueOf(request.getParameter("reviewpassword")));
 				ReviewDAOImpl review = new ReviewDAOImpl();
 				review.insertReview(r);
-				List<ReviewDTO> list=  review.getReviewList();
-				System.out.println(list.size());
-				request.setAttribute("Reviewlist", list);
+				
+				//List<ReviewDTO> list=  review.getReviewList();
+				//System.out.println(list.size());
+				//request.setAttribute("Reviewlist", list);
 				return "redirect:/review/main";		
 		
 		    }

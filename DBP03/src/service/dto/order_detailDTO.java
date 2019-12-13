@@ -7,12 +7,18 @@ public class order_detailDTO {
 	private int total_price = 0;
 	private int o_amount = 0;
 	private String product_name = null;
-	
+	private String review = "0";
 	public int getProduct_id() {
 		return product_id;
 	}
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
+	}
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
 	}
 	public String getProduct_name() {
 		return product_name;

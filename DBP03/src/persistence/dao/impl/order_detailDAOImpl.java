@@ -1,10 +1,14 @@
 package persistence.dao.impl;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import persistence.DAOFactory;
 import persistence.dao.order_detailDAO;
 import persistence.dao.order_pDAO;
+import service.dto.cartDTO;
 import service.dto.order_detailDTO;
 import service.dto.order_pDTO;
 import service.dto.productDTO;
@@ -52,8 +56,8 @@ public class order_detailDAOImpl implements order_detailDAO{
 	}*/
 	
 	public int insertOrder_detail(order_detailDTO ord_d) {
-		String sql = "INSERT INTO ORDER_DETAIL (order_detail_id, order_id, product_id, o_amount, total_price) "
-				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ?)";	
+		String sql = "INSERT INTO ORDER_DETAIL (order_detail_id, order_id, product_id, o_amount, total_price, review ) "
+				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ?, \'0\' )";	
 	
 	Object[] param = new Object[] {ord_d.getOrder_id(), ord_d.getProduct_id(), ord_d.getO_amount(), ord_d.getTotal_price()};		
 	jdbcUtil.setSql(sql);
@@ -72,6 +76,49 @@ public class order_detailDAOImpl implements order_detailDAO{
 	return 0;	
 		
 	}
+	public int reviewed_order(String m_id, String product_id) {
+		String sql = "INSERT INTO ORDER_DETAIL ( review ) "
+				+ "VALUES(\'0\' ) where m_id = ? and product_id = ?";			
+	jdbcUtil.setSql(sql);
+	Object[] param = new Object[] {m_id, product_id};		
+	try {				
+		int result = jdbcUtil.executeUpdate();
+		return result;
+	} catch (Exception ex) {
+		jdbcUtil.rollback();
+		ex.printStackTrace();
+	} finally {		
+		jdbcUtil.commit();
+		jdbcUtil.close();	
+	}		
+	return 0;	
+		
+	}
+	public List<order_detailDTO> getOrderListByMid(int order_id) {
+		 
+		String sql = "select p_name " +
+						"from product,order_detail" +
+						"where product.product_id = order_detail.product_id AND order_id = ? ";
+		Object[] param = new Object[] {order_id};
+		jdbcUtil.setSqlAndParameters(sql, param);
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<order_detailDTO> list = new ArrayList<order_detailDTO>();
+			while(rs.next()) {
+				order_detailDTO dto = new order_detailDTO();
+				dto.setProduct_id(rs.getInt("product_id"));
+				
+				list.add(dto);
+			}
+			return  list;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 반환
+		}		
+		return null;
+	}                     
 	
 	public int updateOrder_detail(order_detailDTO ord_d) {
 		String updateQuery = "update order_detail set ";
@@ -100,15 +147,15 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(newParam);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// update 臾� �떎�뻾
-			return result;			// update �뿉 �쓽�빐 諛섏쁺�맂 �젅肄붾뱶 �닔 諛섑솚
+			int result = jdbcUtil.executeUpdate();		// update �눧占� 占쎈뼄占쎈뻬
+			return result;			// update 占쎈퓠 占쎌벥占쎈퉸 獄쏆꼷�겫占쎈쭆 占쎌쟿�굜遺얜굡 占쎈땾 獄쏆꼹�넎
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 諛섑솚
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 獄쏆꼹�넎
 		}		
 		return 0;
 	}
@@ -121,14 +168,14 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(param);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// delete 臾� �떎�뻾
-			return result;						// delete �뿉 �쓽�빐 諛섏쁺�맂 �젅肄붾뱶 �닔 諛섑솚
+			int result = jdbcUtil.executeUpdate();		// delete �눧占� 占쎈뼄占쎈뻬
+			return result;						// delete 占쎈퓠 占쎌벥占쎈퉸 獄쏆꼷�겫占쎈쭆 占쎌쟿�굜遺얜굡 占쎈땾 獄쏆꼹�넎
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();		
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 諛섑솚
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 獄쏆꼹�넎
 		}
 		return 0;
 	}
