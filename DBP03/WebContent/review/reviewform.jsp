@@ -22,12 +22,12 @@
 	</tr>
 	<tr>
 	<td  colspan = "2"> <input type=checkbox name=component value=0>Ç÷°ü/Ç÷¾×¼øÈ¯</td></tr>
-		<tr><td colspan = "2"> <input type=checkbox name=main value=1>ÇÇºÎ</td></tr>
-		<tr><td colspan = "2"> <input type=checkbox name=main value=2>¼ÒÈ­/Àå</td></tr>
-		<tr><td colspan = "2"> <input type=checkbox name=main value=3>´«</td></tr>
-		<tr><td colspan = "2"> <input type=checkbox name=main value=4>ÇÇ·Î°¨</td></tr>
-		<tr><td colspan = "2"> <input type=checkbox name=main value=5>»À¿Í °üÀý</td></tr>
-		<tr><td colspan = "2"> <input type=checkbox name=main value=6>¸é¿ª</td></tr>
+		<tr><td colspan = "2"> <input type=checkbox name=component value=1>ÇÇºÎ</td></tr>
+		<tr><td colspan = "2"> <input type=checkbox name=component value=2>¼ÒÈ­/Àå</td></tr>
+		<tr><td colspan = "2"> <input type=checkbox name=component value=3>´«</td></tr>
+		<tr><td colspan = "2"> <input type=checkbox name=component value=4>ÇÇ·Î°¨</td></tr>
+		<tr><td colspan = "2"> <input type=checkbox name=component value=5>»À¿Í °üÀý</td></tr>
+		<tr><td colspan = "2"> <input type=checkbox name=component value=6>¸é¿ª</td></tr>
 	
 	
 	<tr>

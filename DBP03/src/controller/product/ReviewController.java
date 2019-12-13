@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import oracle.net.jdbc.TNSAddress.SOException;
@@ -21,19 +22,30 @@ import service.dto.ReviewDTO;
 public class ReviewController implements Controller{
 
 	 public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		
+		 HttpSession session = request.getSession();
+		 String component ="";
+		 System.out.println(request.getParameterValues("component"));
+		for(int i=0;i<request.getParameterValues("component").length;i++) {
+		component = request.getParameterValues("component")[i];
+		}
 		 ReviewDTO r = new ReviewDTO(
-					request.getParameter("name"),
+				 String.valueOf(session.getAttribute("m_id")),
 				
 					request.getParameter("rate"),
-					request.getParameterValues("component"),
+				    component,
 					request.getParameter("review"),
-					request.getParameter("reviewpassword"),
+					request.getParameter("reviewpassword")
 				);
-				 
-			
+				
+				System.out.println(String.valueOf(session.getAttribute("m_id")));
+				System.out.println(String.valueOf(request.getParameter("rate")));
+				System.out.println(String.valueOf(request.getParameter("review")));
+				System.out.println(String.valueOf(request.getParameter("reviewpassword")));
 				ReviewDAOImpl review = new ReviewDAOImpl();
 				review.insertReview(r);
+				List<ReviewDTO> list=  review.getReviewList();
+				System.out.println(list.size());
+				request.setAttribute("Reviewlist", list);
 				return "redirect:/review/main";		
 		
 		    }
