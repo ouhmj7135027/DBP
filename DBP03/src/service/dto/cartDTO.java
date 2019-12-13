@@ -18,6 +18,12 @@ public class cartDTO implements Serializable{
 	private int p_price;
 	private String imgsrc;
 	
+	private int totalAmount = 0;
+	
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
 	//product_id
 	private LinkedList<String> codeList = new LinkedList<String>();
 	//수량 
@@ -48,22 +54,21 @@ public class cartDTO implements Serializable{
 	public int getSize() {
 		return codeList.size();
 	}
-		//장바구니 총 가격
-	public int getTotalAmount() {
-		int total = 0;
-		for (int i = 0; i < codeList.size(); i++)
-			total += priceList.get(i) * numberList.get(i);
-		return total;
-	}
 	
+	public int getTotalAmount() {
+		return totalAmount;
+	}
+
 	public cartDTO() {
 	}
 	
-	public cartDTO(int m_id, int cart_p_num, int c_price, int product_id) {
+	
+	public cartDTO(int m_id, int cart_p_num, int c_price, int product_id, int p_price) {
 		this.product_id = product_id;
 		this.c_price = c_price;
 		this.cart_p_num = cart_p_num;
 		this.m_id = m_id;
+		this.p_price = p_price;
 	}
 	
 	public int getM_id() {

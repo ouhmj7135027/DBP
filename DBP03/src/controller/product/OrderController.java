@@ -38,11 +38,12 @@ public class OrderController implements Controller {
 
 	    OrderManager manager = OrderManager.getInstance();
 		int order_id = manager.insertOrder_p(order);
-		/*
+		
 		CartManager cmanager = CartManager.getInstance();
 		List<cartDTO> clist = cmanager.getCartByMid(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
 		
 		for(int i = 0; i < clist.size(); i++) {
+			System.out.println(clist.get(i).getProduct_id() + " " +clist.get(i).getCart_p_num());
 			order_detailDTO od = new order_detailDTO();
 			od.setProduct_id(clist.get(i).getProduct_id());
 			od.setO_amount(clist.get(i).getCart_p_num());
@@ -50,7 +51,7 @@ public class OrderController implements Controller {
 			od.setOrder_id(order_id);
 			manager.insertOrderDetail(od);
 		}
-		cmanager.delete(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));*/
+		cmanager.delete(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
 		return "/user/myorderForm.jsp";		
 		     		
 	}

@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>order</title>
+<%
+	int total = Integer.parseInt(request.getParameter("total_price"));
+%>
 <style>
 .orderInfo {
 	border: 5px solid #eee;
@@ -87,7 +90,7 @@
 			
 			<div class="inputArea">
 				<label for="price">총 합계</label> 
-				<input type="text" name="total_price" id="total_price" value="${total_price}원" required="required" />
+				<input type="text" name="total_price" id="total_price" value= "<%= total %>원" required="required" />
 			</div>
 
 			<div class="inputArea">
