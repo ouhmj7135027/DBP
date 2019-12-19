@@ -24,9 +24,6 @@
 			if(Integer.parseInt(list[i])==1)
 				pageContext.include("surveySkin.jsp");
 			 
-			if(Integer.parseInt(list[i])==2)
-				pageContext.include("surveyDigestion.jsp");
-	 
 			if(Integer.parseInt(list[i])==3)
 				pageContext.include("surveyEye.jsp");
 			if(Integer.parseInt(list[i])==4)

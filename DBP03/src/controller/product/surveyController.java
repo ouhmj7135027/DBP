@@ -33,11 +33,11 @@ public class surveyController implements Controller {
 		ProductManager m = ProductManager.getInstance();
 		ArrayList<String> list = getParameterName(request);
 		List<productDTO> k = new ArrayList<productDTO>();
-		String data = request.getParameter("Blood");
 		
 		for(int i=0;i<list.size();i++) {
-			if((list.get(i).equals("skin")||list.get(i).equals("blood"))&&!l.contains(4)) {
+			if((list.get(i).equals("skin")&&!l.contains(4))) {
 				l.add(4);
+				if()
 				k.add(m.getProductBySurvey(1,l.get(i)));
 				}
 			else if(((list.get(i).equals("immune")))&&!l.contains(1)) {
@@ -52,8 +52,15 @@ public class surveyController implements Controller {
 				l.add(3);	
 				k.add(m.getProductBySurvey(1,l.get(i)));
 			}
+			else if(((list.get(i).equals("eye")))&&!l.contains(5)) {
+				l.add(5);	
+				k.add(m.getProductBySurvey(1,l.get(i)));
+			}
+			else if((list.get(i).equals("blood"))&&!l.contains(7)) {
+				l.add(7);	
+				k.add(m.getProductBySurvey(1,l.get(i)));
+			}
 			
-			 
 		}	
 		
 		k.add(m.getProductBySurvey(1, 4));
