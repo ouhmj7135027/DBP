@@ -12,6 +12,8 @@ import controller.member.AddProductToCartController;
 import controller.member.CartListController;
 import controller.member.LoginController;
 import controller.member.LogoutController;
+import controller.member.MyOrderController;
+import controller.member.MyOrderViewController;
 import controller.member.RegisterUserController;
 import controller.member.UpdateMyInfoController;
 import controller.member.myPageController;
@@ -41,6 +43,12 @@ public class RequestMapping {
         mappings.put("/user/register", new RegisterUserController());
         mappings.put("/user/mypage/form", new myPageController());
         mappings.put("/user/update", new UpdateMyInfoController());
+        
+        mappings.put("/user/myorder/list", new MyOrderController());
+        mappings.put("/user/myorderList", new ForwardController("/user/myorderList.jsp"));
+        mappings.put("/user/myorder/view", new MyOrderViewController());
+        mappings.put("/user/myorderView", new ForwardController("/user/myorderView.jsp"));
+        
         mappings.put("/cart/addProduct", new AddProductToCartController());
         mappings.put("/cart/cartList", new CartListController());
         mappings.put("/cart/cart", new ForwardController("/cart/Cart.jsp"));

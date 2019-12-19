@@ -52,7 +52,7 @@ public class OrderController implements Controller {
 			manager.insertOrderDetail(od);
 		}
 		cmanager.delete(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
-		return "/user/myorderForm.jsp";		
+		return "/user/myorder/list";		
 		     		
 	}
 

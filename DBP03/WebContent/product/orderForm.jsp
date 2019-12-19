@@ -94,7 +94,7 @@
 			</div>
 
 			<div class="inputArea">
-				<button type="submit" class="order_btn" Onclick="orderComplete()">주문</button> <!--주문내역으로 이동?-->
+				<a href="<c:url value='/user/myorder/list' />"><button type="submit" class="order_btn" Onclick="orderComplete()">주문</button></a>
 				<a href="<c:url value='/cart/cart' />"><button type="button" class="cancel_btn">취소</button></a>
 			</div>
 

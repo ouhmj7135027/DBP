@@ -9,6 +9,7 @@ import persistence.dao.order_pDAO;
 import persistence.dao.productDAO;
 import persistence.dao.impl.order_detailDAOImpl;
 import persistence.dao.impl.order_pDAOImpl;
+import service.dto.cartDTO;
 import service.dto.order_detailDTO;
 import service.dto.order_pDTO;
 import service.dto.productDTO;
@@ -30,14 +31,6 @@ public class OrderManager {
 		}	
 	}
 	
-	/*public List<order_pDTO> getOrder_plistById() {
-		return order_pDAO.getOrder_plistById();
-	}
-	
-	public List<order_detailDTO> getOrder_dlistById() {
-		return order_detailDAO.getOrder_dlistById();
-	}*/
-	
 	public static OrderManager getInstance() {
 		return manager;
 	}
@@ -49,7 +42,14 @@ public class OrderManager {
 	public int insertOrderDetail(order_detailDTO order_detail) {
 		return odDAO.insertOrder_detail(order_detail);
 	}
+
+	public List<order_pDTO> getOrderListById(int mid) {
+		return order_pDAO.getOrderListById(mid);
+	}
 	
+	public List<order_detailDTO> getOrderViewById(int oid) {
+		return odDAO.getOrderViewById(oid);
+	}
 
 }
 

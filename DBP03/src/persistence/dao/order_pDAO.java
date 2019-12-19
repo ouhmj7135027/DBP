@@ -9,8 +9,5 @@ public interface order_pDAO {
 	public int updateOrder_p(order_pDTO ord);
 	public int deleteOrder_p(String order_id);
 	
-	public static List<order_pDTO> getOrder_plistById() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<order_pDTO> getOrderListById(int mid);
 }

@@ -15,35 +15,39 @@ public class order_pDAOImpl implements order_pDAO{
 		jdbcUtil = new JDBCUtil();
 	}
 
-	/*public List<order_pDTO> getOrder_plistById() {
-		String listQuery = "select order_p.order_id AS order_id, " +
-				"order_p.order_date AS order_date, " +
-				"order_p.total_price AS total_price, " +
-				"order_p.order_state AS order_state " +
-				"from order_p "+
-				"where order_id = ?";}
+	@Override
+	public List<order_pDTO> getOrderListById(int mid) {
+		// TODO Auto-generated method stub
+		String listQuery = "select order_date, order_id, order_name, address, total_price , order_state "
+						 + "from order_p where m_id = ?";
+				
+		
+		Object[] param = new Object[] {mid};	
 		jdbcUtil.setSql(listQuery);
+		jdbcUtil.setParameters(param);
 		
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<order_pDTO> list = new ArrayList<order_pDTO>();
 			while (rs.next()) {
 				order_pDTO dto = new order_pDTO();
-				dto.setOrder_id(rs.getInt("order_id"));
 				dto.setOrder_date(rs.getDate("order_date"));
+				dto.setOrder_id(rs.getInt("order_id"));
+				dto.setOrder_name(rs.getString("order_name"));
+				dto.setAddress(rs.getString("address"));
 				dto.setTotal_price(rs.getInt("total_price"));
 				dto.setOrder_state(rs.getString("order_state"));
 				list.add(dto);
 			}
 			return list;
-			
 		}catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close();
 		}
 		return null;
-	}*/
+		
+	}
 	
 	public int update(order_pDTO ord) {
 		String updateQuery = "update order_p set ";
