@@ -38,7 +38,7 @@ public class surveyController implements Controller {
 			int j;
 			if((list.get(i).equals("skin")&&!l.contains(4))) {
 				l.add(4);
-				if()
+				if(z)
 				k.add(m.getProductBySurvey(1,l.get(i)));
 				}
 			else if(((list.get(i).equals("immune")))&&!l.contains(1)) {

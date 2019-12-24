@@ -49,6 +49,8 @@ public class ReviewController implements Controller{
 				request.setAttribute("Reviewlist", list);
 				return "/review/review.jsp";		
 		
+				 
+				
 		    }
 
 	 

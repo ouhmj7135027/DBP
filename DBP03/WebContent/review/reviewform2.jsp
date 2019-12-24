@@ -49,6 +49,7 @@
 			"-"+ String.valueOf(cal.get(java.util.Calendar.DATE)); 
 	
  %>
+ 
  <td>
 <input type = text name = date disabled value= "<%=date %>"></td>
 	<tr>

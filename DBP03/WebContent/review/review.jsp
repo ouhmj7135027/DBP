@@ -20,6 +20,7 @@
 </c:forEach>
 </table>
 
+
 <a class="nav-link" href="<c:url value='/review/form' />">¸®ºä¾²±â </a>
 </body>
 </html>

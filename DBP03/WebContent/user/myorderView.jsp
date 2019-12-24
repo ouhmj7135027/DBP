@@ -40,7 +40,8 @@
      <span>상품 개수</span>${orderView.o_amount}개<br>
      <span>최종 가격</span>${orderView.total_price}원  <br>
     <span><a href="<c:url value='/review/form?pName=${orderView.p_name}' />">리뷰쓰기</a> </span><br>
-               
+        
+        
     </p>
    </div>
   </li>  
