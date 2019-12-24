@@ -31,10 +31,9 @@ function del(p_id) {
 <body>
 <div align="center">
 <ul class="low">
-	<li><a href="<c:url value='/admin/add' />">상품 추가</a></li>
-	<!--  <li><a href="<c:url value='/admin/update' />">상품 정보 변경</a></li> 
-	<li><a href="<c:url value='/admin/delete' />">상품 삭제</a></li> -->
-	<li><a href="<c:url value='/admin/status' />">주문 상태 변경</a></li>
+	<hr /><br>
+	<a href="<c:url value='/admin/add' />"><h3><strong>상품 추가</strong></h3></a>
+	<br><hr />
 </ul>
 <div id="root">
 <form name="form" method="POST" action="<c:url value='/admin/update' />">
@@ -55,8 +54,7 @@ function del(p_id) {
 					</li>
 				 </c:forEach>
 				</ul>
-			</section>
-			
+			</section>		
 		</div>
 	</section>
 </form>

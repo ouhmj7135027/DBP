@@ -23,15 +23,15 @@
 <table height="300" border="1">
 	<tr>
 		<th>상품명</th>
-		<td><input type="text" id="p_name" value=<%=product.getP_name() %>></td>
+		<td><input type="text" name="p_name" value=<%=product.getP_name() %>></td>
 	</tr>
 	<tr>
 		<th>효능</th>
-		<td><input type="text" id="effect" value=<%=product.getEffect() %>></td>
+		<td><input type="text" name="effect" value=<%=product.getEffect() %>></td>
 	</tr>
 	<tr>
 		<th>판매가격</th>
-		<td><input type="number" id="p_price" value=<%=product.getP_price() %>></td>
+		<td><input type="text" name="p_price" value=<%=product.getP_price()%>></td>
 	</tr>
 	<tr>
 		<th>성분 카테고리</th>

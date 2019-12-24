@@ -5,6 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import controller.*;
+import controller.admin.AdminNewController;
 import controller.admin.DeleteProductController;
 import controller.admin.InsertProductController;
 import controller.admin.updateProductController;
@@ -55,7 +56,6 @@ public class RequestMapping {
         mappings.put("/admin/add", new ForwardController("/admin/addProduct.jsp"));
         mappings.put("/admin/update", new ForwardController("/admin/updateProduct.jsp"));
         mappings.put("/admin/delete", new ForwardController("/admin/deleteProduct.jsp"));
-        mappings.put("/admin/status", new ForwardController("/admin/updateStatus.jsp"));
         mappings.put("/admin/add/cont", new InsertProductController());
         mappings.put("/admin/update/cont", new updateProductController());
         mappings.put("/admin/delete/cont", new DeleteProductController());

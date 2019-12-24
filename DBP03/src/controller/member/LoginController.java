@@ -22,6 +22,7 @@ public class LoginController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		List<productDTO> pList;
 		
 		try {
 			// 모델에 로그인 처리를 위임
@@ -29,7 +30,7 @@ public class LoginController implements Controller {
 			 if (userId.equals("admin") && password.equals("admin")) {
  				// 현재 로그인한 사용자가 수정 대상 사용자이거나 관리자인 경우 -> 수정 가능
  								
- 				List<productDTO> pList = pmanager.ListingProductsInfo();	// 커뮤니티 리스트 검색
+ 				pList = pmanager.ListingProductsInfo();	// 커뮤니티 리스트 검색
  				request.setAttribute("pList", pList);	
  				
  				return "/admin/admin_main.jsp";   // 검색한 사용자 정보를 update form으로 전송     

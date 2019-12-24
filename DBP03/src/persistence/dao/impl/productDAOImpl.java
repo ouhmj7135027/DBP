@@ -53,7 +53,7 @@ private JDBCUtil jdbcUtil = null;
 								"product.p_price AS product_price, " +
 								"product.imgsrc AS product_image " +
 								"from product";
-		jdbcUtil.setSql(sql);
+		jdbcUtil.setSqlAndParameters(sql, null);
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
 			List<productDTO> list = new ArrayList<productDTO>();
@@ -223,10 +223,6 @@ private JDBCUtil jdbcUtil = null;
 		if (pro.getP_price() != -1) {
 			updateQuery += "p_price = ?, ";
 			tempParam[index++] = pro.getP_price();
-		}
-		if (pro.getSales() != -1) {
-			updateQuery += "p_sales = ?, ";
-			tempParam[index++] = pro.getSales();
 		}
 		if (pro.getCategory_id() != -1) {
 			updateQuery += "category_id = ?, ";

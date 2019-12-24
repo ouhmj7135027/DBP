@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,10 @@ import controller.Controller;
 import controller.member.UserSessionUtils;
 import service.MemberManager;
 import service.ProductManager;
+import service.dto.productDTO;
 
 public class DeleteProductController implements Controller {
-
+	List<productDTO> pList;
 	private static final Logger log = LoggerFactory.getLogger(DeleteProductController.class);
 
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
@@ -25,13 +27,10 @@ public class DeleteProductController implements Controller {
 
     	ProductManager manager = ProductManager.getInstance();		
 		HttpSession session = request.getSession();	
-	
-		if ((UserSessionUtils.isLoginUser("admin", session))) {
-				
-			manager.delete(deleteId);				// 사용자 정보 삭제
-			if (UserSessionUtils.isLoginUser("admin", session))	// 로그인한 사용자가 관리자 	
-				return "redirect:/admin";		// 사용자 리스트로 이동
-		}
+		manager.delete(deleteId);
+
+		pList = manager.ListingProductsInfo();	// 커뮤니티 리스트 검색
+		request.setAttribute("pList", pList);
 		           
 		return "/admin/admin_main.jsp";		// 사용자 보기 화면으로 이동 (forwarding)	
 	}

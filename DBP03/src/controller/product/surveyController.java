@@ -57,7 +57,7 @@ public class surveyController implements Controller {
 		}	
 		
 		k.add(m.getProductBySurvey(1, 4));
-		k.add(m.getProductByNames("레모나 키튼정"));
+		//k.add(m.getProductByNames("레모나 키튼정"));
 		request.setAttribute("list", k);				
 		return "/survey/surveyResult.jsp";     
 	 }

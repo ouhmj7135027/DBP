@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import service.ProductManager;
 import service.dto.productDTO;
 
 public class InsertProductController implements Controller {
+	List<productDTO> pList;
 	private static final Logger log = LoggerFactory.getLogger(InsertProductController.class);
 
     @Override
@@ -29,7 +31,10 @@ public class InsertProductController implements Controller {
 			manager.insert(product);
 			
 	    	log.debug("Create product : {}", product);
-	        return "redirect:/admin/admin_main.jsp";	// 목록으로 바꾸기
+			pList = manager.ListingProductsInfo();	// 커뮤니티 리스트 검색
+			request.setAttribute("pList", pList);	
+				
+			return "/admin/admin_main.jsp";
 	        
 		} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
             request.setAttribute("creationFailed", true);
