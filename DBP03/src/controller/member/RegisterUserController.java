@@ -20,11 +20,11 @@ public class RegisterUserController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	MemberDTO member = new MemberDTO(
+    		request.getParameter("email"),
 			request.getParameter("password"),
 			request.getParameter("name"),
-			request.getParameter("email"),
-			request.getParameter("phone"),
-			request.getParameter("address"));
+			request.getParameter("address"),
+			request.getParameter("phone"));
 		
         log.debug("Create Member : {}", member);
 
@@ -37,7 +37,7 @@ public class RegisterUserController implements Controller {
             request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("member", member);
-			return "/user/loginForm.jsp";
+			return "/user/registerForm.jsp";
 		}
     }
 
