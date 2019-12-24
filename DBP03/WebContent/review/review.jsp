@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/top.css">
 <meta charset="EUC-KR">
-<title>장바구니 담기</title>
+<title>Insert title here</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
@@ -53,11 +53,19 @@ else
   </div>
   
 </nav>
-	<h4>장바구니 담기</h4>
-	장바구니에 1개의 상품을 담았습니다.<br/><br/>
-	
-	<a href="<c:url value='/cart/cartList' />" >장바구니 가기</a> 
-	<a href="<c:url value='/product/category' />" >쇼핑 계속 하기</a>
-	
+<table border =1 width = 500>
+<tr><td>작성자</td><td>성분</td><td>내용</td><td>작성일</td><</tr>
+<c:forEach items="${Reviewlist}" var="review">
+<tr>
+	<td>${review.m_id}</td>
+	<td>${review.product_id}</td>
+	<td>${review.review}</td>
+	<td>${review.write_date}</td>
+</tr>	
+</c:forEach>
+</table>
+
+
+<a class="nav-link" href="<c:url value='/review/form' />">리뷰쓰기 </a>
 </body>
 </html>

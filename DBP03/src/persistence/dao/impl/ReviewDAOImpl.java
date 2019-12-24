@@ -14,10 +14,10 @@ public class ReviewDAOImpl implements ReviewDAO {
 	private JDBCUtil jdbcUtil = null;		
 	
 
-	private static String query = "SELECT, REVIEW.review_id AS REVIEW_Review_Id, " +
-								         "REVIEW.rate AS REVIEW_Rate, " +
-								         "REVIEW.review AS REVIEW_Review, " +
-								         "REVIEW.write_date AS REVIEW_Write_Date";		
+	private static String query = "SELECT review_id, " +
+								         "rate, " +
+								         "review, " +
+								         "write_date ";		
 		
 	public ReviewDAOImpl() {			
 		jdbcUtil = new JDBCUtil();		
@@ -26,30 +26,29 @@ public class ReviewDAOImpl implements ReviewDAO {
 	
 	public List<ReviewDTO> getReviewList() {
 		
-		String allQuery = query + ", " + "REVIEW.m_id AS REVIEW_M_ID, " +
-		         "REVIEW.poduct_id AS REVIEW_Product_id, " +
-		         "REVIEW.review_id AS REVIEW_Review_Id, " +
-		         "REVIEW.rate AS REVIEW_Rate, " +
-		         "REVIEW.review AS REVIEW_Review, " +
-		         "REVIEW.write_date AS REVIEW_Write_Date" +		 
-				"FROM REVIEW";		
-		jdbcUtil.setSql(allQuery);		
+		String allQuery = "SELECT m_id, product_id, review_id, rate, review, write_date FROM review ";		
+		jdbcUtil.setSqlAndParameters(allQuery, null);	
+		//Object[] param = new Object[] {"REVIEW"};		
+		//jdbcUtil.setParameters(param);		
 		
 		try { 
-			ResultSet rs = jdbcUtil.executeQuery();		
-			List<ReviewDTO> list = new ArrayList<ReviewDTO>();		
+			ResultSet rs = jdbcUtil.executeQuery();
+			//System.out.println(rs.first() );
+			
+			ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
 			while (rs.next()) {	
 				ReviewDTO dto = new ReviewDTO();		
-				dto.setM_id(rs.getInt("REVIEW_M_ID"));
-				dto.setProduct_id(rs.getInt("REVIEW_Product_ID"));
-				dto.setReview_id(rs.getString("REVIEW_Review_ID"));
-				dto.setRate(rs.getInt("REVIEW_Rate"));
-				dto.setReview(rs.getString("REVIEW_Review"));
-				dto.setWrite_date(rs.getDate("REVIEW_Write_Date"));
-				list.add(dto);	
+				dto.setM_id(rs.getInt("m_id"));
+				dto.setProduct_id(rs.getInt("product_id"));
+				dto.setRate(rs.getInt("rate"));
+				dto.setReview(rs.getString("review"));
+				dto.setWrite_date(rs.getDate("write_date"));
+				list.add(dto);
+				System.out.println("DTO" );
 			}
 			return list;		
 		} catch (Exception ex) {
+			System.out.println("failed" );
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close();		
@@ -96,19 +95,24 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public int insertReview(ReviewDTO rev) {
 		int result = 0;
 		String insertQuery = "INSERT INTO REVIEW (m_id, product_id, review_id, rate, review, write_date) " +
-							 "VALUES (?, ?, ?, ?, ?, ?) ";
+							 "VALUES (?, ?, S_REVIEW_ID.nextval, ?, ?, SYSDATE ) ";
 		
-		DAOFactory factory = new DAOFactory();		
 		
-		Object[] param = new Object[] {rev.getM_id(), rev.getProduct_id(), 
-				rev.getReview_id(), rev.getRate(), rev.getReview(), rev.getWrite_date()};		
+		Object[] param = new Object[] {rev.getM_id(),Integer.parseInt("1040"), 
+				rev.getRate(), rev.getReview()};		
 		jdbcUtil.setSql(insertQuery);			
 		jdbcUtil.setParameters(param);			
 				
-		try {				
-			result = jdbcUtil.executeUpdate();		
+		try {		
+			System.out.println(rev.getM_id());
+			System.out.println(rev.getComponent());
+			System.out.println(rev.getRate());
+			System.out.println(rev.getReview());
+			result = jdbcUtil.executeUpdate();	
+			System.out.println("result =  " +  result);
 			System.out.println(rev.getM_id() + " 의 리뷰정보가 삽입되었습니다.");
 		} catch (SQLException ex) {
+			System.out.println("result =  " +  result);
 			System.out.println("입력오류 발생!!!");
 			if (ex.getErrorCode() == 1)
 				System.out.println("동일한 리뷰정보가 이미 존재합니다."); 
@@ -122,7 +126,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return result;		
 	}
 	
-	public int updateStudent(ReviewDTO rev) {
+	public int update(ReviewDTO rev) {
 		
 		String updateQuery = "UPDATE REVIEW SET ";
 		int index = 0;

@@ -31,4 +31,6 @@ public interface productDAO {
 	
 	public productDTO getProductById(int id);
 
+	public List<productDTO> getSalesList();
+
 }

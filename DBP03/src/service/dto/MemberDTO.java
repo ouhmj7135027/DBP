@@ -30,6 +30,7 @@ public class MemberDTO {
 	public MemberDTO() {
 		
 	}
+	
 	public void update(Member updateMember) {
         this.m_password = updateMember.getM_password();
         this.phone = updateMember.getPhone();

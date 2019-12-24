@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
 encoding//WebContent/survey/surveySkin.jsp=UTF-8
 encoding//src/controller/product/OrderController.java=UTF-8
+encoding//src/persistence/dao/impl/order_detailDAOImpl.java=UTF-8

@@ -74,6 +74,9 @@ public class ProductManager {
 	public List<productDTO> getProductByp_Id(int id) {
 		return proDAO.getProductByp_id(id);
 	}
-		
+	
+	public List<productDTO> getSalesList() {
+		return proDAO.getSalesList();
+	}
 	
 }

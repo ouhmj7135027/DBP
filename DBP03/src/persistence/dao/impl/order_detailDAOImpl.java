@@ -1,13 +1,11 @@
 package persistence.dao.impl;
 
-import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import persistence.DAOFactory;
 import persistence.dao.order_detailDAO;
-import persistence.dao.order_pDAO;
 import service.dto.order_detailDTO;
-import service.dto.order_pDTO;
-import service.dto.productDTO;
 
 public class order_detailDAOImpl implements order_detailDAO{
 	private JDBCUtil jdbcUtil = null;
@@ -16,49 +14,73 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil = new JDBCUtil();
 	}
 	
-	/*public List<order_detailDTO> listOrder()
-	{
-		String sql = "select order_num, g.name gname, c.name cname, c.address, order_date from orderlist "
-				+ "inner join goods g on orderlist.goods_num = g.goods_num"
-				+ "inner join customer c on orderlist.cust_id = c.id order by order_num desc";
+	public List<order_detailDTO> getOrderViewById(int oid) {
+		// TODO Auto-generated method stub
+		String listQuery = "select imgsrc, order_detail.product_id AS product_id, p_name, p_price, o_amount, total_price"
+						 + " from order_detail, product"
+						 + " where order_detail.product_id = product.product_id AND order_id = ? ";
+				
 		
-		List<OrderDTO> ReturnList = new ArrayList<OrderDTO>();
+		Object[] param = new Object[] {oid};	
+		jdbcUtil.setSql(listQuery);
+		jdbcUtil.setParameters(param);
 		
 		try {
-			pstmt = con.prepareStatement(sql);
-			
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next())
-			{
-				OrderDTO T = new OrderDTO();
-				
-				T.setCustAddr(rs.getString("c.address"));
-				T.setCustName(rs.getString("cname"));
-				T.setOrder_num(rs.getInt("order_num"));
-				T.setGoodsName(rs.getString("gname"));
-				T.setOrder_date(rs.getDate("order_date"));
-				
-				ReturnList.add(T);
+			ResultSet rs = jdbcUtil.executeQuery();
+			List<order_detailDTO> list = new ArrayList<order_detailDTO>();
+			while (rs.next()) {
+				order_detailDTO dto = new order_detailDTO();
+				dto.setImgsrc(rs.getString("imgsrc"));
+				dto.setProduct_id(rs.getInt("product_id"));
+				dto.setP_name(rs.getString("p_name"));
+				dto.setP_price(rs.getInt("p_price"));
+				dto.setO_amount(rs.getInt("o_amount"));
+				dto.setTotal_price(rs.getInt("total_price"));
+				list.add(dto);
 			}
-			
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.print("List order SQL ERROR");
-			}
-			
-			return ReturnList;
-	}*/
+			return list;
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();
+		}
+		return null;
+		
+	}
 	
 	public int insertOrder_detail(order_detailDTO ord_d) {
+
 		String sql = "INSERT INTO ORDER_DETAIL (order_detail_id, order_id, product_id, o_amount, total_price) "
-				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ?)";	
+				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ? )";	
+
+		/*String sql = "INSERT INTO ORDER_DETAIL (order_detail_id, order_id, product_id, o_amount, total_price, review ) "
+				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ?, \'0\' )";	*/
+		
+		
 	
 	Object[] param = new Object[] {ord_d.getOrder_id(), ord_d.getProduct_id(), ord_d.getO_amount(), ord_d.getTotal_price()};		
 	jdbcUtil.setSql(sql);
 	jdbcUtil.setParameters(param);	
 					
+	try {				
+		int result = jdbcUtil.executeUpdate();
+		return result;
+	} catch (Exception ex) {
+		jdbcUtil.rollback();
+		ex.printStackTrace();
+	} finally {		
+		jdbcUtil.commit();
+		jdbcUtil.close();	
+	}		
+	return 0;	
+		
+	}
+	
+	public int reviewed_order(String m_id, String product_id) {
+		String sql = "INSERT INTO ORDER_DETAIL ( review ) "
+				+ "VALUES(\'0\' ) where m_id = ? and product_id = ?";			
+	jdbcUtil.setSql(sql);
+	Object[] param = new Object[] {m_id, product_id};		
 	try {				
 		int result = jdbcUtil.executeUpdate();
 		return result;
@@ -100,15 +122,15 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(newParam);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// update 臾� �떎�뻾
-			return result;			// update �뿉 �쓽�빐 諛섏쁺�맂 �젅肄붾뱶 �닔 諛섑솚
+			int result = jdbcUtil.executeUpdate();		// update 占쎈닱�뜝占� �뜝�럥堉꾢뜝�럥六�
+			return result;			// update �뜝�럥�뱺 �뜝�럩踰ε뜝�럥�돵 �뛾�룇瑗뤄옙寃ュ뜝�럥彛� �뜝�럩�읉占쎄턀�겫�뼔援� �뜝�럥�빢 �뛾�룇瑗뱄옙�꼶
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		}
 		finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 諛섑솚
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection �뛾�룇瑗뱄옙�꼶
 		}		
 		return 0;
 	}
@@ -121,16 +143,17 @@ public class order_detailDAOImpl implements order_detailDAO{
 		jdbcUtil.setParameters(param);
 		
 		try {
-			int result = jdbcUtil.executeUpdate();		// delete 臾� �떎�뻾
-			return result;						// delete �뿉 �쓽�빐 諛섏쁺�맂 �젅肄붾뱶 �닔 諛섑솚
+			int result = jdbcUtil.executeUpdate();		// delete 占쎈닱�뜝占� �뜝�럥堉꾢뜝�럥六�
+			return result;						// delete �뜝�럥�뱺 �뜝�럩踰ε뜝�럥�돵 �뛾�룇瑗뤄옙寃ュ뜝�럥彛� �뜝�럩�읉占쎄턀�겫�뼔援� �뜝�럥�빢 �뛾�룇瑗뱄옙�꼶
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();		
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection 諛섑솚
+			jdbcUtil.close();		// ResultSet, PreparedStatement, Connection �뛾�룇瑗뱄옙�꼶
 		}
 		return 0;
 	}
+
 
 }

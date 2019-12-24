@@ -51,7 +51,7 @@ table {
         <a class="nav-link" href="<c:url value='/cart/cartList' />">장바구니</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="<c:url value='/user/login/form' />">고객후기</a>
+        <a class="nav-link" href="<c:url value='/review/main' />">고객후기</a>
       </li>
 <%if(session.getAttribute("userId") == null) {%>
 
@@ -84,19 +84,18 @@ else
    </div>
    <br><br><br><br><br><br><br><br><br><br><br>
    <div>
-  <table >
-  <tr>
+  <%if(session.getAttribute("userId") != null) {%>
+	<p>추천상품<p>
+	<table >
+ 	 <c:forEach items="${saleList}" var="sale">
   	<td>
-  		추천상품1 
-  		</td>
-  		<td>
-  		추천상품2
-  		</td>
-  		<td>
-  		추천상품3 
-  		</td>
-  	</tr>
-  </table>
+  		<tr><img src="<c:url value='${sale.imgsrc}' />"></tr>
+  		<tr>${sale.p_name}</tr>
+ 	</td>
+   	</c:forEach>
+  	</table> 
+ 
+   <%} %>
   <p>
   
 </div>

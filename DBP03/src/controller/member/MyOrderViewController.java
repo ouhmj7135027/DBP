@@ -6,27 +6,28 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import service.OrderManager;
-import service.dto.order_pDTO;
+import service.dto.order_detailDTO;
 
-public class MyOrderController implements Controller {
-	private static final Logger log = LoggerFactory.getLogger(MyOrderController.class);
+public class MyOrderViewController implements Controller {
+	private static final Logger log = LoggerFactory.getLogger(MyOrderViewController.class);
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		HttpSession session = request.getSession();
-		
 		OrderManager manager = OrderManager.getInstance();
-		List<order_pDTO> orderlist = manager.getOrderListById(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
-		request.setAttribute("orderList", orderlist);
-		return "/user/myorderList";   
+		
+		int oid = Integer.parseInt(String.valueOf(request.getParameter("orderId")));
+		
+		List<order_detailDTO> orderview = manager.getOrderViewById(oid);
+		
+		request.setAttribute("orderView", orderview);
+		request.setAttribute("oid", oid);
+		return "/user/myorderView";      
 		
 	}
 
