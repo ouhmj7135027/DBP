@@ -26,12 +26,14 @@ public class ReviewDAOImpl implements ReviewDAO {
 	
 	public List<ReviewDTO> getReviewList() {
 		
-		String allQuery = "SELECT * FROM REVIEW";		
-		jdbcUtil.setSql(allQuery);		
+		String allQuery = "SELECT m_id, product_id, review_id, rate, review, write_date FROM review ";		
+		jdbcUtil.setSql(allQuery);	
+		Object[] param = new Object[] {"REVIEW"};		
+		jdbcUtil.setParameters(param);		
 		
 		try { 
 			ResultSet rs = jdbcUtil.executeQuery();
-			System.out.println(rs.first() );
+			//System.out.println(rs.first() );
 			
 			ArrayList<ReviewDTO> list = new ArrayList<ReviewDTO>();		
 			while (rs.next()) {	

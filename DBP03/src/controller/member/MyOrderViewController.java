@@ -26,7 +26,7 @@ public class MyOrderViewController implements Controller {
 		List<order_detailDTO> orderview = manager.getOrderViewById(oid);
 		
 		request.setAttribute("orderView", orderview);
-		
+		request.setAttribute("oid", oid);
 		return "/user/myorderView";      
 		
 	}

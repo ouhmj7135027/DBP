@@ -27,14 +27,12 @@ public class ReviewController implements Controller{
 		 String component ="";
 		 order_detailDTO o = new order_detailDTO();
 		 System.out.println(request.getParameterValues("component"));
-		for(int i=0;i<request.getParameterValues("component").length;i++) {
-		component = request.getParameterValues("component")[i];
-		}
+		
 		 ReviewDTO r = new ReviewDTO(
 				 String.valueOf(session.getAttribute("m_id")),
 				
 					request.getParameter("rate"),
-				    component,
+				    request.getParameter("pName"),
 					request.getParameter("review"),
 					request.getParameter("reviewpassword")
 				);
@@ -46,10 +44,10 @@ public class ReviewController implements Controller{
 				ReviewDAOImpl review = new ReviewDAOImpl();
 				review.insertReview(r);
 				
-				//List<ReviewDTO> list=  review.getReviewList();
+				List<ReviewDTO> list=  review.getReviewList();
 				//System.out.println(list.size());
-				//request.setAttribute("Reviewlist", list);
-				return "redirect:/review/main";		
+				request.setAttribute("Reviewlist", list);
+				return "/review/review.jsp";		
 		
 		    }
 

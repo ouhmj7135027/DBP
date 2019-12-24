@@ -49,16 +49,14 @@ public class order_detailDAOImpl implements order_detailDAO{
 	}
 	
 	public int insertOrder_detail(order_detailDTO ord_d) {
-<<<<<<< HEAD
+
 		String sql = "INSERT INTO ORDER_DETAIL (order_detail_id, order_id, product_id, o_amount, total_price) "
 				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ? )";	
-=======
+
 		/*String sql = "INSERT INTO ORDER_DETAIL (order_detail_id, order_id, product_id, o_amount, total_price, review ) "
 				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ?, \'0\' )";	*/
 		
-		String sql = "INSERT INTO ORDER_DETAIL (order_detail_id, order_id, product_id, o_amount, total_price ) "
-				+ "VALUES(S_ORDER_DETAIL_ID.nextval, ?, ?, ?, ?)";	
->>>>>>> branch 'master' of https://github.com/ouhmj7135027/DBP.git
+		
 	
 	Object[] param = new Object[] {ord_d.getOrder_id(), ord_d.getProduct_id(), ord_d.getO_amount(), ord_d.getTotal_price()};		
 	jdbcUtil.setSql(sql);

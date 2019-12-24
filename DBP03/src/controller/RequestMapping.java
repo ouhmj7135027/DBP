@@ -36,7 +36,7 @@ public class RequestMapping {
         mappings.put("/user/login", new LoginController());
         mappings.put("/user/logout", new LogoutController());
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
-        mappings.put("/review/form", new ForwardController("/review/reviewform.jsp"));
+        mappings.put("/review/form", new ForwardController("/review/reviewform2.jsp"));
         mappings.put("/review/main", new ForwardController("/review/review.jsp"));
 
         mappings.put("/review/create", new ReviewController());

@@ -35,6 +35,7 @@ public class surveyController implements Controller {
 		List<productDTO> k = new ArrayList<productDTO>();
 		
 		for(int i=0;i<list.size();i++) {
+			int j;
 			if((list.get(i).equals("skin")&&!l.contains(4))) {
 				l.add(4);
 				if()
