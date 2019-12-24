@@ -12,11 +12,12 @@
 <table>
 
 		<tr><th>눈(해당 하는 증상에 체크하세요)</th></tr>
-		<tr><td> <input type=checkbox name="eye" value=0>눈이 건조하여 뻑뻑하고 가려움을 느껴요.</td></tr>
-		<tr><td> <input type=checkbox name="eye" value=1>눈 주변이 떨리는 현상이 있어요.</td></tr>
-		<tr><td> <input type=checkbox name="eye" value=2>핸드폰이나 컴퓨터를 본 후에 시야가 흐릿하게 느껴져요.</td></tr>
-		<tr><td> <input type=checkbox name="eye" value=3>어두워지면 시력이 저하돼요.</td></tr>
-		<tr><td> <input type=checkbox name="eye" value=4>위와 같은 증상이 없지만 눈 건강이 걱정돼요.</td></tr>
+		<tr><td> <input type=checkbox name="eye" value=0>아래와 같은 증상이 없지만 눈 건강이 걱정돼요.</td></tr>
+		<tr><td> <input type=checkbox name="eye" value=1>눈이 건조하여 뻑뻑하고 가려움을 느껴요.</td></tr>
+		<tr><td> <input type=checkbox name="eye" value=2>눈 주변이 떨리는 현상이 있어요.</td></tr>
+		<tr><td> <input type=checkbox name="eye" value=3>핸드폰이나 컴퓨터를 본 후에 시야가 흐릿하게 느껴져요.</td></tr>
+		<tr><td> <input type=checkbox name="eye" value=4>어두워지면 시력이 저하돼요.</td></tr>
+		
 	
 </table>
 

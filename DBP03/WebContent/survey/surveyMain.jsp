@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+
+
+
 </head>
 <body>
 	<form name = "frm1" action="<c:url value='/survey/main' />" method = "post">
 <table>
 
-		<tr><th>불편하시거나 걱정되는 3가지를 선택하세요.(우선적으로 관리가 필요한 것을 선택하세요.)</th></tr>
+		<tr><th>불편하시거나 걱정되는 곳를 선택하세요.(우선적으로 관리가 필요한 것을 선택하세요.)</th></tr>
 		<tr><td> <input type=checkbox name=main value=0>혈관/혈액순환</td></tr>
 		<tr><td> <input type=checkbox name=main value=1>피부</td></tr>
 		<tr><td> <input type=checkbox name=main value=3>눈</td></tr>
@@ -21,7 +25,7 @@
 		
 	
 </table>
-<input type = "submit" value = "선택"/>
+<input type = "submit" value = "선택" "/>
 </form>
 	
 </body>
