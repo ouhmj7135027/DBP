@@ -39,13 +39,17 @@ public class LoginController implements Controller {
 			manager.login(userId, password);
 			MemberDTO mem = manager.findUser(userId);
 	
+			ProductManager p_manager = new ProductManager();
+			List<productDTO> slist = p_manager.getSalesList();
+			request.setAttribute("saleList", slist);
+			
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
 			session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
 			session.setAttribute(UserSessionUtils.USER_M_ID, mem.getM_id());
 			request.setAttribute("id", userId);
 			
-            return "redirect:/main";			
+            return "/main";			
 		
 		}catch (Exception e) {
 		

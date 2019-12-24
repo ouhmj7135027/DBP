@@ -377,6 +377,29 @@ private JDBCUtil jdbcUtil = null;
 		
 	}
 	
-	
+	public List<productDTO> getSalesList() {
+        String sql = "SELECT imgsrc, p_name " 
+        		   + "FROM (select imgsrc, p_name, sales from product order by sales DESC) "
+        		   + "where ROWNUM <= 3";
+		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<productDTO> list = new ArrayList<productDTO>();	// User들의 리스트 생성
+			while (rs.next()) {
+				productDTO dto = new productDTO();
+				dto.setImgsrc(rs.getString("imgsrc"));
+				dto.setP_name(rs.getString("p_name"));
+				list.add(dto);		
+			}		
+			return list;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
 
 }

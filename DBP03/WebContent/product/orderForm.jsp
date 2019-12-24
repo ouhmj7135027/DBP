@@ -90,7 +90,7 @@
 			
 			<div class="inputArea">
 				<label for="price">총 합계</label> 
-				<input type="text" name="total_price" id="total_price" value= "<%= total %>원" required="required" />
+				<input type="text" name="total_price" id="total_price" value= "<%= total %>" required="required" />
 			</div>
 
 			<div class="inputArea">

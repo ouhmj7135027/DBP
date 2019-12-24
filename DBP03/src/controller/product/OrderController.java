@@ -31,8 +31,7 @@ public class OrderController implements Controller {
 				request.getParameter("order_name"),
 				request.getParameter("order_phone"),
 				request.getParameter("address"),
-				1000);
-				//Integer.parseInt(request.getParameter("total_price")));
+				Integer.parseInt(request.getParameter("total_price")));
 			
 	    log.debug("Insert order : {}", order);
 
