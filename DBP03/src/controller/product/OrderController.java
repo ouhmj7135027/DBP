@@ -3,10 +3,13 @@ package controller.product;
 import controller.Controller;
 import service.CartManager;
 import service.OrderManager;
+import service.ProductManager;
 import service.dto.cartDTO;
 import service.dto.cartListDTO;
 import service.dto.order_detailDTO;
 import service.dto.order_pDTO;
+import service.dto.productDTO;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -31,14 +34,15 @@ public class OrderController implements Controller {
 				request.getParameter("order_name"),
 				request.getParameter("order_phone"),
 				request.getParameter("address"),
-				1000);
-				//Integer.parseInt(request.getParameter("total_price")));
+				Integer.parseInt(request.getParameter("total_price")));
 			
 	    log.debug("Insert order : {}", order);
 
 	    OrderManager manager = OrderManager.getInstance();
 		int order_id = manager.insertOrder_p(order);
 		
+		//ProductManager promanager = ProductManager.getInstance();
+
 		CartManager cmanager = CartManager.getInstance();
 		List<cartDTO> clist = cmanager.getCartByMid(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
 		
@@ -51,10 +55,16 @@ public class OrderController implements Controller {
 			od.setOrder_id(order_id);
 			manager.insertOrderDetail(od);
 		}
-		cmanager.delete(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));
+		cmanager.delete(Integer.parseInt(String.valueOf(session.getAttribute("m_id"))));	
+		
+		//if(order_id == 0)
+			//promanager.update(p);
+		
 		return "/user/myorder/list";		
 		     		
 	}
+	
+	
 
 	@Override
 	public void onlyGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

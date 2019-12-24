@@ -104,9 +104,6 @@ public class surveyController implements Controller {
 		
 			}
 
-
-
-
 		}	
 
 		request.setAttribute("list", k);				

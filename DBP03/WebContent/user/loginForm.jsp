@@ -9,7 +9,7 @@
 <script>
 function login() {
 	if (form.userId.value == "") {
-		alert("사용자 ID를 입력하십시오.");
+		alert("이메일 ID를 입력하십시오.");
 		form.userId.focus();
 		return false;
 	} 
@@ -47,7 +47,7 @@ function userCreate(targetUri) {
 	    <br>	  
 	    <table style="background-color: YellowGreen">
 	  	  <tr height="40">
-			<td width="150" align="center" bgcolor="E6ECDE">사용자 ID</td>
+			<td width="150" align="center" bgcolor="E6ECDE">이메일 ID</td>
 			<td width="250" bgcolor="ffffff" style="padding-left:10">
 				<input type="text" style="width:240" name="userId">
 			</td>
